@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import java.awt.*;
 
 @PluginDescriptor(
-        name = PluginDescriptor.Default + "Scurrius",
+        name = "Scurrius",
         description = "Scurrius example plugin",
         tags = {"microbot", "scurrius", "boss"},
         enabledByDefault = false
@@ -46,6 +46,7 @@ public class ScurriusPlugin extends Plugin {
         scurriusScript.run(config);
     }
 
+    @Override
     protected void shutDown() {
         scurriusScript.shutdown();
         overlayManager.remove(exampleOverlay);

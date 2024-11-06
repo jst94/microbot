@@ -206,6 +206,10 @@ public interface ScurriusConfig extends Config {
         PotionSelection(int itemId) {
             this.itemId = itemId;
         }
+
+        public int getItemId() {
+            return itemId;
+        }
     }
 
     @Getter
@@ -217,6 +221,10 @@ public interface ScurriusConfig extends Config {
 
         BossRoomEntryType(String interactionText) {
             this.interactionText = interactionText;
+        }
+
+        public String getInteractionText() {
+            return interactionText;
         }
     }
 }

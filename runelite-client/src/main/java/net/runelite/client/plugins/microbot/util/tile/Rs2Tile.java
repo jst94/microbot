@@ -25,6 +25,7 @@ public abstract class Rs2Tile implements Tile{
 
     private static ScheduledExecutorService tileExecutor;
 
+    private static List<WorldPoint> dangerousTiles = new ArrayList<>();
 
     public static void init() {
         if (tileExecutor == null) {
@@ -64,6 +65,25 @@ public abstract class Rs2Tile implements Tile{
                 return true;
             });
         }
+    }
+
+    /**
+     * Clears all currently tracked dangerous tiles.
+     */
+    public static void clearDangerousTiles() {
+        dangerousTiles.clear();
+    }
+
+    // Method to add dangerous tiles (if not already present)
+    public static void addDangerousTile(WorldPoint tile) {
+        if (!dangerousTiles.contains(tile)) {
+            dangerousTiles.add(tile);
+        }
+    }
+
+    // Method to retrieve dangerous tiles (if needed)
+    public static List<WorldPoint> getDangerousTiles() {
+        return new ArrayList<>(dangerousTiles);
     }
 
     /**
