@@ -1,0 +1,353 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "jshell",
+        "directory": "/home/jeroen/Bureaublad/microbot/runelite-jshell",
+        "workspaceDir": "/home/jeroen/Bureaublad/microbot",
+        "sources": [
+            "/home/jeroen/Bureaublad/microbot/runelite-jshell/src/main/java"
+        ],
+        "dependencies": [
+            "runelite-parent"
+        ],
+        "classpath": [
+            "/home/jeroen/Bureaublad/microbot/target/classes",
+            "/home/jeroen/Bureaublad/microbot/runelite-jshell/target/classes",
+            "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar",
+            "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar",
+            "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar",
+            "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar",
+            "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre.jar",
+            "/home/jeroen/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar",
+            "/home/jeroen/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar",
+            "/home/jeroen/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar",
+            "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar",
+            "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+            "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar",
+            "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar",
+            "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4.jar"
+        ],
+        "out": "/home/jeroen/Bureaublad/microbot/runelite-jshell/target",
+        "classesDir": "/home/jeroen/Bureaublad/microbot/runelite-jshell/target/classes",
+        "resources": [
+            "/home/jeroen/Bureaublad/microbot/runelite-jshell/src/main/resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/usr/lib/jvm/java-21-openjdk",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "com.google.errorprone",
+                    "name": "error_prone_annotations",
+                    "version": "2.0.18",
+                    "artifacts": [
+                        {
+                            "name": "error_prone_annotations",
+                            "path": "/home/jeroen/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar"
+                        },
+                        {
+                            "name": "error_prone_annotations",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.code.findbugs",
+                    "name": "jsr305",
+                    "version": "3.0.2",
+                    "artifacts": [
+                        {
+                            "name": "jsr305",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
+                        },
+                        {
+                            "name": "jsr305",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "guava",
+                    "version": "23.2-jre",
+                    "artifacts": [
+                        {
+                            "name": "guava",
+                            "path": "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre.jar"
+                        },
+                        {
+                            "name": "guava",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "aopalliance",
+                    "name": "aopalliance",
+                    "version": "1.0",
+                    "artifacts": [
+                        {
+                            "name": "aopalliance",
+                            "path": "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"
+                        },
+                        {
+                            "name": "aopalliance",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "flatlaf-extras",
+                    "version": "3.2.5-rl4",
+                    "artifacts": [
+                        {
+                            "name": "flatlaf-extras",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4.jar"
+                        },
+                        {
+                            "name": "flatlaf-extras",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "1.7.25",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fifesoft",
+                    "name": "rsyntaxtextarea",
+                    "version": "3.1.2",
+                    "artifacts": [
+                        {
+                            "name": "rsyntaxtextarea",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar"
+                        },
+                        {
+                            "name": "rsyntaxtextarea",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fifesoft",
+                    "name": "autocomplete",
+                    "version": "3.1.1",
+                    "artifacts": [
+                        {
+                            "name": "autocomplete",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar"
+                        },
+                        {
+                            "name": "autocomplete",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.weisj",
+                    "name": "jsvg",
+                    "version": "1.2.0",
+                    "artifacts": [
+                        {
+                            "name": "jsvg",
+                            "path": "/home/jeroen/.m2/repository/com/github/weisj/jsvg/1.2.0/jsvg-1.2.0.jar"
+                        },
+                        {
+                            "name": "jsvg",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/github/weisj/jsvg/1.2.0/jsvg-1.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.codehaus.mojo",
+                    "name": "animal-sniffer-annotations",
+                    "version": "1.14",
+                    "artifacts": [
+                        {
+                            "name": "animal-sniffer-annotations",
+                            "path": "/home/jeroen/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar"
+                        },
+                        {
+                            "name": "animal-sniffer-annotations",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.projectlombok",
+                    "name": "lombok",
+                    "version": "1.18.30",
+                    "artifacts": [
+                        {
+                            "name": "lombok",
+                            "path": "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar"
+                        },
+                        {
+                            "name": "lombok",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "javax.inject",
+                    "name": "javax.inject",
+                    "version": "1",
+                    "artifacts": [
+                        {
+                            "name": "javax.inject",
+                            "path": "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"
+                        },
+                        {
+                            "name": "javax.inject",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "flatlaf",
+                    "version": "3.2.5-rl4",
+                    "artifacts": [
+                        {
+                            "name": "flatlaf",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf/3.2.5-rl4/flatlaf-3.2.5-rl4.jar"
+                        },
+                        {
+                            "name": "flatlaf",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf/3.2.5-rl4/flatlaf-3.2.5-rl4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject",
+                    "name": "guice",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice",
+                            "classifier": "no_aop",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.j2objc",
+                    "name": "j2objc-annotations",
+                    "version": "1.1",
+                    "artifacts": [
+                        {
+                            "name": "j2objc-annotations",
+                            "path": "/home/jeroen/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar"
+                        },
+                        {
+                            "name": "j2objc-annotations",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

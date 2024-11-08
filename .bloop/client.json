@@ -1,0 +1,1183 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "client",
+        "directory": "/home/jeroen/Bureaublad/microbot/runelite-client",
+        "workspaceDir": "/home/jeroen/Bureaublad/microbot",
+        "sources": [
+            "/home/jeroen/Bureaublad/microbot/runelite-client/src/main/java",
+            "/home/jeroen/Bureaublad/microbot/runelite-client/src/main/scala"
+        ],
+        "dependencies": [
+            "runelite-parent",
+            "cache",
+            "runelite-maven-plugin",
+            "runelite-api",
+            "jshell"
+        ],
+        "classpath": [
+            "/home/jeroen/Bureaublad/microbot/target/classes",
+            "/home/jeroen/Bureaublad/microbot/cache/target/classes",
+            "/home/jeroen/Bureaublad/microbot/runelite-maven-plugin/target/classes",
+            "/home/jeroen/Bureaublad/microbot/runelite-api/target/classes",
+            "/home/jeroen/Bureaublad/microbot/runelite-jshell/target/classes",
+            "/home/jeroen/Bureaublad/microbot/runelite-client/target/classes",
+            "/home/jeroen/.m2/repository/org/json/json/20230227/json-20230227.jar",
+            "/home/jeroen/.m2/repository/org/roaringbitmap/RoaringBitmap/0.9.44/RoaringBitmap-0.9.44.jar",
+            "/home/jeroen/.m2/repository/org/benf/cfr/0.152/cfr-0.152.jar",
+            "/home/jeroen/.m2/repository/com/microsoft/signalr/signalr/7.0.4/signalr-7.0.4.jar",
+            "/home/jeroen/.m2/repository/io/reactivex/rxjava3/rxjava/3.0.11/rxjava-3.0.11.jar",
+            "/home/jeroen/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar",
+            "/home/jeroen/.m2/repository/com/squareup/okhttp3/okhttp/3.11.0/okhttp-3.11.0.jar",
+            "/home/jeroen/.m2/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar",
+            "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.5/jackson-core-2.13.5.jar",
+            "/home/jeroen/.m2/repository/com/github/joonasvali/naturalmouse/naturalmouse/2.0.3/naturalmouse-2.0.3.jar",
+            "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar",
+            "/home/jeroen/.m2/repository/ch/qos/logback/logback-classic/1.2.9/logback-classic-1.2.9.jar",
+            "/home/jeroen/.m2/repository/ch/qos/logback/logback-core/1.2.9/logback-core-1.2.9.jar",
+            "/home/jeroen/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.1/jopt-simple-5.0.1.jar",
+            "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre.jar",
+            "/home/jeroen/.m2/repository/org/xerial/sqlite-jdbc/3.42.0.0/sqlite-jdbc-3.42.0.0.jar",
+            "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar",
+            "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar",
+            "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar",
+            "/home/jeroen/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar",
+            "/home/jeroen/.m2/repository/net/runelite/flatlaf/3.2.5-rl4/flatlaf-3.2.5-rl4.jar",
+            "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar",
+            "/home/jeroen/.m2/repository/org/apache/commons/commons-text/1.2/commons-text-1.2.jar",
+            "/home/jeroen/.m2/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar",
+            "/home/jeroen/.m2/repository/net/java/dev/jna/jna/5.9.0/jna-5.9.0.jar",
+            "/home/jeroen/.m2/repository/net/java/dev/jna/jna-platform/5.9.0/jna-platform-5.9.0.jar",
+            "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+            "/home/jeroen/.m2/repository/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar",
+            "/home/jeroen/.m2/repository/com/google/protobuf/protobuf-javalite/3.21.12/protobuf-javalite-3.21.12.jar",
+            "/home/jeroen/.m2/repository/net/runelite/rlawt/1.5/rlawt-1.5.jar",
+            "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2.jar",
+            "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2.jar",
+            "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opencl/3.3.2/lwjgl-opencl-3.3.2.jar",
+            "/home/jeroen/.m2/repository/net/runelite/runelite-api/1.10.44-SNAPSHOT/runelite-api-1.10.44-SNAPSHOT.jar",
+            "/home/jeroen/.m2/repository/net/runelite/jshell/1.10.44-SNAPSHOT/jshell-1.10.44-SNAPSHOT.jar",
+            "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar",
+            "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar",
+            "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4.jar",
+            "/home/jeroen/.m2/repository/net/runelite/arn/http-api/1.2.16/http-api-1.2.16.jar",
+            "/home/jeroen/.m2/repository/net/runelite/discord/1.4/discord-1.4.jar",
+            "/home/jeroen/.m2/repository/net/runelite/orange-extensions/1.1/orange-extensions-1.1.jar",
+            "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.5/jackson-databind-2.13.5.jar",
+            "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.5/jackson-annotations-2.13.5.jar"
+        ],
+        "out": "/home/jeroen/Bureaublad/microbot/runelite-client/target",
+        "classesDir": "/home/jeroen/Bureaublad/microbot/runelite-client/target/classes",
+        "resources": [
+            "/home/jeroen/Bureaublad/microbot/runelite-client/src/main/resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/usr/lib/jvm/java-21-openjdk",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "com.squareup.okio",
+                    "name": "okio",
+                    "version": "1.14.0",
+                    "artifacts": [
+                        {
+                            "name": "okio",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar"
+                        },
+                        {
+                            "name": "okio",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.code.findbugs",
+                    "name": "jsr305",
+                    "version": "3.0.2",
+                    "artifacts": [
+                        {
+                            "name": "jsr305",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
+                        },
+                        {
+                            "name": "jsr305",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.commons",
+                    "name": "commons-text",
+                    "version": "1.2",
+                    "artifacts": [
+                        {
+                            "name": "commons-text",
+                            "path": "/home/jeroen/.m2/repository/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
+                        },
+                        {
+                            "name": "commons-text",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/apache/commons/commons-text/1.2/commons-text-1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-windows",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-windows.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.objenesis",
+                    "name": "objenesis",
+                    "version": "2.6",
+                    "artifacts": [
+                        {
+                            "name": "objenesis",
+                            "path": "/home/jeroen/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar"
+                        },
+                        {
+                            "name": "objenesis",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fasterxml.jackson.core",
+                    "name": "jackson-annotations",
+                    "version": "2.13.5",
+                    "artifacts": [
+                        {
+                            "name": "jackson-annotations",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.5/jackson-annotations-2.13.5.jar"
+                        },
+                        {
+                            "name": "jackson-annotations",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.5/jackson-annotations-2.13.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fifesoft",
+                    "name": "rsyntaxtextarea",
+                    "version": "3.1.2",
+                    "artifacts": [
+                        {
+                            "name": "rsyntaxtextarea",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar"
+                        },
+                        {
+                            "name": "rsyntaxtextarea",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.hamcrest",
+                    "name": "hamcrest-library",
+                    "version": "1.3",
+                    "artifacts": [
+                        {
+                            "name": "hamcrest-library",
+                            "path": "/home/jeroen/.m2/repository/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar"
+                        },
+                        {
+                            "name": "hamcrest-library",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-macos",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-macos.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fifesoft",
+                    "name": "autocomplete",
+                    "version": "3.1.1",
+                    "artifacts": [
+                        {
+                            "name": "autocomplete",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar"
+                        },
+                        {
+                            "name": "autocomplete",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.squareup.okhttp3",
+                    "name": "mockwebserver",
+                    "version": "3.14.9",
+                    "artifacts": [
+                        {
+                            "name": "mockwebserver",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okhttp3/mockwebserver/3.14.9/mockwebserver-3.14.9.jar"
+                        },
+                        {
+                            "name": "mockwebserver",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okhttp3/mockwebserver/3.14.9/mockwebserver-3.14.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "javax.inject",
+                    "name": "javax.inject",
+                    "version": "1",
+                    "artifacts": [
+                        {
+                            "name": "javax.inject",
+                            "path": "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"
+                        },
+                        {
+                            "name": "javax.inject",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.xerial",
+                    "name": "sqlite-jdbc",
+                    "version": "3.42.0.0",
+                    "artifacts": [
+                        {
+                            "name": "sqlite-jdbc",
+                            "path": "/home/jeroen/.m2/repository/org/xerial/sqlite-jdbc/3.42.0.0/sqlite-jdbc-3.42.0.0.jar"
+                        },
+                        {
+                            "name": "sqlite-jdbc",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/xerial/sqlite-jdbc/3.42.0.0/sqlite-jdbc-3.42.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.reactivestreams",
+                    "name": "reactive-streams",
+                    "version": "1.0.3",
+                    "artifacts": [
+                        {
+                            "name": "reactive-streams",
+                            "path": "/home/jeroen/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar"
+                        },
+                        {
+                            "name": "reactive-streams",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.microsoft.signalr",
+                    "name": "signalr",
+                    "version": "7.0.4",
+                    "artifacts": [
+                        {
+                            "name": "signalr",
+                            "path": "/home/jeroen/.m2/repository/com/microsoft/signalr/signalr/7.0.4/signalr-7.0.4.jar"
+                        },
+                        {
+                            "name": "signalr",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/microsoft/signalr/signalr/7.0.4/signalr-7.0.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.protobuf",
+                    "name": "protobuf-javalite",
+                    "version": "3.21.12",
+                    "artifacts": [
+                        {
+                            "name": "protobuf-javalite",
+                            "path": "/home/jeroen/.m2/repository/com/google/protobuf/protobuf-javalite/3.21.12/protobuf-javalite-3.21.12.jar"
+                        },
+                        {
+                            "name": "protobuf-javalite",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/protobuf/protobuf-javalite/3.21.12/protobuf-javalite-3.21.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-windows-arm64",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-windows-arm64.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject.extensions",
+                    "name": "guice-grapher",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice-grapher",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-grapher/4.1.0/guice-grapher-4.1.0.jar"
+                        },
+                        {
+                            "name": "guice-grapher",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-grapher/4.1.0/guice-grapher-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-macos-arm64",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-macos-arm64.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject.extensions",
+                    "name": "guice-assistedinject",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice-assistedinject",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-assistedinject/4.1.0/guice-assistedinject-4.1.0.jar"
+                        },
+                        {
+                            "name": "guice-assistedinject",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-assistedinject/4.1.0/guice-assistedinject-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "junit",
+                    "name": "junit",
+                    "version": "4.12",
+                    "artifacts": [
+                        {
+                            "name": "junit",
+                            "path": "/home/jeroen/.m2/repository/junit/junit/4.12/junit-4.12.jar"
+                        },
+                        {
+                            "name": "junit",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject",
+                    "name": "guice",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0.jar"
+                        },
+                        {
+                            "name": "guice",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2.jar"
+                        },
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.commons",
+                    "name": "commons-lang3",
+                    "version": "3.7",
+                    "artifacts": [
+                        {
+                            "name": "commons-lang3",
+                            "path": "/home/jeroen/.m2/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar"
+                        },
+                        {
+                            "name": "commons-lang3",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.bytebuddy",
+                    "name": "byte-buddy",
+                    "version": "1.9.10",
+                    "artifacts": [
+                        {
+                            "name": "byte-buddy",
+                            "path": "/home/jeroen/.m2/repository/net/bytebuddy/byte-buddy/1.9.10/byte-buddy-1.9.10.jar"
+                        },
+                        {
+                            "name": "byte-buddy",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/bytebuddy/byte-buddy/1.9.10/byte-buddy-1.9.10-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-macos",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-macos.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-windows-x86",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-windows-x86.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "guava",
+                    "version": "23.2-jre",
+                    "artifacts": [
+                        {
+                            "name": "guava",
+                            "path": "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre.jar"
+                        },
+                        {
+                            "name": "guava",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/guava/guava/23.2-jre/guava-23.2-jre-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.sf.jopt-simple",
+                    "name": "jopt-simple",
+                    "version": "5.0.1",
+                    "artifacts": [
+                        {
+                            "name": "jopt-simple",
+                            "path": "/home/jeroen/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.1/jopt-simple-5.0.1.jar"
+                        },
+                        {
+                            "name": "jopt-simple",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.1/jopt-simple-5.0.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "1.7.25",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "orange-extensions",
+                    "version": "1.1",
+                    "artifacts": [
+                        {
+                            "name": "orange-extensions",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/orange-extensions/1.1/orange-extensions-1.1.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "ch.qos.logback",
+                    "name": "logback-classic",
+                    "version": "1.2.9",
+                    "artifacts": [
+                        {
+                            "name": "logback-classic",
+                            "path": "/home/jeroen/.m2/repository/ch/qos/logback/logback-classic/1.2.9/logback-classic-1.2.9.jar"
+                        },
+                        {
+                            "name": "logback-classic",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/ch/qos/logback/logback-classic/1.2.9/logback-classic-1.2.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.weisj",
+                    "name": "jsvg",
+                    "version": "1.2.0",
+                    "artifacts": [
+                        {
+                            "name": "jsvg",
+                            "path": "/home/jeroen/.m2/repository/com/github/weisj/jsvg/1.2.0/jsvg-1.2.0.jar"
+                        },
+                        {
+                            "name": "jsvg",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/github/weisj/jsvg/1.2.0/jsvg-1.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-macos-arm64",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-macos-arm64.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite.arn",
+                    "name": "http-api",
+                    "version": "1.2.16",
+                    "artifacts": [
+                        {
+                            "name": "http-api",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/arn/http-api/1.2.16/http-api-1.2.16.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "ch.qos.logback",
+                    "name": "logback-core",
+                    "version": "1.2.9",
+                    "artifacts": [
+                        {
+                            "name": "logback-core",
+                            "path": "/home/jeroen/.m2/repository/ch/qos/logback/logback-core/1.2.9/logback-core-1.2.9.jar"
+                        },
+                        {
+                            "name": "logback-core",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/ch/qos/logback/logback-core/1.2.9/logback-core-1.2.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "flatlaf",
+                    "version": "3.2.5-rl4",
+                    "artifacts": [
+                        {
+                            "name": "flatlaf",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf/3.2.5-rl4/flatlaf-3.2.5-rl4.jar"
+                        },
+                        {
+                            "name": "flatlaf",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf/3.2.5-rl4/flatlaf-3.2.5-rl4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.bytebuddy",
+                    "name": "byte-buddy-agent",
+                    "version": "1.9.10",
+                    "artifacts": [
+                        {
+                            "name": "byte-buddy-agent",
+                            "path": "/home/jeroen/.m2/repository/net/bytebuddy/byte-buddy-agent/1.9.10/byte-buddy-agent-1.9.10.jar"
+                        },
+                        {
+                            "name": "byte-buddy-agent",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/bytebuddy/byte-buddy-agent/1.9.10/byte-buddy-agent-1.9.10-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject",
+                    "name": "guice",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice",
+                            "classifier": "no_aop",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2.jar"
+                        },
+                        {
+                            "name": "lwjgl",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.reactivex.rxjava3",
+                    "name": "rxjava",
+                    "version": "3.0.11",
+                    "artifacts": [
+                        {
+                            "name": "rxjava",
+                            "path": "/home/jeroen/.m2/repository/io/reactivex/rxjava3/rxjava/3.0.11/rxjava-3.0.11.jar"
+                        },
+                        {
+                            "name": "rxjava",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/io/reactivex/rxjava3/rxjava/3.0.11/rxjava-3.0.11-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.code.gson",
+                    "name": "gson",
+                    "version": "2.8.5",
+                    "artifacts": [
+                        {
+                            "name": "gson",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar"
+                        },
+                        {
+                            "name": "gson",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "injected-client",
+                    "version": "1.10.44-SNAPSHOT",
+                    "artifacts": [
+                        {
+                            "name": "injected-client",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/injected-client/1.10.44-SNAPSHOT/injected-client-1.10.44-SNAPSHOT.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject.extensions",
+                    "name": "guice-testlib",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice-testlib",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-testlib/4.1.0/guice-testlib-4.1.0.jar"
+                        },
+                        {
+                            "name": "guice-testlib",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-testlib/4.1.0/guice-testlib-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-windows-x86",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-windows-x86.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-windows-arm64",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-windows-arm64.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.hamcrest",
+                    "name": "hamcrest-core",
+                    "version": "1.3",
+                    "artifacts": [
+                        {
+                            "name": "hamcrest-core",
+                            "path": "/home/jeroen/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+                        },
+                        {
+                            "name": "hamcrest-core",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fasterxml.jackson.core",
+                    "name": "jackson-databind",
+                    "version": "2.13.5",
+                    "artifacts": [
+                        {
+                            "name": "jackson-databind",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.5/jackson-databind-2.13.5.jar"
+                        },
+                        {
+                            "name": "jackson-databind",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.5/jackson-databind-2.13.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.github.joonasvali.naturalmouse",
+                    "name": "naturalmouse",
+                    "version": "2.0.3",
+                    "artifacts": [
+                        {
+                            "name": "naturalmouse",
+                            "path": "/home/jeroen/.m2/repository/com/github/joonasvali/naturalmouse/naturalmouse/2.0.3/naturalmouse-2.0.3.jar"
+                        },
+                        {
+                            "name": "naturalmouse",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/github/joonasvali/naturalmouse/naturalmouse/2.0.3/naturalmouse-2.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fasterxml.jackson.core",
+                    "name": "jackson-core",
+                    "version": "2.13.5",
+                    "artifacts": [
+                        {
+                            "name": "jackson-core",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.5/jackson-core-2.13.5.jar"
+                        },
+                        {
+                            "name": "jackson-core",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.5/jackson-core-2.13.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.projectlombok",
+                    "name": "lombok",
+                    "version": "1.18.30",
+                    "artifacts": [
+                        {
+                            "name": "lombok",
+                            "path": "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar"
+                        },
+                        {
+                            "name": "lombok",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opencl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opencl",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opencl/3.3.2/lwjgl-opencl-3.3.2.jar"
+                        },
+                        {
+                            "name": "lwjgl-opencl",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opencl/3.3.2/lwjgl-opencl-3.3.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.benf",
+                    "name": "cfr",
+                    "version": "0.152",
+                    "artifacts": [
+                        {
+                            "name": "cfr",
+                            "path": "/home/jeroen/.m2/repository/org/benf/cfr/0.152/cfr-0.152.jar"
+                        },
+                        {
+                            "name": "cfr",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/benf/cfr/0.152/cfr-0.152-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "discord",
+                    "version": "1.4",
+                    "artifacts": [
+                        {
+                            "name": "discord",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/discord/1.4/discord-1.4.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.mockito",
+                    "name": "mockito-core",
+                    "version": "3.1.0",
+                    "artifacts": [
+                        {
+                            "name": "mockito-core",
+                            "path": "/home/jeroen/.m2/repository/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.jar"
+                        },
+                        {
+                            "name": "mockito-core",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.roaringbitmap",
+                    "name": "RoaringBitmap",
+                    "version": "0.9.44",
+                    "artifacts": [
+                        {
+                            "name": "RoaringBitmap",
+                            "path": "/home/jeroen/.m2/repository/org/roaringbitmap/RoaringBitmap/0.9.44/RoaringBitmap-0.9.44.jar"
+                        },
+                        {
+                            "name": "RoaringBitmap",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/roaringbitmap/RoaringBitmap/0.9.44/RoaringBitmap-0.9.44-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.java.dev.jna",
+                    "name": "jna-platform",
+                    "version": "5.9.0",
+                    "artifacts": [
+                        {
+                            "name": "jna-platform",
+                            "path": "/home/jeroen/.m2/repository/net/java/dev/jna/jna-platform/5.9.0/jna-platform-5.9.0.jar"
+                        },
+                        {
+                            "name": "jna-platform",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/java/dev/jna/jna-platform/5.9.0/jna-platform-5.9.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.java.dev.jna",
+                    "name": "jna",
+                    "version": "5.9.0",
+                    "artifacts": [
+                        {
+                            "name": "jna",
+                            "path": "/home/jeroen/.m2/repository/net/java/dev/jna/jna/5.9.0/jna-5.9.0.jar"
+                        },
+                        {
+                            "name": "jna",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/java/dev/jna/jna/5.9.0/jna-5.9.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-windows",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-windows.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "aopalliance",
+                    "name": "aopalliance",
+                    "version": "1.0",
+                    "artifacts": [
+                        {
+                            "name": "aopalliance",
+                            "path": "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"
+                        },
+                        {
+                            "name": "aopalliance",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.roaringbitmap",
+                    "name": "shims",
+                    "version": "0.9.44",
+                    "artifacts": [
+                        {
+                            "name": "shims",
+                            "path": "/home/jeroen/.m2/repository/org/roaringbitmap/shims/0.9.44/shims-0.9.44.jar"
+                        },
+                        {
+                            "name": "shims",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/roaringbitmap/shims/0.9.44/shims-0.9.44-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "rlawt",
+                    "version": "1.5",
+                    "artifacts": [
+                        {
+                            "name": "rlawt",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/rlawt/1.5/rlawt-1.5.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "net.runelite",
+                    "name": "flatlaf-extras",
+                    "version": "3.2.5-rl4",
+                    "artifacts": [
+                        {
+                            "name": "flatlaf-extras",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4.jar"
+                        },
+                        {
+                            "name": "flatlaf-extras",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/net/runelite/flatlaf-extras/3.2.5-rl4/flatlaf-extras-3.2.5-rl4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl",
+                            "classifier": "natives-linux",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl/3.3.2/lwjgl-3.3.2-natives-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jetbrains",
+                    "name": "annotations",
+                    "version": "23.0.0",
+                    "artifacts": [
+                        {
+                            "name": "annotations",
+                            "path": "/home/jeroen/.m2/repository/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+                        },
+                        {
+                            "name": "annotations",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.squareup.okhttp3",
+                    "name": "okhttp",
+                    "version": "3.11.0",
+                    "artifacts": [
+                        {
+                            "name": "okhttp",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okhttp3/okhttp/3.11.0/okhttp-3.11.0.jar"
+                        },
+                        {
+                            "name": "okhttp",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/squareup/okhttp3/okhttp/3.11.0/okhttp-3.11.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.inject.extensions",
+                    "name": "guice-multibindings",
+                    "version": "4.1.0",
+                    "artifacts": [
+                        {
+                            "name": "guice-multibindings",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-multibindings/4.1.0/guice-multibindings-4.1.0.jar"
+                        },
+                        {
+                            "name": "guice-multibindings",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/com/google/inject/extensions/guice-multibindings/4.1.0/guice-multibindings-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.json",
+                    "name": "json",
+                    "version": "20230227",
+                    "artifacts": [
+                        {
+                            "name": "json",
+                            "path": "/home/jeroen/.m2/repository/org/json/json/20230227/json-20230227.jar"
+                        },
+                        {
+                            "name": "json",
+                            "classifier": "sources",
+                            "path": "/home/jeroen/.m2/repository/org/json/json/20230227/json-20230227-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.lwjgl",
+                    "name": "lwjgl-opengl",
+                    "version": "3.3.2",
+                    "artifacts": [
+                        {
+                            "name": "lwjgl-opengl",
+                            "classifier": "natives-linux",
+                            "path": "/home/jeroen/.m2/repository/org/lwjgl/lwjgl-opengl/3.3.2/lwjgl-opengl-3.3.2-natives-linux.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}
