@@ -24,17 +24,14 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.components.shadowlabel.JShadowedLabel;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A progress bar to be displayed underneath the GE offer item panels

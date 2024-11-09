@@ -32,12 +32,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import net.runelite.api.CollisionData;
-import net.runelite.api.CollisionDataFlag;
-import net.runelite.api.Point;
-import net.runelite.api.Tile;
-import net.runelite.api.WorldView;
 
 /**
  * Represents an area on the world.

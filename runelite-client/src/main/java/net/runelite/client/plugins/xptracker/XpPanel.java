@@ -25,22 +25,6 @@
  */
 package net.runelite.client.plugins.xptracker;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Skill;
@@ -54,6 +38,15 @@ import net.runelite.client.ui.components.PluginErrorPanel;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 import okhttp3.HttpUrl;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 class XpPanel extends PluginPanel
 {

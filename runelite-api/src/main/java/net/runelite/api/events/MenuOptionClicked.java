@@ -24,7 +24,6 @@
  */
 package net.runelite.api.events;
 
-import javax.annotation.Nullable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +31,8 @@ import lombok.ToString;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.widgets.Widget;
+
+import javax.annotation.Nullable;
 
 /**
  * An event where a menu option has been clicked.

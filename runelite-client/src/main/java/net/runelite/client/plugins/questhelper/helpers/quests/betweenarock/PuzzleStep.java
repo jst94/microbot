@@ -1,16 +1,16 @@
 package net.runelite.client.plugins.questhelper.helpers.quests.betweenarock;
 
-import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
-import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
-import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
-import net.runelite.client.plugins.questhelper.steps.DetailedQuestStep;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.Map;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
+import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
+import net.runelite.client.plugins.questhelper.steps.DetailedQuestStep;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PuzzleStep extends DetailedQuestStep
 {

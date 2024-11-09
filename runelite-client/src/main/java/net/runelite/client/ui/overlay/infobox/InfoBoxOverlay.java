@@ -26,15 +26,6 @@
 package net.runelite.client.ui.overlay.infobox;
 
 import com.google.common.base.Strings;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.Getter;
 import lombok.NonNull;
 import net.runelite.api.Client;
@@ -53,6 +44,11 @@ import net.runelite.client.ui.overlay.components.InfoBoxComponent;
 import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
 import net.runelite.client.ui.overlay.tooltip.Tooltip;
 import net.runelite.client.ui.overlay.tooltip.TooltipManager;
+
+import java.awt.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InfoBoxOverlay extends OverlayPanel
 {

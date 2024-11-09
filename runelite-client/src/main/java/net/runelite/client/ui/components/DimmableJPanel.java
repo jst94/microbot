@@ -24,9 +24,10 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Color;
-import javax.swing.JPanel;
 import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class DimmableJPanel extends JPanel
 {

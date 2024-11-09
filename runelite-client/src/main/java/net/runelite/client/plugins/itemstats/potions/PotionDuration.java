@@ -26,10 +26,11 @@
 package net.runelite.client.plugins.itemstats.potions;
 
 import com.google.common.collect.ImmutableMap;
-import java.time.Duration;
-import java.util.Map;
 import lombok.Getter;
 import net.runelite.api.ItemID;
+
+import java.time.Duration;
+import java.util.Map;
 
 public enum PotionDuration
 {

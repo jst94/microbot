@@ -24,28 +24,20 @@
  */
 package net.runelite.client.plugins.itemstats.potions;
 
-import java.util.ArrayList;
-import java.util.Optional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.Client;
 import net.runelite.api.Skill;
-import net.runelite.client.plugins.itemstats.Effect;
-import net.runelite.client.plugins.itemstats.ItemStatChanges;
-import net.runelite.client.plugins.itemstats.SimpleStatBoost;
-import net.runelite.client.plugins.itemstats.SingleEffect;
-import net.runelite.client.plugins.itemstats.StatBoost;
-import net.runelite.client.plugins.itemstats.StatChange;
-import net.runelite.client.plugins.itemstats.StatsChanges;
+import net.runelite.client.plugins.itemstats.*;
 import net.runelite.client.plugins.itemstats.delta.DeltaPercentage;
 import net.runelite.client.plugins.itemstats.stats.Stat;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import static net.runelite.client.plugins.itemstats.stats.Stats.ATTACK;
-import static net.runelite.client.plugins.itemstats.stats.Stats.DEFENCE;
-import static net.runelite.client.plugins.itemstats.stats.Stats.HERBLORE;
-import static net.runelite.client.plugins.itemstats.stats.Stats.PRAYER;
-import static net.runelite.client.plugins.itemstats.stats.Stats.STRENGTH;
+import java.util.Optional;
+
+import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 
 @RequiredArgsConstructor
 public class MoonlightPotion implements Effect

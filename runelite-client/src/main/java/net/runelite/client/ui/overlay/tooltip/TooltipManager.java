@@ -24,10 +24,11 @@
  */
 package net.runelite.client.ui.overlay.tooltip;
 
+import lombok.Getter;
+
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Singleton;
-import lombok.Getter;
 
 @Singleton
 public class TooltipManager

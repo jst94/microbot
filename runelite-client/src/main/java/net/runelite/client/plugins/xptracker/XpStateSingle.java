@@ -26,13 +26,14 @@
  */
 package net.runelite.client.plugins.xptracker;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Experience;
+
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
 
 @Slf4j
 class XpStateSingle

@@ -24,12 +24,13 @@
  */
 package net.runelite.client.chat;
 
-import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.events.ChatInput;
+
+import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
 
 @AllArgsConstructor
 @Getter

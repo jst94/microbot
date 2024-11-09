@@ -25,9 +25,6 @@
 package net.runelite.mvn;
 
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import net.runelite.cache.IndexType;
 import net.runelite.cache.definitions.ScriptDefinition;
 import net.runelite.cache.definitions.savers.ScriptSaver;
@@ -40,6 +37,10 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @Mojo(
 	name = "assemble",

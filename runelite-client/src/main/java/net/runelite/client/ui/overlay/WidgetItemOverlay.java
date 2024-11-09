@@ -24,17 +24,16 @@
  */
 package net.runelite.client.ui.overlay;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.util.Arrays;
-import java.util.Collection;
 import lombok.AccessLevel;
 import lombok.Setter;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetItem;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 public abstract class WidgetItemOverlay extends Overlay
 {

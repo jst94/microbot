@@ -25,27 +25,21 @@
 package net.runelite.client.util;
 
 import com.google.common.primitives.Ints;
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
+import net.runelite.api.IndexedSprite;
+import net.runelite.api.SpritePixels;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.awt.image.DirectColorModel;
-import java.awt.image.PixelGrabber;
-import java.awt.image.RescaleOp;
+import java.awt.image.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.GrayFilter;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.IndexedSprite;
-import net.runelite.api.SpritePixels;
 
 /**
  * Various Image/BufferedImage utilities.

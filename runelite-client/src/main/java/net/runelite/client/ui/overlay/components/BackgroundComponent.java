@@ -24,14 +24,12 @@
  */
 package net.runelite.client.ui.overlay.components;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.runelite.client.ui.overlay.RenderableEntity;
+
+import java.awt.*;
 
 @NoArgsConstructor
 @AllArgsConstructor

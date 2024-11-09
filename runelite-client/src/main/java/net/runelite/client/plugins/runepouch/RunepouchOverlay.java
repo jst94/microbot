@@ -25,22 +25,11 @@
  */
 package net.runelite.client.plugins.runepouch;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.EnumComposition;
-import net.runelite.api.EnumID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemID;
 import net.runelite.api.Point;
-import net.runelite.api.Varbits;
+import net.runelite.api.*;
 import net.runelite.api.annotations.Varbit;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.game.ItemManager;
-import static net.runelite.client.plugins.runepouch.RunepouchConfig.RunepouchOverlayMode.BOTH;
-import static net.runelite.client.plugins.runepouch.RunepouchConfig.RunepouchOverlayMode.MOUSE_HOVER;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.ui.overlay.WidgetItemOverlay;
@@ -48,6 +37,13 @@ import net.runelite.client.ui.overlay.tooltip.Tooltip;
 import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
+
+import javax.inject.Inject;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static net.runelite.client.plugins.runepouch.RunepouchConfig.RunepouchOverlayMode.BOTH;
+import static net.runelite.client.plugins.runepouch.RunepouchConfig.RunepouchOverlayMode.MOUSE_HOVER;
 
 class RunepouchOverlay extends WidgetItemOverlay
 {

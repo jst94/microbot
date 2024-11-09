@@ -24,8 +24,9 @@
  */
 package net.runelite.client.util;
 
-import java.util.EnumSet;
 import net.runelite.api.WorldType;
+
+import java.util.EnumSet;
 
 /**
  * Utility class for RuneScape worlds

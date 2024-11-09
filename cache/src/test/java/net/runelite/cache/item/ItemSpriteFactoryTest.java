@@ -24,16 +24,8 @@
  */
 package net.runelite.cache.item;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.cache.IndexType;
-import net.runelite.cache.ItemManager;
-import net.runelite.cache.SpriteManager;
-import net.runelite.cache.StoreLocation;
-import net.runelite.cache.TextureManager;
+import net.runelite.cache.*;
 import net.runelite.cache.definitions.ItemDefinition;
 import net.runelite.cache.definitions.ModelDefinition;
 import net.runelite.cache.definitions.loaders.ModelLoader;
@@ -45,6 +37,11 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 @Slf4j
 public class ItemSpriteFactoryTest

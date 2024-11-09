@@ -24,8 +24,9 @@
  */
 package net.runelite.api;
 
-import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a graphics object/spotanim.

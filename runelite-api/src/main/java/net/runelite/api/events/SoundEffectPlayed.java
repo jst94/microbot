@@ -24,9 +24,10 @@
  */
 package net.runelite.api.events;
 
-import javax.annotation.Nullable;
 import lombok.Data;
 import net.runelite.api.Actor;
+
+import javax.annotation.Nullable;
 
 @Data
 public class SoundEffectPlayed

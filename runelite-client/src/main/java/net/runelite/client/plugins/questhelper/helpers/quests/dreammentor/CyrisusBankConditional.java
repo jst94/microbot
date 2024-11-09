@@ -24,8 +24,8 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.dreammentor;
 
-import net.runelite.client.plugins.questhelper.requirements.SimpleRequirement;
 import net.runelite.api.Client;
+import net.runelite.client.plugins.questhelper.requirements.SimpleRequirement;
 
 public class CyrisusBankConditional extends SimpleRequirement
 {

@@ -25,14 +25,12 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.components.shadowlabel.JShadowedLabel;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 /**
  * A component to display an error/info message (to be used on a plugin panel)

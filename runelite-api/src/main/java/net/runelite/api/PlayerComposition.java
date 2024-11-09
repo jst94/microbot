@@ -24,9 +24,10 @@
  */
 package net.runelite.api;
 
-import javax.annotation.Nullable;
 import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.kit.KitType;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents the template of a player.

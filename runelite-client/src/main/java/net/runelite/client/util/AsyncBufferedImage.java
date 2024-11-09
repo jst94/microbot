@@ -25,14 +25,12 @@
 
 package net.runelite.client.util;
 
+import net.runelite.client.callback.ClientThread;
+
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import net.runelite.client.callback.ClientThread;
 
 public class AsyncBufferedImage extends BufferedImage
 {

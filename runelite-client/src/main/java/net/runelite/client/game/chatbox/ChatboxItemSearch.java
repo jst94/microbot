@@ -27,27 +27,22 @@ package net.runelite.client.game.chatbox;
 
 import com.google.common.primitives.Ints;
 import com.google.inject.Inject;
+import lombok.Getter;
+import lombok.Value;
+import net.runelite.api.Client;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.widgets.*;
+import net.runelite.client.callback.ClientThread;
+import net.runelite.client.game.ItemManager;
+import net.runelite.client.ui.JagexColors;
+
+import javax.inject.Singleton;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
-import javax.inject.Singleton;
-import lombok.Getter;
-import lombok.Value;
-import net.runelite.api.Client;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.widgets.ItemQuantityMode;
-import net.runelite.api.widgets.JavaScriptCallback;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetPositionMode;
-import net.runelite.api.widgets.WidgetSizeMode;
-import net.runelite.api.widgets.WidgetTextAlignment;
-import net.runelite.api.widgets.WidgetType;
-import net.runelite.client.callback.ClientThread;
-import net.runelite.client.game.ItemManager;
-import net.runelite.client.ui.JagexColors;
 
 @Singleton
 public class ChatboxItemSearch extends ChatboxTextInput

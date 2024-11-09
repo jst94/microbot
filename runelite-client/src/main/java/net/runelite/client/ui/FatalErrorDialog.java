@@ -24,11 +24,16 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLite;
+import net.runelite.client.RuneLiteProperties;
+import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.LinkBrowser;
+import net.runelite.client.util.VerificationException;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -37,21 +42,6 @@ import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.client.RuneLite;
-import net.runelite.client.RuneLiteProperties;
-import net.runelite.client.util.ImageUtil;
-import net.runelite.client.util.LinkBrowser;
-import net.runelite.client.util.VerificationException;
 
 @Slf4j
 public class FatalErrorDialog extends JDialog

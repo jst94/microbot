@@ -24,9 +24,10 @@
  */
 package net.runelite.api.model;
 
-import java.util.List;
 import net.runelite.api.Point;
 import net.runelite.api.geometry.SimplePolygon;
+
+import java.util.List;
 
 /**
  * Provides utility methods for computing the convex hull of a list of

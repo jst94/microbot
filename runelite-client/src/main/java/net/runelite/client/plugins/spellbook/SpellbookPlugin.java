@@ -25,31 +25,12 @@
 package net.runelite.client.plugins.spellbook;
 
 import com.google.inject.Provides;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.IntStream;
-import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.EnumComposition;
-import net.runelite.api.EnumID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ParamID;
-import net.runelite.api.ScriptID;
-import net.runelite.api.Varbits;
+import net.runelite.api.*;
 import net.runelite.api.events.DraggingWidgetChanged;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPreFired;
-import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.widgets.InterfaceID;
-import net.runelite.api.widgets.JavaScriptCallback;
-import net.runelite.api.widgets.Widget;
-import static net.runelite.api.widgets.WidgetConfig.DRAG;
-import static net.runelite.api.widgets.WidgetConfig.DRAG_ON;
-import net.runelite.api.widgets.WidgetSizeMode;
-import net.runelite.api.widgets.WidgetType;
-import net.runelite.api.widgets.WidgetUtil;
+import net.runelite.api.widgets.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
@@ -60,6 +41,14 @@ import net.runelite.client.menus.MenuManager;
 import net.runelite.client.menus.WidgetMenuOption;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+
+import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.IntStream;
+
+import static net.runelite.api.widgets.WidgetConfig.DRAG;
+import static net.runelite.api.widgets.WidgetConfig.DRAG_ON;
 
 @PluginDescriptor(
 	name = "Spellbook",

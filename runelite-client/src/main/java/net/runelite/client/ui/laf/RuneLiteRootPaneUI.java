@@ -25,9 +25,10 @@
 package net.runelite.client.ui.laf;
 
 import com.formdev.flatlaf.ui.FlatRootPaneUI;
-import java.beans.PropertyChangeEvent;
-import javax.swing.JComponent;
+
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import java.beans.PropertyChangeEvent;
 
 public class RuneLiteRootPaneUI extends FlatRootPaneUI
 {

@@ -25,18 +25,17 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import lombok.Getter;
+import net.runelite.client.ui.ColorScheme;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.Document;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.Document;
-import lombok.Getter;
-import net.runelite.client.ui.ColorScheme;
 
 /**
  * This component is a JTextField with a flat design look.

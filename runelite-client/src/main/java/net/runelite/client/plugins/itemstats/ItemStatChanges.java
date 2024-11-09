@@ -26,29 +26,20 @@
 package net.runelite.client.plugins.itemstats;
 
 import com.google.inject.Singleton;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-import static net.runelite.api.ItemID.*;
-import static net.runelite.client.plugins.itemstats.Builders.*;
 import net.runelite.client.plugins.itemstats.delta.DeltaPercentage;
 import net.runelite.client.plugins.itemstats.food.Anglerfish;
 import net.runelite.client.plugins.itemstats.food.CookedBream;
 import net.runelite.client.plugins.itemstats.food.CookedMossLizard;
-import net.runelite.client.plugins.itemstats.special.SunlightMoth;
-import net.runelite.client.plugins.itemstats.potions.Ambrosia;
-import net.runelite.client.plugins.itemstats.potions.AncientBrew;
-import net.runelite.client.plugins.itemstats.potions.MixedPotion;
-import net.runelite.client.plugins.itemstats.potions.MoonlightPotion;
-import net.runelite.client.plugins.itemstats.potions.PrayerPotion;
-import net.runelite.client.plugins.itemstats.potions.SaradominBrew;
-import net.runelite.client.plugins.itemstats.potions.StaminaPotion;
-import net.runelite.client.plugins.itemstats.potions.SuperRestore;
-import net.runelite.client.plugins.itemstats.special.CastleWarsBandage;
-import net.runelite.client.plugins.itemstats.special.CaveNightshade;
-import net.runelite.client.plugins.itemstats.special.NettleTeaRunEnergy;
-import net.runelite.client.plugins.itemstats.special.SpicyStew;
+import net.runelite.client.plugins.itemstats.potions.*;
+import net.runelite.client.plugins.itemstats.special.*;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+import static net.runelite.api.ItemID.*;
+import static net.runelite.client.plugins.itemstats.Builders.*;
 import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 
 @Singleton

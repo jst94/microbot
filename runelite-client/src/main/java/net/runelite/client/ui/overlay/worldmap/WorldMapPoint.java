@@ -24,12 +24,13 @@
  */
 package net.runelite.client.ui.overlay.worldmap;
 
-import java.awt.image.BufferedImage;
-import javax.annotation.Nullable;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import net.runelite.api.Point;
 import net.runelite.api.coords.WorldPoint;
+
+import javax.annotation.Nullable;
+import java.awt.image.BufferedImage;
 
 @Data
 @SuperBuilder

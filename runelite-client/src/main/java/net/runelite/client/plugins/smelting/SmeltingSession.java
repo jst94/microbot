@@ -24,9 +24,10 @@
  */
 package net.runelite.client.plugins.smelting;
 
-import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.Getter;
+
+import java.time.Instant;
 
 class SmeltingSession
 {

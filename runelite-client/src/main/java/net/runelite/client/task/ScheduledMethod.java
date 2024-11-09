@@ -24,13 +24,10 @@
  */
 package net.runelite.client.task;
 
+import lombok.*;
+
 import java.lang.reflect.Method;
 import java.time.Instant;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @RequiredArgsConstructor
 @ToString

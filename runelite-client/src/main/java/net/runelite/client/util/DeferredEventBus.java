@@ -24,11 +24,12 @@
  */
 package net.runelite.client.util;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import net.runelite.client.eventbus.EventBus;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.client.eventbus.EventBus;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Singleton
 public class DeferredEventBus extends EventBus

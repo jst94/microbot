@@ -25,17 +25,16 @@
 package net.runelite.client.util;
 
 import com.google.common.base.Strings;
-import java.awt.Desktop;
-import java.awt.Toolkit;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.inject.Singleton;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.inject.Singleton;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class used for web and file browser navigation

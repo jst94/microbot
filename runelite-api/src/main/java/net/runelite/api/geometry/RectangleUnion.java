@@ -24,15 +24,16 @@
  */
 package net.runelite.api.geometry;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import javax.annotation.Nullable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Slf4j
 public class RectangleUnion

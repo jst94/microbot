@@ -24,12 +24,6 @@
  */
 package net.runelite.client.plugins.tithefarm;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.Map;
-import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
@@ -39,6 +33,11 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.ProgressPieComponent;
 import net.runelite.client.util.ColorUtil;
+
+import javax.inject.Inject;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TitheFarmPlantOverlay extends Overlay
 {

@@ -25,9 +25,6 @@
  */
 package net.runelite.client.chat;
 
-import java.util.Arrays;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.ScriptID;
@@ -39,6 +36,10 @@ import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ChatboxInput;
 import net.runelite.client.events.PrivateMessageInput;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.Arrays;
 
 @Slf4j
 @Singleton

@@ -24,15 +24,16 @@
  */
 package net.runelite.cache.fs;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
 import net.runelite.cache.StoreLocation;
 import net.runelite.cache.index.FileData;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 
 public class StoreTest
 {

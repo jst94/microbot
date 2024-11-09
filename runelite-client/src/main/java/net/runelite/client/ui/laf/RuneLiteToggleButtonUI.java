@@ -27,13 +27,10 @@ package net.runelite.client.ui.laf;
 import com.formdev.flatlaf.ui.FlatStylingSupport;
 import com.formdev.flatlaf.ui.FlatToggleButtonUI;
 import com.formdev.flatlaf.ui.FlatUIUtils;
-import java.awt.AlphaComposite;
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import javax.swing.JComponent;
+
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import java.awt.*;
 
 public class RuneLiteToggleButtonUI extends FlatToggleButtonUI
 {

@@ -25,11 +25,12 @@
 package net.runelite.client.plugins.itemprices;
 
 import com.google.inject.Provides;
-import javax.inject.Inject;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+
+import javax.inject.Inject;
 
 @PluginDescriptor(
 	name = "Item Prices",

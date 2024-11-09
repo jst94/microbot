@@ -28,9 +28,11 @@ package net.runelite.client.game;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import java.util.Collection;
-import javax.annotation.Nullable;
 import lombok.Getter;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+
 import static net.runelite.api.ItemID.*;
 
 /**

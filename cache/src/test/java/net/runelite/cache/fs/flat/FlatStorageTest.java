@@ -24,17 +24,20 @@
  */
 package net.runelite.cache.fs.flat;
 
-import java.io.File;
 import net.runelite.cache.fs.Archive;
 import net.runelite.cache.fs.Container;
 import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Store;
 import net.runelite.cache.fs.jagex.DiskStorage;
 import net.runelite.cache.index.FileData;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class FlatStorageTest
 {

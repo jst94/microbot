@@ -24,14 +24,15 @@
  */
 package net.runelite.client.game;
 
+import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import lombok.extern.slf4j.Slf4j;
 
 @Singleton
 @Slf4j

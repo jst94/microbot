@@ -28,30 +28,11 @@ package net.runelite.client.game;
 import lombok.Getter;
 import net.runelite.api.Client;
 import net.runelite.api.NullObjectID;
-import static net.runelite.api.NullObjectID.NULL_25337;
-import static net.runelite.api.NullObjectID.NULL_26371;
-import static net.runelite.api.NullObjectID.NULL_26375;
-import static net.runelite.api.NullObjectID.NULL_26561;
-import static net.runelite.api.NullObjectID.NULL_26562;
-import static net.runelite.api.NullObjectID.NULL_26884;
-import static net.runelite.api.NullObjectID.NULL_26886;
-import static net.runelite.api.NullObjectID.NULL_29868;
-import static net.runelite.api.NullObjectID.NULL_29869;
-import static net.runelite.api.NullObjectID.NULL_29870;
-import static net.runelite.api.NullObjectID.NULL_31823;
-import static net.runelite.api.NullObjectID.NULL_31849;
-import static net.runelite.api.NullObjectID.NULL_31852;
-import static net.runelite.api.NullObjectID.NULL_33327;
-import static net.runelite.api.NullObjectID.NULL_33328;
-import static net.runelite.api.NullObjectID.NULL_39541;
-import static net.runelite.api.NullObjectID.NULL_39542;
-import static net.runelite.api.NullObjectID.NULL_40960;
-import static net.runelite.api.NullObjectID.NULL_40962;
-import static net.runelite.api.NullObjectID.NULL_43840;
-import static net.runelite.api.NullObjectID.NULL_47325;
-import static net.runelite.api.ObjectID.*;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldPoint;
+
+import static net.runelite.api.NullObjectID.*;
+import static net.runelite.api.ObjectID.*;
 
 @Getter
 public enum AgilityShortcut

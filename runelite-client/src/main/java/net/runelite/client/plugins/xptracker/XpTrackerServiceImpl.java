@@ -24,9 +24,10 @@
  */
 package net.runelite.client.plugins.xptracker;
 
+import net.runelite.api.Skill;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.Skill;
 
 @Singleton
 class XpTrackerServiceImpl implements XpTrackerService

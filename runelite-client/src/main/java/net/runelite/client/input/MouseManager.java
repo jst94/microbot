@@ -24,13 +24,14 @@
  */
 package net.runelite.client.input;
 
+import net.runelite.client.config.RuneLiteConfig;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import net.runelite.client.config.RuneLiteConfig;
 
 @Singleton
 public class MouseManager

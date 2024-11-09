@@ -26,12 +26,23 @@
 package net.runelite.client.util;
 
 import com.google.common.base.Strings;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.TrayIcon;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
+import net.runelite.api.GameState;
+import net.runelite.client.Notifier;
+import net.runelite.client.config.RuneScapeProfileType;
+import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.events.ScreenshotTaken;
+import net.runelite.client.ui.ClientUI;
+import net.runelite.client.ui.DrawManager;
+
+import javax.annotation.Nullable;
+import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -42,22 +53,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ScheduledExecutorService;
-import javax.annotation.Nullable;
-import javax.imageio.ImageIO;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.swing.SwingUtilities;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.client.Notifier;
+
 import static net.runelite.client.RuneLite.SCREENSHOT_DIR;
-import net.runelite.client.config.RuneScapeProfileType;
-import net.runelite.client.eventbus.EventBus;
-import net.runelite.client.events.ScreenshotTaken;
-import net.runelite.client.ui.ClientUI;
-import net.runelite.client.ui.DrawManager;
 
 @Slf4j
 @Singleton

@@ -26,8 +26,9 @@ package net.runelite.client.util;
 
 import com.apple.eawt.Application;
 import com.apple.eawt.FullScreenUtilities;
-import javax.swing.JFrame;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.swing.*;
 
 /**
  * A class with OSX-specific functions to improve integration.

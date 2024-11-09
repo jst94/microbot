@@ -24,18 +24,20 @@
  */
 package net.runelite.client.plugins.itemstats.potions;
 
-import java.util.Comparator;
-import java.util.stream.Stream;
-import javax.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.Client;
-import static net.runelite.client.plugins.itemstats.Builders.food;
 import net.runelite.client.plugins.itemstats.Effect;
 import net.runelite.client.plugins.itemstats.Positivity;
 import net.runelite.client.plugins.itemstats.StatChange;
-import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
 import net.runelite.client.plugins.itemstats.StatsChanges;
 import org.apache.commons.lang3.ArrayUtils;
+
+import javax.annotation.Nonnull;
+import java.util.Comparator;
+import java.util.stream.Stream;
+
+import static net.runelite.client.plugins.itemstats.Builders.food;
+import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
 
 @RequiredArgsConstructor
 public class MixedPotion implements Effect

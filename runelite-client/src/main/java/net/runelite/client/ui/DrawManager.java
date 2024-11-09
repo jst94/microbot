@@ -24,15 +24,16 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.Image;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.inject.Singleton;
+import java.awt.*;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import javax.inject.Singleton;
-import lombok.extern.slf4j.Slf4j;
 
 @Singleton
 @Slf4j

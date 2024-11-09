@@ -24,18 +24,12 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.util.TreeMap;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.TreeMap;
 
 /**
  * non-tab toolbar items, in the title bar or bottom of the sidebar

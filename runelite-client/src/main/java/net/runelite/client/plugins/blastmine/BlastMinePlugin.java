@@ -25,9 +25,6 @@
 package net.runelite.client.plugins.blastmine;
 
 import com.google.inject.Provides;
-import java.util.HashMap;
-import java.util.Map;
-import javax.inject.Inject;
 import lombok.Getter;
 import net.runelite.api.Client;
 import net.runelite.api.GameObject;
@@ -43,6 +40,10 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 @PluginDescriptor(
 	name = "Blast Mine",

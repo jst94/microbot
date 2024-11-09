@@ -24,9 +24,10 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.Color;
 import lombok.Getter;
 import net.runelite.api.Skill;
+
+import java.awt.*;
 
 public enum SkillColor
 {

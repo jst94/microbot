@@ -31,8 +31,8 @@ import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinUser;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
-import java.awt.Frame;
-import java.awt.Window;
+
+import java.awt.*;
 
 public class WinUtil
 {

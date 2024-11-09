@@ -26,33 +26,19 @@ package net.runelite.client.ui.overlay.outline;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import java.awt.Color;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import net.runelite.api.*;
+import net.runelite.api.coords.LocalPoint;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import net.runelite.api.Client;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GameObject;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.GroundObject;
-import net.runelite.api.ItemLayer;
-import net.runelite.api.MainBufferProvider;
-import net.runelite.api.Model;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Perspective;
-import net.runelite.api.Player;
-import net.runelite.api.Renderable;
-import net.runelite.api.RuneLiteObject;
-import net.runelite.api.TileObject;
-import net.runelite.api.WallObject;
-import net.runelite.api.coords.LocalPoint;
 
 @Singleton
 public class ModelOutlineRenderer

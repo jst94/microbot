@@ -26,6 +26,7 @@ package net.runelite.client.plugins.itemstats.food;
 
 import net.runelite.api.Client;
 import net.runelite.client.plugins.itemstats.FoodBase;
+
 import static net.runelite.client.plugins.itemstats.stats.Stats.COOKING;
 import static net.runelite.client.plugins.itemstats.stats.Stats.HUNTER;
 

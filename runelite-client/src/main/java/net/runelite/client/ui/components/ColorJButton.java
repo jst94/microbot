@@ -24,10 +24,10 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JButton;
 import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class ColorJButton extends JButton
 {

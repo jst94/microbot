@@ -24,15 +24,12 @@
  */
 package net.runelite.client.ui.overlay.components;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
-import java.awt.geom.Arc2D;
 import lombok.Setter;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.RenderableEntity;
+
+import java.awt.*;
+import java.awt.geom.Arc2D;
 
 @Setter
 public class ProgressPieComponent implements RenderableEntity

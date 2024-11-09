@@ -25,15 +25,15 @@
 package net.runelite.client.plugins.herbiboars;
 
 import com.google.inject.Inject;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.util.Set;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
+
+import java.awt.*;
+import java.util.Set;
 
 class HerbiboarMinimapOverlay extends Overlay
 {

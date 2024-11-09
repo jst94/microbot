@@ -2294,4 +2294,9 @@ public class Rs2Inventory {
     public static boolean hasDegradedPouch() {
         return Arrays.stream(Pouch.values()).anyMatch(Pouch::isDegraded);
     }
+
+    public static void getSelectedItemId(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSelectedItemId'");
+    }
 }

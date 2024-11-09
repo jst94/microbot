@@ -24,16 +24,12 @@
  */
 package net.runelite.client.plugins.xptracker;
 
-import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
+
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import java.io.IOException;
 
 @Slf4j
 public class XpClient

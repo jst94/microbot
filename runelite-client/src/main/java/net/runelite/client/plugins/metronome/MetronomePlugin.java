@@ -26,7 +26,6 @@
 package net.runelite.client.plugins.metronome;
 
 import com.google.inject.Provides;
-import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.Preferences;
 import net.runelite.api.SoundEffectID;
@@ -35,6 +34,8 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+
+import javax.inject.Inject;
 
 @PluginDescriptor(
 	name = "Metronome",

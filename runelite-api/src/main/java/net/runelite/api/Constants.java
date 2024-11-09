@@ -25,7 +25,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 /**
  * A utility class containing constant values.

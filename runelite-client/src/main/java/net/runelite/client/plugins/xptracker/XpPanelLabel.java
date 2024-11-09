@@ -24,10 +24,11 @@
  */
 package net.runelite.client.plugins.xptracker;
 
-import java.util.function.Function;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.client.util.QuantityFormatter;
+
+import java.util.function.Function;
 
 @Getter
 @AllArgsConstructor

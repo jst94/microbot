@@ -24,17 +24,16 @@
  */
 package net.runelite.client.ui.overlay;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.util.Arrays;
-import java.util.Collection;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Varbits;
 import net.runelite.api.annotations.Component;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Slf4j
 public class WidgetOverlay extends Overlay

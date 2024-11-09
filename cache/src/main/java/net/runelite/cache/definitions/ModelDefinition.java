@@ -1,10 +1,11 @@
 package net.runelite.cache.definitions;
 
-import java.util.Arrays;
 import lombok.Data;
 import net.runelite.cache.models.CircularAngle;
 import net.runelite.cache.models.FaceNormal;
 import net.runelite.cache.models.VertexNormal;
+
+import java.util.Arrays;
 
 @Data
 public class ModelDefinition

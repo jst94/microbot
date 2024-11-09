@@ -25,10 +25,10 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Component;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
 import net.runelite.client.util.Text;
+
+import javax.swing.*;
+import java.awt.*;
 
 public final class TitleCaseListCellRenderer extends DefaultListCellRenderer
 {

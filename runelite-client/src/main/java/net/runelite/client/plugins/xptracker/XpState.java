@@ -24,13 +24,14 @@
  */
 package net.runelite.client.plugins.xptracker;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
-import javax.inject.Inject;
 import lombok.NonNull;
 import net.runelite.api.NPC;
 import net.runelite.api.Skill;
+
+import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Internal state for the XpTrackerPlugin

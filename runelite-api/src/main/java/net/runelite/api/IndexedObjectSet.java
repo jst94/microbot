@@ -24,15 +24,16 @@
  */
 package net.runelite.api;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-import javax.annotation.Nonnull;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class IndexedObjectSet<T> implements Iterable<T>

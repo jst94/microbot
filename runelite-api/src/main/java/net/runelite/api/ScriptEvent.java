@@ -24,8 +24,9 @@
  */
 package net.runelite.api;
 
-import javax.annotation.Nullable;
 import net.runelite.api.widgets.Widget;
+
+import javax.annotation.Nullable;
 
 public interface ScriptEvent
 {

@@ -24,11 +24,12 @@
  */
 package net.runelite.api.model;
 
-import java.util.Arrays;
-import java.util.List;
 import net.runelite.api.Point;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class JarvisTest
 {

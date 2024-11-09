@@ -25,9 +25,11 @@
 package net.runelite.client.game;
 
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
 import lombok.Getter;
 import net.runelite.api.ItemID;
+
+import java.util.Map;
+
 import static net.runelite.api.NpcID.*;
 
 @Getter

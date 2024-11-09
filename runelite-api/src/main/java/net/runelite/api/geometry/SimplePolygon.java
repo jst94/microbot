@@ -24,18 +24,18 @@
  */
 package net.runelite.api.geometry;
 
-import java.awt.Rectangle;
-import java.awt.Shape;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import net.runelite.api.Point;
+
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import net.runelite.api.Point;
 
 /**
  * A simple list of vertices that can be append or prepended to

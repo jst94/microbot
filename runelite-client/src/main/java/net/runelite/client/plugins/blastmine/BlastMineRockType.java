@@ -25,9 +25,10 @@
 package net.runelite.client.plugins.blastmine;
 
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
 import lombok.Getter;
 import net.runelite.api.ObjectID;
+
+import java.util.Map;
 
 public enum BlastMineRockType
 {

@@ -27,9 +27,10 @@ package net.runelite.client.util;
 import com.apple.eawt.FullScreenAdapter;
 import com.apple.eawt.FullScreenUtilities;
 import com.apple.eawt.event.FullScreenEvent;
-import java.awt.Frame;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.awt.*;
 
 @Slf4j
 @RequiredArgsConstructor

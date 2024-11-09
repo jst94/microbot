@@ -25,14 +25,15 @@
 package net.runelite.client.ui.overlay.infobox;
 
 import com.google.common.base.Preconditions;
-import java.awt.Color;
+import lombok.Getter;
+import lombok.ToString;
+import net.runelite.client.plugins.Plugin;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import lombok.Getter;
-import lombok.ToString;
-import net.runelite.client.plugins.Plugin;
 
 @Getter
 @ToString

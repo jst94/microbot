@@ -24,11 +24,12 @@
  */
 package net.runelite.api.events;
 
-import javax.annotation.Nullable;
 import lombok.Value;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanID;
 import org.intellij.lang.annotations.MagicConstant;
+
+import javax.annotation.Nullable;
 
 /**
  * An event fired when the local player joins or leaves a clan channel.

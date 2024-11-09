@@ -25,16 +25,16 @@
 
 package net.runelite.client.ui.components.colorpicker;
 
-import java.awt.Color;
-import java.awt.Window;
-import java.awt.event.WindowEvent;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.runelite.client.config.ConfigManager;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.awt.event.WindowEvent;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))

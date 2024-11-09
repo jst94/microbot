@@ -25,20 +25,17 @@
 package net.runelite.client.ui.components.materialtabs;
 
 import com.google.common.base.Strings;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.function.BooleanSupplier;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.ui.ColorScheme;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.function.BooleanSupplier;
 
 /**
  * This class represents a Material Design inspired tab.

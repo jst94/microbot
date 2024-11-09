@@ -29,32 +29,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.inject.Provides;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.inject.Inject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.MenuAction;
-import static net.runelite.api.ObjectID.DRIFTWOOD_30523;
-import static net.runelite.api.ObjectID.MUSHROOM_30520;
-import static net.runelite.api.ObjectID.ROCK_30519;
-import static net.runelite.api.ObjectID.ROCK_30521;
-import static net.runelite.api.ObjectID.ROCK_30522;
-import net.runelite.api.TileObject;
-import net.runelite.api.Varbits;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.GameObjectDespawned;
-import net.runelite.api.events.GameObjectSpawned;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GroundObjectDespawned;
-import net.runelite.api.events.GroundObjectSpawned;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.VarbitChanged;
+import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -63,6 +42,11 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.Text;
 import org.apache.commons.lang3.ArrayUtils;
+
+import javax.inject.Inject;
+import java.util.*;
+
+import static net.runelite.api.ObjectID.*;
 
 @PluginDescriptor(
 	name = "Herbiboar",

@@ -26,21 +26,8 @@
 package net.runelite.client.plugins.friendlist;
 
 import com.google.inject.Provides;
-import java.time.temporal.ChronoUnit;
-import java.util.Iterator;
-import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.ChatPlayer;
-import net.runelite.api.Client;
-import net.runelite.api.Friend;
-import net.runelite.api.Ignore;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MessageNode;
-import net.runelite.api.NameableContainer;
-import net.runelite.api.PendingLogin;
-import net.runelite.api.ScriptID;
-import net.runelite.api.VarPlayer;
+import net.runelite.api.*;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.ScriptPostFired;
@@ -56,6 +43,10 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.task.Schedule;
 import net.runelite.client.util.Text;
+
+import javax.inject.Inject;
+import java.time.temporal.ChronoUnit;
+import java.util.Iterator;
 
 @PluginDescriptor(
 	name = "Friend List",

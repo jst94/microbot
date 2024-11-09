@@ -26,7 +26,7 @@ package net.runelite.client.ui;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /**
  * Plugin toolbar buttons holder.

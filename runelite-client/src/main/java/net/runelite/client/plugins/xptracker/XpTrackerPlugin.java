@@ -26,34 +26,15 @@
 package net.runelite.client.plugins.xptracker;
 
 import com.google.common.annotations.VisibleForTesting;
-import static com.google.common.base.MoreObjects.firstNonNull;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Binder;
 import com.google.inject.Provides;
-import java.awt.image.BufferedImage;
-import java.time.temporal.ChronoUnit;
-import java.util.EnumSet;
-import java.util.List;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Actor;
-import net.runelite.api.Client;
-import net.runelite.api.Experience;
-import net.runelite.api.GameState;
-import net.runelite.api.MenuAction;
-import net.runelite.api.NPC;
-import net.runelite.api.Player;
-import net.runelite.api.Skill;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.WorldType;
+import net.runelite.api.*;
 import net.runelite.api.annotations.Varp;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.NpcDespawned;
-import net.runelite.api.events.StatChanged;
+import net.runelite.api.events.*;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.api.widgets.WidgetUtil;
 import net.runelite.client.callback.ClientThread;
@@ -63,13 +44,21 @@ import net.runelite.client.game.NPCManager;
 import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import static net.runelite.client.plugins.xptracker.XpWorldType.NORMAL;
 import net.runelite.client.task.Schedule;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
+
+import javax.inject.Inject;
+import java.awt.image.BufferedImage;
+import java.time.temporal.ChronoUnit;
+import java.util.EnumSet;
+import java.util.List;
+
+import static com.google.common.base.MoreObjects.firstNonNull;
+import static net.runelite.client.plugins.xptracker.XpWorldType.NORMAL;
 
 @PluginDescriptor(
 	name = "XP Tracker",

@@ -24,10 +24,11 @@
  */
 package net.runelite.client.plugins.timestamp;
 
-import java.awt.Color;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+
+import java.awt.*;
 
 @ConfigGroup(TimestampConfig.GROUP)
 public interface TimestampConfig extends Config

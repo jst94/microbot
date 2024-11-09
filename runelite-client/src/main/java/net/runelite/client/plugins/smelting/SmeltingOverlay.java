@@ -24,24 +24,24 @@
  */
 package net.runelite.client.plugins.smelting;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.time.Duration;
-import java.time.Instant;
-import javax.inject.Inject;
-import static net.runelite.api.AnimationID.SMITHING_CANNONBALL;
-import static net.runelite.api.AnimationID.SMITHING_SMELTING;
 import net.runelite.api.Client;
-import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
-import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import net.runelite.api.Skill;
 import net.runelite.client.plugins.xptracker.XpTrackerService;
-import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
+
+import javax.inject.Inject;
+import java.awt.*;
+import java.time.Duration;
+import java.time.Instant;
+
+import static net.runelite.api.AnimationID.SMITHING_CANNONBALL;
+import static net.runelite.api.AnimationID.SMITHING_SMELTING;
+import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
+import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
+import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
 class SmeltingOverlay extends OverlayPanel
 {

@@ -24,10 +24,6 @@
  */
 package net.runelite.cache.models;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.nio.file.Files;
 import net.runelite.cache.StoreLocation;
 import net.runelite.cache.TextureManager;
 import net.runelite.cache.definitions.ModelDefinition;
@@ -35,6 +31,11 @@ import net.runelite.cache.definitions.loaders.ModelLoader;
 import net.runelite.cache.fs.Store;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 
 public class ObjExporterTest
 {

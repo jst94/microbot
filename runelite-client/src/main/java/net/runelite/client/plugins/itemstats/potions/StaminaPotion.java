@@ -25,13 +25,9 @@
  */
 package net.runelite.client.plugins.itemstats.potions;
 
-import net.runelite.api.Client;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
+import net.runelite.api.*;
 import net.runelite.client.plugins.itemstats.StatBoost;
+
 import static net.runelite.client.plugins.itemstats.stats.Stats.RUN_ENERGY;
 
 public class StaminaPotion extends StatBoost

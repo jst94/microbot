@@ -25,17 +25,14 @@
 package net.runelite.client.ui;
 
 import com.formdev.flatlaf.ui.FlatNativeWindowsLibrary;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.IllegalComponentStateException;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
-import javax.swing.JFrame;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.util.OSType;
 import net.runelite.client.util.WinUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 @Slf4j
 public class ContainableFrame extends JFrame

@@ -25,19 +25,16 @@
 package net.runelite.client.plugins.itemstats.special;
 
 import com.google.common.collect.ImmutableSet;
-import java.util.Comparator;
-import java.util.stream.Stream;
-import net.runelite.api.Client;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
-import static net.runelite.client.plugins.itemstats.Builders.heal;
-import static net.runelite.client.plugins.itemstats.Builders.perc;
+import net.runelite.api.*;
 import net.runelite.client.plugins.itemstats.Effect;
 import net.runelite.client.plugins.itemstats.StatChange;
 import net.runelite.client.plugins.itemstats.StatsChanges;
+
+import java.util.Comparator;
+import java.util.stream.Stream;
+
+import static net.runelite.client.plugins.itemstats.Builders.heal;
+import static net.runelite.client.plugins.itemstats.Builders.perc;
 import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
 import static net.runelite.client.plugins.itemstats.stats.Stats.RUN_ENERGY;
 

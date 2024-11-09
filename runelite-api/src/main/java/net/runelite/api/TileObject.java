@@ -24,13 +24,12 @@
  */
 package net.runelite.api;
 
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Shape;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
 
 /**
  * Represents an object on a Tile

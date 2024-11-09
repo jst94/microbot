@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Shape;
+import java.awt.*;
 
 /**
  * Represents one or two walls on a tile

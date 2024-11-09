@@ -24,10 +24,11 @@
  */
 package net.runelite.client.plugins.blastmine;
 
-import java.time.Duration;
-import java.time.Instant;
 import lombok.Getter;
 import net.runelite.api.GameObject;
+
+import java.time.Duration;
+import java.time.Instant;
 
 class BlastMineRock
 {

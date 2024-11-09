@@ -27,23 +27,19 @@ package net.runelite.cache;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import net.runelite.cache.definitions.VarbitDefinition;
 import net.runelite.cache.definitions.loaders.VarbitLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
+import net.runelite.cache.fs.*;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 public class VarbitDumper
 {

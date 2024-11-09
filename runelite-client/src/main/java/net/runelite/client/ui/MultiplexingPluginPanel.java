@@ -24,7 +24,7 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.CardLayout;
+import java.awt.*;
 
 public class MultiplexingPluginPanel extends PluginPanel
 {

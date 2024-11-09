@@ -24,11 +24,12 @@
  */
 package net.runelite.client.plugins.xpglobes;
 
-import java.awt.image.BufferedImage;
-import java.time.Instant;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.Skill;
+
+import java.awt.image.BufferedImage;
+import java.time.Instant;
 
 @Getter
 @Setter

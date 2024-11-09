@@ -26,11 +26,6 @@ package net.runelite.client.plugins.herbiboars;
 
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.util.Set;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.ui.overlay.Overlay;
@@ -38,6 +33,9 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.ColorUtil;
+
+import java.awt.*;
+import java.util.Set;
 
 class HerbiboarOverlay extends Overlay
 {

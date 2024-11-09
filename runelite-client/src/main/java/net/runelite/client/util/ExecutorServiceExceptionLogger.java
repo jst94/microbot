@@ -24,16 +24,11 @@
  */
 package net.runelite.client.util;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import lombok.RequiredArgsConstructor;
+import java.util.concurrent.*;
 
 /**
  * Wrapper for ${@link ScheduledExecutorService} that will log all uncaught exceptions as warning to console

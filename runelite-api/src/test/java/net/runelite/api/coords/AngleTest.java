@@ -24,10 +24,11 @@
  */
 package net.runelite.api.coords;
 
+import org.junit.Test;
+
 import static net.runelite.api.coords.Direction.NORTH;
 import static net.runelite.api.coords.Direction.WEST;
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
 public class AngleTest
 {

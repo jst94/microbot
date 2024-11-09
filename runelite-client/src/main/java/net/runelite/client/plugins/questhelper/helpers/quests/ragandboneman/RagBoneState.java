@@ -24,16 +24,16 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.ragandboneman;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.runelite.client.plugins.questhelper.bank.QuestBank;
 import net.runelite.client.plugins.questhelper.requirements.Requirement;
-import net.runelite.client.plugins.questhelper.requirements.widget.WidgetTextRequirement;
 import net.runelite.client.plugins.questhelper.requirements.conditional.Conditions;
 import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
 import net.runelite.client.plugins.questhelper.requirements.util.LogicType;
 import net.runelite.client.plugins.questhelper.requirements.util.Operation;
 import net.runelite.client.plugins.questhelper.requirements.var.VarbitRequirement;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import net.runelite.client.plugins.questhelper.requirements.widget.WidgetTextRequirement;
 import net.runelite.client.util.Text;
 
 @AllArgsConstructor

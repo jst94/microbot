@@ -28,13 +28,15 @@ package net.runelite.client.plugins.herbiboars;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
+import lombok.Getter;
+import net.runelite.api.Varbits;
+import net.runelite.api.coords.WorldPoint;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.Getter;
+
 import static net.runelite.api.NullObjectID.*;
-import net.runelite.api.Varbits;
-import net.runelite.api.coords.WorldPoint;
 
 @Getter
 enum HerbiboarSearchSpot

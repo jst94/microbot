@@ -24,12 +24,13 @@
  */
 package net.runelite.client.game.npcoverlay;
 
-import java.awt.Color;
-import java.util.function.Predicate;
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
 import net.runelite.api.NPC;
+
+import java.awt.*;
+import java.util.function.Predicate;
 
 @Value
 @Builder

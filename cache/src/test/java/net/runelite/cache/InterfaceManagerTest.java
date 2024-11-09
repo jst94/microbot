@@ -25,8 +25,6 @@
 
 package net.runelite.cache;
 
-import java.io.File;
-import java.io.IOException;
 import net.runelite.cache.fs.Store;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -34,6 +32,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
 
 public class InterfaceManagerTest
 {

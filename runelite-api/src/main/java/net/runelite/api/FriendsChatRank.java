@@ -24,10 +24,11 @@
  */
 package net.runelite.api;
 
-import java.util.HashMap;
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An enumeration of ranks of friends chat members.

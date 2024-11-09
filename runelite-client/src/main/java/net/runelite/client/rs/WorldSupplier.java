@@ -24,23 +24,19 @@
  */
 package net.runelite.client.rs;
 
-import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLiteProperties;
-import net.runelite.http.api.worlds.World;
 import net.runelite.client.game.WorldClient;
+import net.runelite.http.api.worlds.World;
 import net.runelite.http.api.worlds.WorldType;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor

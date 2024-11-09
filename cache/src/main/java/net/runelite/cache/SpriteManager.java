@@ -26,13 +26,6 @@ package net.runelite.cache;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import net.runelite.cache.definitions.SpriteDefinition;
 import net.runelite.cache.definitions.exporters.SpriteExporter;
 import net.runelite.cache.definitions.loaders.SpriteLoader;
@@ -42,6 +35,14 @@ import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Storage;
 import net.runelite.cache.fs.Store;
 import net.runelite.cache.util.Djb2;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpriteManager implements SpriteProvider
 {

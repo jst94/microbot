@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Shape;
+import java.awt.*;
 
 /**
  * Represents a decorative object, such as an object on a wall.

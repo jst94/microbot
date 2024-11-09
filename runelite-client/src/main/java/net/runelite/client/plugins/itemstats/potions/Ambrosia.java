@@ -26,15 +26,12 @@ package net.runelite.client.plugins.itemstats.potions;
 
 import net.runelite.api.Client;
 import net.runelite.api.Skill;
-import static net.runelite.client.plugins.itemstats.Builders.boost;
-import static net.runelite.client.plugins.itemstats.Builders.heal;
-import static net.runelite.client.plugins.itemstats.Builders.perc;
 import net.runelite.client.plugins.itemstats.Effect;
 import net.runelite.client.plugins.itemstats.StatChange;
 import net.runelite.client.plugins.itemstats.StatsChanges;
-import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
-import static net.runelite.client.plugins.itemstats.stats.Stats.PRAYER;
-import static net.runelite.client.plugins.itemstats.stats.Stats.RUN_ENERGY;
+
+import static net.runelite.client.plugins.itemstats.Builders.*;
+import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 
 public class Ambrosia implements Effect
 {

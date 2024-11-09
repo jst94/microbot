@@ -29,35 +29,30 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.inject.Named;
-import javax.inject.Singleton;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import static net.runelite.api.Constants.CLIENT_DEFAULT_ZOOM;
-import net.runelite.api.GameState;
-import net.runelite.api.ItemComposition;
-import static net.runelite.api.ItemID.*;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.*;
 import net.runelite.api.widgets.ItemQuantityMode;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.http.api.item.ItemPrice;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.List;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import static net.runelite.api.Constants.CLIENT_DEFAULT_ZOOM;
+import static net.runelite.api.ItemID.*;
 
 @Singleton
 @Slf4j

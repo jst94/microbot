@@ -25,17 +25,15 @@
 package net.runelite.client.plugins.runecraft;
 
 import com.google.inject.Inject;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.util.Set;
 import net.runelite.api.Client;
 import net.runelite.api.DecorativeObject;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+
+import java.awt.*;
+import java.util.Set;
 
 class AbyssOverlay extends Overlay
 {

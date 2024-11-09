@@ -26,16 +26,12 @@ package net.runelite.client.ui.laf;
 
 import com.formdev.flatlaf.ui.FlatStylingSupport;
 import com.formdev.flatlaf.ui.FlatTabbedPaneUI;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.LayoutManager;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JComponent;
-import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
 
 public class RuneLiteTabbedPaneUI extends FlatTabbedPaneUI
 {

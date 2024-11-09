@@ -1,7 +1,7 @@
 package net.runelite.client.plugins.microbot.magetrainingarena;
 
 import net.runelite.client.config.*;
-import net.runelite.client.plugins.microbot.magetrainingarena.enums.*;
+import net.runelite.client.plugins.microbot.magetrainingarena.enums.Rewards;
 import net.runelite.client.plugins.microbot.magetrainingarena.enums.staves.AirStaves;
 import net.runelite.client.plugins.microbot.magetrainingarena.enums.staves.EarthStaves;
 import net.runelite.client.plugins.microbot.magetrainingarena.enums.staves.FireStaves;

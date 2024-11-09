@@ -26,6 +26,7 @@ package net.runelite.cache.definitions;
 
 import lombok.Data;
 import net.runelite.cache.region.Position;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

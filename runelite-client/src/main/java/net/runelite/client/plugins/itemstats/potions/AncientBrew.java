@@ -26,21 +26,14 @@ package net.runelite.client.plugins.itemstats.potions;
 
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.Client;
-import net.runelite.client.plugins.itemstats.BoostedStatBoost;
-import static net.runelite.client.plugins.itemstats.Builders.perc;
-import net.runelite.client.plugins.itemstats.CappedStatBoost;
-import net.runelite.client.plugins.itemstats.Effect;
-import net.runelite.client.plugins.itemstats.SimpleStatBoost;
-import net.runelite.client.plugins.itemstats.StatChange;
-import net.runelite.client.plugins.itemstats.StatsChanges;
+import net.runelite.client.plugins.itemstats.*;
 import net.runelite.client.plugins.itemstats.stats.Stat;
-import static net.runelite.client.plugins.itemstats.stats.Stats.ATTACK;
-import static net.runelite.client.plugins.itemstats.stats.Stats.DEFENCE;
-import static net.runelite.client.plugins.itemstats.stats.Stats.MAGIC;
-import static net.runelite.client.plugins.itemstats.stats.Stats.PRAYER;
-import static net.runelite.client.plugins.itemstats.stats.Stats.STRENGTH;
+
 import java.util.Comparator;
 import java.util.stream.Stream;
+
+import static net.runelite.client.plugins.itemstats.Builders.perc;
+import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 
 @RequiredArgsConstructor
 public class AncientBrew implements Effect

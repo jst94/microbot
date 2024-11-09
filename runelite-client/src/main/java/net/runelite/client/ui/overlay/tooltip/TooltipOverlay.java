@@ -24,12 +24,6 @@
  */
 package net.runelite.client.ui.overlay.tooltip;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import net.runelite.api.Client;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.client.config.RuneLiteConfig;
@@ -40,6 +34,11 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
 import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TooltipComponent;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.util.List;
 
 @Singleton
 public class TooltipOverlay extends Overlay

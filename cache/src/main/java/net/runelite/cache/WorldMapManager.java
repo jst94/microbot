@@ -29,20 +29,11 @@ import net.runelite.cache.definitions.WorldMapCompositeDefinition;
 import net.runelite.cache.definitions.WorldMapElementDefinition;
 import net.runelite.cache.definitions.loaders.ScriptLoader;
 import net.runelite.cache.definitions.loaders.WorldMapCompositeLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
-import net.runelite.cache.fs.Index;
+import net.runelite.cache.fs.*;
 import net.runelite.cache.region.Position;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WorldMapManager
 {

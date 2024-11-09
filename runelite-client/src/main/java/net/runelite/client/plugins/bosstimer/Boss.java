@@ -26,14 +26,15 @@
 package net.runelite.client.plugins.bosstimer;
 
 import com.google.common.collect.ImmutableMap;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.Map;
 import lombok.Getter;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.client.util.RSTimeUnit;
+
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.Map;
 
 @Getter
 enum Boss

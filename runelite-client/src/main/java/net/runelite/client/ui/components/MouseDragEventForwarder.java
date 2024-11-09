@@ -24,10 +24,10 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.SwingUtilities;
 
 /**
  * Forwards left mouse button drag events to the target Component.

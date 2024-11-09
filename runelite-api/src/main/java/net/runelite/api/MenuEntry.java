@@ -24,10 +24,11 @@
  */
 package net.runelite.api;
 
-import java.util.function.Consumer;
+import net.runelite.api.widgets.Widget;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import net.runelite.api.widgets.Widget;
+import java.util.function.Consumer;
 
 
 /**

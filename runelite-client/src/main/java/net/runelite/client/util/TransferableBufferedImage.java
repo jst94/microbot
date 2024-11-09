@@ -26,12 +26,13 @@
  */
 package net.runelite.client.util;
 
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
 
 @AllArgsConstructor
 class TransferableBufferedImage implements Transferable

@@ -24,20 +24,8 @@
  */
 package net.runelite.cache.script.disassembler;
 
-import com.google.common.io.Files;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import net.runelite.cache.IndexType;
 import net.runelite.cache.StoreLocation;
-import net.runelite.cache.definitions.ScriptDefinition;
-import net.runelite.cache.definitions.loaders.ScriptLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

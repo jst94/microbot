@@ -25,7 +25,6 @@
  */
 package net.runelite.api.coords;
 
-import javax.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import net.runelite.api.Client;

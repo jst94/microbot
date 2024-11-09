@@ -24,10 +24,11 @@
  */
 package net.runelite.client.plugins.dpscounter;
 
-import java.time.Duration;
-import java.time.Instant;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.time.Duration;
+import java.time.Instant;
 
 @RequiredArgsConstructor
 @Getter

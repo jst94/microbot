@@ -30,8 +30,10 @@ import net.runelite.client.plugins.itemstats.SimpleStatBoost;
 import net.runelite.client.plugins.itemstats.StatChange;
 import net.runelite.client.plugins.itemstats.StatsChanges;
 import net.runelite.client.plugins.itemstats.stats.Stat;
+
 import java.util.Comparator;
 import java.util.stream.Stream;
+
 import static net.runelite.client.plugins.itemstats.Builders.perc;
 import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 

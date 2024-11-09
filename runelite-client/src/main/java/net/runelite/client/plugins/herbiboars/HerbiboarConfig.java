@@ -24,11 +24,12 @@
  */
 package net.runelite.client.plugins.herbiboars;
 
-import java.awt.Color;
 import net.runelite.client.config.Alpha;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+
+import java.awt.*;
 
 @ConfigGroup("herbiboar")
 public interface HerbiboarConfig extends Config

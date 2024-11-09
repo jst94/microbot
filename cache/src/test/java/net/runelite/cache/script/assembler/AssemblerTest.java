@@ -24,8 +24,6 @@
  */
 package net.runelite.cache.script.assembler;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import net.runelite.cache.definitions.ScriptDefinition;
 import net.runelite.cache.script.Instructions;
 import net.runelite.cache.script.disassembler.Disassembler;
@@ -38,6 +36,9 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @RunWith(Parameterized.class)
 public class AssemblerTest

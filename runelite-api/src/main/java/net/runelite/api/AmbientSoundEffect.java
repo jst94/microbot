@@ -24,8 +24,9 @@
  */
 package net.runelite.api;
 
-import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
+
+import javax.annotation.Nullable;
 
 /**
  * An ambient sound effect. These are loaded only at scene load and are used to play ambient

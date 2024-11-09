@@ -25,17 +25,19 @@
 package net.runelite.client.plugins.itemstats.potions;
 
 import com.google.common.annotations.VisibleForTesting;
-import java.util.Comparator;
-import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.Client;
-import static net.runelite.client.plugins.itemstats.Builders.perc;
 import net.runelite.client.plugins.itemstats.Effect;
 import net.runelite.client.plugins.itemstats.SimpleStatBoost;
-import net.runelite.client.plugins.itemstats.stats.Stat;
 import net.runelite.client.plugins.itemstats.StatChange;
-import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 import net.runelite.client.plugins.itemstats.StatsChanges;
+import net.runelite.client.plugins.itemstats.stats.Stat;
+
+import java.util.Comparator;
+import java.util.stream.Stream;
+
+import static net.runelite.client.plugins.itemstats.Builders.perc;
+import static net.runelite.client.plugins.itemstats.stats.Stats.*;
 
 @RequiredArgsConstructor
 public class SuperRestore implements Effect

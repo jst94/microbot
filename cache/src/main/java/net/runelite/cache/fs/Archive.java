@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.fs;
 
-import java.io.IOException;
 import net.runelite.cache.index.FileData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class Archive
 {

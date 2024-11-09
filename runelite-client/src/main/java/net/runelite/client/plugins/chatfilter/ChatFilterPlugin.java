@@ -30,32 +30,7 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-import javax.inject.Inject;
-import net.runelite.api.ChatMessageType;
-import static net.runelite.api.ChatMessageType.ENGINE;
-import static net.runelite.api.ChatMessageType.GAMEMESSAGE;
-import static net.runelite.api.ChatMessageType.ITEM_EXAMINE;
-import static net.runelite.api.ChatMessageType.MODCHAT;
-import static net.runelite.api.ChatMessageType.NPC_EXAMINE;
-import static net.runelite.api.ChatMessageType.OBJECT_EXAMINE;
-import static net.runelite.api.ChatMessageType.PUBLICCHAT;
-import static net.runelite.api.ChatMessageType.SPAM;
-import net.runelite.api.Client;
-import net.runelite.api.FriendsChatManager;
-import net.runelite.api.MessageNode;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
@@ -68,6 +43,15 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.Text;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.inject.Inject;
+import java.util.*;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import static net.runelite.api.ChatMessageType.*;
 
 @PluginDescriptor(
 	name = "Chat Filter",

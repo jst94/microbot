@@ -24,11 +24,6 @@
  */
 package net.runelite.jshell;
 
-import java.awt.Point;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.swing.text.JTextComponent;
 import jdk.jshell.JShell;
 import jdk.jshell.SourceCodeAnalysis;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +31,12 @@ import org.fife.ui.autocomplete.BasicCompletion;
 import org.fife.ui.autocomplete.Completion;
 import org.fife.ui.autocomplete.CompletionProviderBase;
 import org.fife.ui.autocomplete.ParameterizedCompletion;
+
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class JShellAutocompleteProvider extends CompletionProviderBase

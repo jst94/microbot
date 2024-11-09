@@ -28,12 +28,13 @@ package net.runelite.client.util;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import org.apache.commons.text.WordUtils;
+import org.apache.commons.text.similarity.JaroWinklerDistance;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.text.WordUtils;
-import org.apache.commons.text.similarity.JaroWinklerDistance;
 
 /**
  * A set of utilities to use when dealing with text.

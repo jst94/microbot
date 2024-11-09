@@ -24,10 +24,10 @@
  */
 package net.runelite.client.ui.components.shadowlabel;
 
-import java.awt.Color;
-import java.awt.Point;
-import javax.swing.JLabel;
 import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class JShadowedLabel extends JLabel
 {

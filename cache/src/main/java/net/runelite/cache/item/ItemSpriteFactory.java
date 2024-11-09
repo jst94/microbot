@@ -24,8 +24,6 @@
  */
 package net.runelite.cache.item;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import net.runelite.cache.definitions.ItemDefinition;
 import net.runelite.cache.definitions.ModelDefinition;
 import net.runelite.cache.definitions.providers.ItemProvider;
@@ -35,6 +33,9 @@ import net.runelite.cache.definitions.providers.TextureProvider;
 import net.runelite.cache.models.FaceNormal;
 import net.runelite.cache.models.JagexColor;
 import net.runelite.cache.models.VertexNormal;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class ItemSpriteFactory
 {

@@ -25,16 +25,12 @@
 package net.runelite.client.util;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.EventQueue;
-import java.awt.SecondaryLoop;
-import java.awt.Toolkit;
-import javax.annotation.Nullable;
-import javax.swing.AbstractButton;
-import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.Activatable;
+
+import javax.annotation.Nullable;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Various Swing utilities.

@@ -24,11 +24,10 @@
  */
 package net.runelite.client.ui.components.materialtabs;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPanel;
 
 /**
  * This class will be a container (group) for the new Material Tabs. It will

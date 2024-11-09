@@ -25,15 +25,11 @@
 package net.runelite.client.ui.overlay.components;
 
 import com.google.common.base.Strings;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.text.DecimalFormat;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.awt.*;
+import java.text.DecimalFormat;
 
 @Setter
 public class ProgressBarComponent implements LayoutableRenderableEntity

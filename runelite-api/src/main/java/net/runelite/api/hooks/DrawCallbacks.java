@@ -24,17 +24,9 @@
  */
 package net.runelite.api.hooks;
 
+import net.runelite.api.*;
+
 import java.util.Set;
-import net.runelite.api.GameObject;
-import net.runelite.api.Model;
-import net.runelite.api.Projection;
-import net.runelite.api.Renderable;
-import net.runelite.api.Scene;
-import net.runelite.api.SceneTileModel;
-import net.runelite.api.SceneTilePaint;
-import net.runelite.api.Texture;
-import net.runelite.api.TileObject;
-import net.runelite.api.WorldView;
 
 public interface DrawCallbacks
 {

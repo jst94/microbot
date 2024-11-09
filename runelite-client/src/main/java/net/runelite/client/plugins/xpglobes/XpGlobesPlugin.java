@@ -25,13 +25,6 @@
 package net.runelite.client.plugins.xpglobes;
 
 import com.google.inject.Provides;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import javax.inject.Inject;
 import lombok.Getter;
 import net.runelite.api.Experience;
 import net.runelite.api.Skill;
@@ -45,6 +38,14 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
 import net.runelite.client.task.Schedule;
 import net.runelite.client.ui.overlay.OverlayManager;
+
+import javax.inject.Inject;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @PluginDescriptor(
 	name = "XP Globes",

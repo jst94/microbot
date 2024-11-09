@@ -25,25 +25,15 @@
 package net.runelite.client.plugins.runecraft;
 
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
-import java.util.function.Predicate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import static net.runelite.api.ItemID.AIR_RUNE;
-import static net.runelite.api.ItemID.BLOOD_RUNE;
-import static net.runelite.api.ItemID.BODY_RUNE;
-import static net.runelite.api.ItemID.CHAOS_RUNE;
-import static net.runelite.api.ItemID.COSMIC_RUNE;
-import static net.runelite.api.ItemID.DEATH_RUNE;
-import static net.runelite.api.ItemID.EARTH_RUNE;
-import static net.runelite.api.ItemID.FIRE_RUNE;
-import static net.runelite.api.ItemID.LAW_RUNE;
-import static net.runelite.api.ItemID.MIND_RUNE;
-import static net.runelite.api.ItemID.NATURE_RUNE;
-import static net.runelite.api.ItemID.SOUL_RUNE;
-import static net.runelite.api.ItemID.WATER_RUNE;
 import net.runelite.api.NullObjectID;
 import net.runelite.api.ObjectID;
+
+import java.util.Map;
+import java.util.function.Predicate;
+
+import static net.runelite.api.ItemID.*;
 
 @AllArgsConstructor
 enum AbyssRifts

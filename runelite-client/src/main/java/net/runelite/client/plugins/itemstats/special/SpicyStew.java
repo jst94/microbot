@@ -24,13 +24,14 @@
  */
 package net.runelite.client.plugins.itemstats.special;
 
-import java.util.ArrayList;
-import java.util.List;
 import net.runelite.api.Client;
 import net.runelite.api.Varbits;
 import net.runelite.client.plugins.itemstats.*;
 import net.runelite.client.plugins.itemstats.stats.Stat;
 import net.runelite.client.plugins.itemstats.stats.Stats;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpicyStew implements Effect
 {

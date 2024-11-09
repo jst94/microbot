@@ -25,27 +25,9 @@
 package net.runelite.api;
 
 import lombok.Getter;
-import static net.runelite.api.HitsplatID.BLOCK_ME;
-import static net.runelite.api.HitsplatID.BLOCK_OTHER;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME_CYAN;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME_ORANGE;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME_WHITE;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME_YELLOW;
-import static net.runelite.api.HitsplatID.DAMAGE_MAX_ME_POISE;
-import static net.runelite.api.HitsplatID.DAMAGE_ME;
-import static net.runelite.api.HitsplatID.DAMAGE_ME_CYAN;
-import static net.runelite.api.HitsplatID.DAMAGE_ME_ORANGE;
-import static net.runelite.api.HitsplatID.DAMAGE_ME_WHITE;
-import static net.runelite.api.HitsplatID.DAMAGE_ME_YELLOW;
-import static net.runelite.api.HitsplatID.DAMAGE_ME_POISE;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER_CYAN;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER_ORANGE;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER_WHITE;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER_YELLOW;
-import static net.runelite.api.HitsplatID.DAMAGE_OTHER_POISE;
 import net.runelite.api.annotations.HitsplatType;
+
+import static net.runelite.api.HitsplatID.*;
 
 /**
  * A hitsplat that has been applied to an {@link Actor}.

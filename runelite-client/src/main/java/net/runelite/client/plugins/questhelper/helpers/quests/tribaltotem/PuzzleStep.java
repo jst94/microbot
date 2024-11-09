@@ -25,17 +25,17 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.tribaltotem;
 
-import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
-import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
-import net.runelite.client.plugins.questhelper.steps.QuestStep;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
+import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.steps.QuestStep;
+import net.runelite.client.ui.FontManager;
 
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.client.ui.FontManager;
 
 public class PuzzleStep extends QuestStep
 {

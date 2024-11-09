@@ -24,11 +24,12 @@
  */
 package net.runelite.api.annotations;
 
+import net.runelite.api.widgets.InterfaceID;
+import org.intellij.lang.annotations.MagicConstant;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import net.runelite.api.widgets.InterfaceID;
-import org.intellij.lang.annotations.MagicConstant;
 
 @MagicConstant(valuesFromClass = InterfaceID.class)
 @Documented

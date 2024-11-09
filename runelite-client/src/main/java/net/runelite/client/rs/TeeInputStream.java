@@ -24,12 +24,13 @@
  */
 package net.runelite.client.rs;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import lombok.Getter;
-import lombok.Setter;
 
 class TeeInputStream extends FilterInputStream
 {

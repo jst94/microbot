@@ -25,10 +25,11 @@
 package net.runelite.jshell;
 
 import com.google.common.base.Strings;
+import jdk.jshell.EvalException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
-import jdk.jshell.EvalException;
 
 class RemappingThrowable extends Throwable
 {

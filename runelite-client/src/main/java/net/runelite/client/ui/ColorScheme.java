@@ -24,7 +24,7 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * This class serves to hold commonly used UI colors.

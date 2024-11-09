@@ -24,9 +24,11 @@
  */
 package net.runelite.cache.util;
 
-import java.nio.charset.StandardCharsets;
-import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
+
+import java.nio.charset.StandardCharsets;
+
+import static org.junit.Assert.assertArrayEquals;
 
 public class XteaTest
 {

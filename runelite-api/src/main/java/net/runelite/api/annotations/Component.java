@@ -24,15 +24,18 @@
  */
 package net.runelite.api.annotations;
 
+import net.runelite.api.widgets.ComponentID;
+import org.intellij.lang.annotations.MagicConstant;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import net.runelite.api.widgets.ComponentID;
-import org.intellij.lang.annotations.MagicConstant;
 
 @MagicConstant(valuesFromClass = ComponentID.class)
 @Documented
 @Retention(RetentionPolicy.SOURCE)
 public @interface Component
 {
+
+    int BANK_PIN_CONTAINER = 0;
 }

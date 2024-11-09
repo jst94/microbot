@@ -24,18 +24,17 @@
  */
 package net.runelite.api.geometry;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Shape;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.imageio.ImageIO;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 
 @Slf4j
 public class RectangleUnionTest

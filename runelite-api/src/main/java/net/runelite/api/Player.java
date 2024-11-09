@@ -24,8 +24,9 @@
  */
 package net.runelite.api;
 
-import java.awt.Polygon;
 import org.intellij.lang.annotations.MagicConstant;
+
+import java.awt.*;
 
 /**
  * Represents a player entity in the game.

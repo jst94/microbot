@@ -27,12 +27,6 @@ package net.runelite.mvn;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import javax.lang.model.element.Modifier;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -45,6 +39,13 @@ import org.tomlj.Toml;
 import org.tomlj.TomlParseError;
 import org.tomlj.TomlParseResult;
 import org.tomlj.TomlTable;
+
+import javax.lang.model.element.Modifier;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 @Mojo(
 	name = "pack-components",

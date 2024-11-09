@@ -24,14 +24,14 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.kingsransom;
 
-import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
-import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
-import net.runelite.client.plugins.questhelper.steps.QuestStep;
-import java.awt.Color;
-import java.awt.Graphics2D;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
+import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.steps.QuestStep;
+
+import java.awt.*;
 
 public class LockpickPuzzle extends QuestStep
 {

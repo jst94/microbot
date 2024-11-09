@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Color;
+import java.awt.*;
 
 public final class JagexColor
 {

@@ -42,11 +42,7 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.input.KeyListener;
-import net.runelite.client.input.KeyManager;
-import net.runelite.client.input.MouseListener;
-import net.runelite.client.input.MouseManager;
-import net.runelite.client.input.MouseWheelListener;
+import net.runelite.client.input.*;
 
 @Singleton
 @Slf4j

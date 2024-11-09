@@ -24,18 +24,19 @@
  */
 package net.runelite.client.input;
 
-import java.awt.event.KeyEvent;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Singleton
 @Slf4j

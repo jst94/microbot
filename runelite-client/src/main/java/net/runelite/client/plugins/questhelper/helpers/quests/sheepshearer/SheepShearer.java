@@ -24,41 +24,26 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.sheepshearer;
 
+import net.runelite.api.*;
+import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.questhelper.panel.PanelDetails;
+import net.runelite.client.plugins.questhelper.questhelpers.BasicQuestHelper;
 import net.runelite.client.plugins.questhelper.requirements.ManualRequirement;
 import net.runelite.client.plugins.questhelper.requirements.Requirement;
-import static net.runelite.client.plugins.questhelper.requirements.util.LogicHelper.and;
-import static net.runelite.client.plugins.questhelper.requirements.util.LogicHelper.nor;
-import static net.runelite.client.plugins.questhelper.requirements.util.LogicHelper.or;
+import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
 import net.runelite.client.plugins.questhelper.requirements.zone.Zone;
 import net.runelite.client.plugins.questhelper.requirements.zone.ZoneRequirement;
 import net.runelite.client.plugins.questhelper.rewards.ExperienceReward;
 import net.runelite.client.plugins.questhelper.rewards.ItemReward;
 import net.runelite.client.plugins.questhelper.rewards.QuestPointReward;
-import net.runelite.client.plugins.questhelper.steps.ConditionalStep;
-import net.runelite.client.plugins.questhelper.steps.ItemStep;
-import net.runelite.client.plugins.questhelper.steps.NpcStep;
-import net.runelite.client.plugins.questhelper.steps.ObjectStep;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.IntStream;
-import net.runelite.api.InventoryID;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
-import net.runelite.api.NpcID;
-import net.runelite.api.ObjectID;
-import net.runelite.api.Skill;
-import net.runelite.api.coords.WorldPoint;
-import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
-import net.runelite.client.plugins.questhelper.questhelpers.BasicQuestHelper;
-import net.runelite.client.plugins.questhelper.steps.QuestStep;
+import net.runelite.client.plugins.questhelper.steps.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.client.eventbus.Subscribe;
+import java.util.*;
+import java.util.stream.IntStream;
+
+import static net.runelite.client.plugins.questhelper.requirements.util.LogicHelper.*;
 
 public class SheepShearer extends BasicQuestHelper
 {

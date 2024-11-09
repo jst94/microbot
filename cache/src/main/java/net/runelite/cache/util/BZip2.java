@@ -25,18 +25,14 @@
 package net.runelite.cache.util;
 
 import com.sun.jna.Memory;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Arrays;
-import static net.runelite.cache.util.LibBZip2.BZ_FINISH_OK;
-import static net.runelite.cache.util.LibBZip2.BZ_OK;
-import static net.runelite.cache.util.LibBZip2.BZ_STREAM_END;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
 import org.apache.commons.compress.utils.IOUtils;
+
+import java.io.*;
+import java.util.Arrays;
+
+import static net.runelite.cache.util.LibBZip2.*;
 
 public class BZip2
 {

@@ -26,6 +26,7 @@ package net.runelite.client.plugins.itemstats.special;
 
 import net.runelite.api.Client;
 import net.runelite.client.plugins.itemstats.StatBoost;
+
 import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
 
 public class CaveNightshade extends StatBoost

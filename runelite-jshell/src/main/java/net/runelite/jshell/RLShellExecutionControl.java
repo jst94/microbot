@@ -24,11 +24,12 @@
  */
 package net.runelite.jshell;
 
-import java.util.Map;
 import jdk.jshell.execution.DirectExecutionControl;
 import jdk.jshell.spi.ExecutionControl;
 import jdk.jshell.spi.ExecutionControlProvider;
 import jdk.jshell.spi.ExecutionEnv;
+
+import java.util.Map;
 
 public class RLShellExecutionControl extends DirectExecutionControl implements ExecutionControlProvider
 {

@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Canvas;
+import java.awt.*;
 
 /**
  * Represents the client game engine.

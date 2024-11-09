@@ -27,9 +27,19 @@ package net.runelite.client.game.chatbox;
 import com.google.common.base.Strings;
 import com.google.common.primitives.Ints;
 import com.google.inject.Inject;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.FontID;
+import net.runelite.api.FontTypeFace;
+import net.runelite.api.widgets.*;
+import net.runelite.client.callback.ClientThread;
+import net.runelite.client.input.KeyListener;
+import net.runelite.client.input.MouseListener;
+import net.runelite.client.util.Text;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -43,22 +53,6 @@ import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 import java.util.regex.Pattern;
-import javax.swing.SwingUtilities;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.FontID;
-import net.runelite.api.FontTypeFace;
-import net.runelite.api.widgets.JavaScriptCallback;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetPositionMode;
-import net.runelite.api.widgets.WidgetSizeMode;
-import net.runelite.api.widgets.WidgetTextAlignment;
-import net.runelite.api.widgets.WidgetType;
-import net.runelite.client.callback.ClientThread;
-import net.runelite.client.input.KeyListener;
-import net.runelite.client.input.MouseListener;
-import net.runelite.client.util.Text;
 
 @Slf4j
 public class ChatboxTextInput extends ChatboxInput implements KeyListener, MouseListener

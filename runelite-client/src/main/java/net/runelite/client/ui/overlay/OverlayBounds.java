@@ -24,18 +24,14 @@
  */
 package net.runelite.client.ui.overlay;
 
-import java.awt.Rectangle;
-import java.util.Arrays;
-import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import static net.runelite.client.ui.overlay.OverlayPosition.ABOVE_CHATBOX_RIGHT;
-import static net.runelite.client.ui.overlay.OverlayPosition.BOTTOM_LEFT;
-import static net.runelite.client.ui.overlay.OverlayPosition.BOTTOM_RIGHT;
-import static net.runelite.client.ui.overlay.OverlayPosition.CANVAS_TOP_RIGHT;
-import static net.runelite.client.ui.overlay.OverlayPosition.TOP_CENTER;
-import static net.runelite.client.ui.overlay.OverlayPosition.TOP_LEFT;
-import static net.runelite.client.ui.overlay.OverlayPosition.TOP_RIGHT;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collection;
+
+import static net.runelite.client.ui.overlay.OverlayPosition.*;
 
 @AllArgsConstructor
 @Value

@@ -30,27 +30,13 @@ package net.runelite.client.plugins.fairyring;
 
 import com.google.common.base.Strings;
 import com.google.inject.Provides;
-import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.ScriptEvent;
-import net.runelite.api.ScriptID;
-import net.runelite.api.SoundEffectID;
-import net.runelite.api.SpriteID;
-import net.runelite.api.Varbits;
-import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.widgets.InterfaceID;
-import net.runelite.api.widgets.WidgetType;
+import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.widgets.JavaScriptCallback;
-import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -59,6 +45,12 @@ import net.runelite.client.game.chatbox.ChatboxTextInput;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.Text;
+
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Slf4j
 @PluginDescriptor(

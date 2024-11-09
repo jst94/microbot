@@ -25,22 +25,18 @@
  */
 package net.runelite.client.game;
 
-import java.util.Set;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import net.runelite.api.Actor;
-import net.runelite.api.AnimationID;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.NpcID;
-import net.runelite.api.ParamID;
+import net.runelite.api.*;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.NpcChanged;
 import net.runelite.client.RuntimeConfig;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import org.apache.commons.lang3.ArrayUtils;
+
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.Set;
 
 @Singleton
 public class NpcUtil

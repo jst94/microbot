@@ -3,7 +3,6 @@ package net.runelite.client.plugins.microbot.magetrainingarena.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.api.ItemID;
-import net.runelite.client.plugins.mta.telekinetic.TelekineticRoom;
 
 import java.util.Map;
 

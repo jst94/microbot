@@ -25,23 +25,19 @@
  */
 package net.runelite.client.ui.components.colorpicker;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.util.function.Consumer;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import net.runelite.client.ui.ColorScheme;
+import net.runelite.client.util.ColorUtil;
+
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import net.runelite.client.ui.ColorScheme;
-import net.runelite.client.util.ColorUtil;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.function.Consumer;
 
 public class ColorValuePanel extends JPanel
 {

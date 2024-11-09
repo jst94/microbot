@@ -27,23 +27,20 @@ package net.runelite.client.chat;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
+import net.runelite.http.api.RuneLiteAPI;
+import net.runelite.http.api.chat.Duels;
+import net.runelite.http.api.chat.LayoutRoom;
+import net.runelite.http.api.chat.Task;
+import okhttp3.*;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Set;
-import javax.inject.Inject;
-import javax.inject.Named;
-import net.runelite.http.api.RuneLiteAPI;
-import net.runelite.http.api.chat.Duels;
-import net.runelite.http.api.chat.LayoutRoom;
-import net.runelite.http.api.chat.Task;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class ChatClient
 {

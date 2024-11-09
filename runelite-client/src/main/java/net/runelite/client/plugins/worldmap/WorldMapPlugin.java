@@ -27,13 +27,6 @@ package net.runelite.client.plugins.worldmap;
 
 import com.google.inject.Inject;
 import com.google.inject.Provides;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Quest;
@@ -44,11 +37,7 @@ import net.runelite.api.dbtable.DBTableID;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.StatChanged;
-import net.runelite.api.worldmap.MapElementConfig;
-import net.runelite.api.worldmap.WorldMap;
-import net.runelite.api.worldmap.WorldMapIcon;
-import net.runelite.api.worldmap.WorldMapRegion;
-import net.runelite.api.worldmap.WorldMapRenderer;
+import net.runelite.api.worldmap.*;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -59,6 +48,14 @@ import net.runelite.client.ui.overlay.worldmap.WorldMapPoint;
 import net.runelite.client.ui.overlay.worldmap.WorldMapPointManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
+
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @PluginDescriptor(
 	name = "World Map",

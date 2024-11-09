@@ -24,9 +24,9 @@
  */
 package net.runelite.client.ui.components.shadowlabel;
 
-import java.awt.Graphics;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicLabelUI;
+import java.awt.*;
 
 class JShadowedLabelUI extends BasicLabelUI
 {

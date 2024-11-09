@@ -24,13 +24,12 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
+import lombok.Getter;
+
+import javax.swing.text.StyleContext;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
-import javax.swing.text.StyleContext;
-import lombok.Getter;
 
 public class FontManager
 {

@@ -26,19 +26,17 @@
 package net.runelite.client.ui.components.colorpicker;
 
 import com.google.common.collect.EvictingQueue;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import net.runelite.client.config.ConfigManager;
+import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.Text;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
-import javax.swing.JPanel;
-import net.runelite.client.config.ConfigManager;
+
 import static net.runelite.client.ui.components.colorpicker.RuneliteColorPicker.CONFIG_GROUP;
-import net.runelite.client.util.ColorUtil;
-import net.runelite.client.util.Text;
 
 final class RecentColors
 {

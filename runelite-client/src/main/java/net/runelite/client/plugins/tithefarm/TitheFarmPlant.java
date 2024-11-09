@@ -24,12 +24,13 @@
  */
 package net.runelite.client.plugins.tithefarm;
 
-import java.time.Duration;
-import java.time.Instant;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.GameObject;
 import net.runelite.api.coords.WorldPoint;
+
+import java.time.Duration;
+import java.time.Instant;
 
 public class TitheFarmPlant
 {

@@ -24,14 +24,15 @@
  */
 package net.runelite.jshell;
 
-import java.io.CharArrayWriter;
-import java.io.PrintWriter;
-import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
+
+import java.io.CharArrayWriter;
+import java.io.PrintWriter;
+import java.util.function.Consumer;
 
 @SuppressWarnings("PlaceholderCountMatchesArgumentCount")
 @RequiredArgsConstructor

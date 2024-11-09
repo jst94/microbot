@@ -25,9 +25,10 @@
 package net.runelite.client.util;
 
 import com.google.common.primitives.Ints;
-import java.awt.Color;
-import java.util.regex.Pattern;
+
 import javax.annotation.Nonnull;
+import java.awt.*;
+import java.util.regex.Pattern;
 
 public class ColorUtil
 {

@@ -24,10 +24,6 @@
  */
 package net.runelite.client.plugins.runenergy;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.Point;
 import net.runelite.api.Varbits;
@@ -39,6 +35,9 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.tooltip.Tooltip;
 import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.inject.Inject;
+import java.awt.*;
 
 class RunEnergyOverlay extends Overlay
 {

@@ -27,8 +27,6 @@ package net.runelite.cache;
 
 
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.IOException;
 import net.runelite.cache.definitions.loaders.ModelLoader;
 import net.runelite.cache.fs.Archive;
 import net.runelite.cache.fs.Index;
@@ -40,6 +38,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ModelDumperTest
 {

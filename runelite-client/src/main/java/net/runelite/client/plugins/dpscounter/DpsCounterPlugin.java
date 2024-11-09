@@ -26,18 +26,10 @@ package net.runelite.client.plugins.dpscounter;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Actor;
-import net.runelite.api.Client;
-import net.runelite.api.Hitsplat;
-import net.runelite.api.NPC;
-import static net.runelite.api.NpcID.*;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.client.config.ConfigManager;
@@ -49,6 +41,12 @@ import net.runelite.client.party.WSClient;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+
+import javax.inject.Inject;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static net.runelite.api.NpcID.*;
 
 @PluginDescriptor(
 	name = "DPS Counter",

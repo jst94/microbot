@@ -26,16 +26,15 @@
 package net.runelite.client.ui.components.colorpicker;
 
 import com.google.common.primitives.Ints;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.function.Consumer;
-import javax.swing.JPanel;
-import lombok.Getter;
-import lombok.Setter;
 
 public class HuePanel extends JPanel
 {

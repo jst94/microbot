@@ -24,20 +24,17 @@
  */
 package net.runelite.cache.fs.jagex;
 
+import net.runelite.cache.fs.*;
+import net.runelite.cache.index.ArchiveData;
+import net.runelite.cache.index.IndexData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.Container;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
-import net.runelite.cache.index.ArchiveData;
-import net.runelite.cache.index.IndexData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DiskStorage implements Storage
 {

@@ -25,24 +25,8 @@
 package net.runelite.api;
 
 import com.jagex.oldscape.pub.OAuthApi;
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.function.IntPredicate;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.runelite.api.annotations.Component;
-import net.runelite.api.annotations.Interface;
-import net.runelite.api.annotations.VarCInt;
-import net.runelite.api.annotations.VarCStr;
-import net.runelite.api.annotations.Varbit;
-import net.runelite.api.annotations.Varp;
-import net.runelite.api.annotations.VisibleForDevtools;
+import net.runelite.api.annotations.*;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanID;
 import net.runelite.api.clan.ClanSettings;
@@ -52,14 +36,18 @@ import net.runelite.api.dbtable.DBRowConfig;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.vars.AccountType;
-import net.runelite.api.widgets.ItemQuantityMode;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetConfig;
-import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.api.widgets.WidgetModalMode;
+import net.runelite.api.widgets.*;
 import net.runelite.api.worldmap.MapElementConfig;
 import net.runelite.api.worldmap.WorldMap;
 import org.intellij.lang.annotations.MagicConstant;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.List;
+import java.util.*;
+import java.util.function.IntPredicate;
+import java.util.stream.Collectors;
 
 /**
  * Represents the RuneScape client.

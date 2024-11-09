@@ -25,9 +25,6 @@
 package net.runelite.client.plugins.smelting;
 
 import com.google.inject.Provides;
-import java.time.Duration;
-import java.time.Instant;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +38,10 @@ import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
 import net.runelite.client.ui.overlay.OverlayManager;
+
+import javax.inject.Inject;
+import java.time.Duration;
+import java.time.Instant;
 
 @PluginDescriptor(
 	name = "Smelting",

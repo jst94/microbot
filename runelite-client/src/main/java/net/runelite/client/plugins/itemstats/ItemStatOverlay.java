@@ -26,16 +26,7 @@ package net.runelite.client.plugins.itemstats;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.time.Duration;
-import net.runelite.api.Client;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.MenuEntry;
+import net.runelite.api.*;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.api.widgets.Widget;
@@ -51,6 +42,9 @@ import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.QuantityFormatter;
 import org.apache.commons.lang3.time.DurationFormatUtils;
+
+import java.awt.*;
+import java.time.Duration;
 
 public class ItemStatOverlay extends Overlay
 {

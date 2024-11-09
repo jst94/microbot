@@ -24,11 +24,12 @@
  */
 package net.runelite.client.util;
 
+import lombok.Getter;
+import net.runelite.api.Constants;
+
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalUnit;
-import lombok.Getter;
-import net.runelite.api.Constants;
 
 @Getter
 public enum RSTimeUnit implements TemporalUnit

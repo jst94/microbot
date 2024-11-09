@@ -24,9 +24,10 @@
  */
 package net.runelite.client.plugins.xptracker;
 
+import net.runelite.api.Skill;
+
 import java.util.EnumMap;
 import java.util.Map;
-import net.runelite.api.Skill;
 
 class XpPauseState
 {

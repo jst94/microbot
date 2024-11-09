@@ -25,11 +25,12 @@
  */
 package net.runelite.client.plugins.worldmap;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import lombok.Getter;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.game.FishingSpot;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @Getter
 enum FishingSpotLocation

@@ -26,19 +26,15 @@
 package net.runelite.client.ui.components.colorpicker;
 
 import com.google.common.primitives.Ints;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import lombok.Setter;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.util.function.Consumer;
-import javax.swing.JPanel;
-import lombok.Setter;
 
 public class ColorPanel extends JPanel
 {

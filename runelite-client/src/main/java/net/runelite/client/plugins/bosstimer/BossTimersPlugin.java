@@ -25,7 +25,6 @@
  */
 package net.runelite.client.plugins.bosstimer;
 
-import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.NPC;
 import net.runelite.api.events.NpcChanged;
@@ -36,6 +35,8 @@ import net.runelite.client.game.NpcUtil;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
+
+import javax.inject.Inject;
 
 @PluginDescriptor(
 	name = "Boss Timers",

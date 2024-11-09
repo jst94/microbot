@@ -25,8 +25,9 @@
 package net.runelite.client.plugins.itemstats.special;
 
 import net.runelite.api.Client;
-import static net.runelite.api.Skill.HITPOINTS;
 import net.runelite.client.plugins.itemstats.StatBoost;
+
+import static net.runelite.api.Skill.HITPOINTS;
 import static net.runelite.client.plugins.itemstats.stats.Stats.RUN_ENERGY;
 
 public class NettleTeaRunEnergy extends StatBoost

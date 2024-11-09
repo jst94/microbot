@@ -24,15 +24,16 @@
  */
 package net.runelite.client.plugins.questhelper.helpers.quests.lunardiplomacy;
 
-import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
-import net.runelite.client.plugins.questhelper.steps.DetailedQuestStep;
-import net.runelite.client.plugins.questhelper.steps.tools.QuestPerspective;
-import java.util.ArrayList;
-import java.util.List;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.steps.DetailedQuestStep;
+import net.runelite.client.plugins.questhelper.steps.tools.QuestPerspective;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemoryChallenge extends DetailedQuestStep
 {

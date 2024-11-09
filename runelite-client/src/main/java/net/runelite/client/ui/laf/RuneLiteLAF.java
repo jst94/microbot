@@ -27,22 +27,19 @@ package net.runelite.client.ui.laf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatSystemProperties;
-import java.awt.Color;
-import java.awt.RenderingHints;
+import lombok.SneakyThrows;
+import net.runelite.client.ui.ColorScheme;
+import net.runelite.client.ui.FontManager;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import javax.swing.UIDefaults;
-import lombok.SneakyThrows;
-import net.runelite.client.ui.ColorScheme;
-import net.runelite.client.ui.FontManager;
+import java.util.*;
 
 public class RuneLiteLAF extends FlatDarkLaf
 {

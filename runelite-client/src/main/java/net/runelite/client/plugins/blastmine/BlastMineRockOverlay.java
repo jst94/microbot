@@ -25,21 +25,8 @@
 package net.runelite.client.plugins.blastmine;
 
 import com.google.common.collect.ImmutableSet;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.image.BufferedImage;
-import java.util.Map;
-import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.ItemID;
-import net.runelite.api.NullObjectID;
-import net.runelite.api.ObjectID;
-import net.runelite.api.Perspective;
 import net.runelite.api.Point;
-import net.runelite.api.Tile;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.game.ItemManager;
@@ -48,6 +35,11 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.ProgressPieComponent;
 import net.runelite.client.util.ColorUtil;
+
+import javax.inject.Inject;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 public class BlastMineRockOverlay extends Overlay
 {

@@ -25,11 +25,10 @@
  */
 package net.runelite.client.ui.components;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.JPanel;
 import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A progress bar to be displayed underneath the GE offer item panels

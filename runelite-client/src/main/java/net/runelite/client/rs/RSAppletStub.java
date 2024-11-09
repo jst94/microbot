@@ -25,23 +25,24 @@
  */
 package net.runelite.client.rs;
 
+import lombok.RequiredArgsConstructor;
+import net.runelite.client.RuntimeConfig;
+import net.runelite.client.RuntimeConfigLoader;
+import net.runelite.client.ui.FatalErrorDialog;
+import net.runelite.client.util.LinkBrowser;
+
+import javax.swing.*;
 import java.applet.Applet;
 import java.applet.AppletContext;
 import java.applet.AppletStub;
 import java.applet.AudioClip;
-import java.awt.Image;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Iterator;
-import javax.swing.SwingUtilities;
-import lombok.RequiredArgsConstructor;
-import net.runelite.client.RuntimeConfig;
-import net.runelite.client.RuntimeConfigLoader;
-import net.runelite.client.ui.FatalErrorDialog;
-import net.runelite.client.util.LinkBrowser;
 
 @RequiredArgsConstructor
 class RSAppletStub implements AppletStub

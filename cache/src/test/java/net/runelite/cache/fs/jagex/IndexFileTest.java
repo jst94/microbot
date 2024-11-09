@@ -24,13 +24,14 @@
  */
 package net.runelite.cache.fs.jagex;
 
-import java.io.File;
-import java.io.IOException;
 import net.runelite.cache.StoreLocation;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+import java.io.IOException;
 
 public class IndexFileTest
 {

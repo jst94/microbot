@@ -24,9 +24,8 @@
  */
 package net.runelite.client.util;
 
-import java.awt.Component;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Popup factory for Java 11 which forces heavyweight popups. Lightweight popups do not render correctly

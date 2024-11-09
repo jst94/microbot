@@ -24,15 +24,17 @@
  */
 package net.runelite.cache.util;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Random;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assume.assumeNoException;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeNoException;
 
 @Ignore
 public class BZip2Test

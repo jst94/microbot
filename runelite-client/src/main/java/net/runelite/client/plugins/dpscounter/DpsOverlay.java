@@ -24,15 +24,7 @@
  */
 package net.runelite.client.plugins.dpscounter;
 
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.text.DecimalFormat;
-import java.time.Duration;
-import java.util.Map;
-import javax.inject.Inject;
 import net.runelite.api.Client;
-import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 import net.runelite.api.Player;
 import net.runelite.client.party.PartyService;
 import net.runelite.client.ui.overlay.OverlayPanel;
@@ -42,6 +34,14 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 import net.runelite.client.ui.overlay.tooltip.Tooltip;
 import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.util.QuantityFormatter;
+
+import javax.inject.Inject;
+import java.awt.*;
+import java.text.DecimalFormat;
+import java.time.Duration;
+import java.util.Map;
+
+import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 
 class DpsOverlay extends OverlayPanel
 {

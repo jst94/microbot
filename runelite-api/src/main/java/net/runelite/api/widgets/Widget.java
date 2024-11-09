@@ -24,13 +24,14 @@
  */
 package net.runelite.api.widgets;
 
-import java.awt.Rectangle;
-import javax.annotation.Nullable;
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
 import net.runelite.api.annotations.Component;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.Range;
+
+import javax.annotation.Nullable;
+import java.awt.*;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.

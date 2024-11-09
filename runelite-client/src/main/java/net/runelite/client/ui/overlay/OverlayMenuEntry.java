@@ -24,14 +24,15 @@
  */
 package net.runelite.client.ui.overlay;
 
-import java.util.function.Consumer;
-import javax.annotation.Nullable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
+
+import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 @RequiredArgsConstructor
 @ToString(exclude = {"callback"})

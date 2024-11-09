@@ -26,6 +26,7 @@ package net.runelite.cache.util;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 

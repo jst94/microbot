@@ -24,11 +24,12 @@
  */
 package net.runelite.client.chat;
 
-import java.awt.Color;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.runelite.api.annotations.Varp;
+
+import java.awt.*;
 
 @Data
 @EqualsAndHashCode(exclude = {"color", "isDefault", "setting"})

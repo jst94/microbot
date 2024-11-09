@@ -24,7 +24,7 @@
  */
 package net.runelite.client.plugins.itemstats;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Positivity represents how positive or negative a stat change is. This is

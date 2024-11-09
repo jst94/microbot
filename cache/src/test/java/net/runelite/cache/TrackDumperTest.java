@@ -25,17 +25,10 @@
 package net.runelite.cache;
 
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.Sequencer;
 import net.runelite.cache.definitions.TrackDefinition;
 import net.runelite.cache.definitions.loaders.TrackLoader;
 import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
 import net.runelite.cache.util.Djb2Manager;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -43,6 +36,12 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Sequencer;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class TrackDumperTest
 {

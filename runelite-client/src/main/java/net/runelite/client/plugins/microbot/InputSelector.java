@@ -1,6 +1,5 @@
 package net.runelite.client.plugins.microbot;
 
-import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.NavigationButton;

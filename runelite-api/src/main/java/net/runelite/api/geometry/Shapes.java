@@ -24,8 +24,10 @@
  */
 package net.runelite.api.geometry;
 
-import java.awt.Rectangle;
-import java.awt.Shape;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
@@ -33,8 +35,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class Shapes<T extends Shape> implements Shape

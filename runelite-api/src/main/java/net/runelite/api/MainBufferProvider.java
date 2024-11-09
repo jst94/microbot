@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Image;
+import java.awt.*;
 
 /**
  * Represents the clients primary image buffer.

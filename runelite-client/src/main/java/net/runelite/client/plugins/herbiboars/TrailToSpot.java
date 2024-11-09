@@ -26,10 +26,11 @@
 package net.runelite.client.plugins.herbiboars;
 
 import com.google.common.collect.ImmutableSet;
-import java.util.Set;
 import lombok.Getter;
 import lombok.Value;
 import net.runelite.api.annotations.Varbit;
+
+import java.util.Set;
 
 /**
  * A representation of a trail of footsteps which appears when hunting for the Herbiboar.

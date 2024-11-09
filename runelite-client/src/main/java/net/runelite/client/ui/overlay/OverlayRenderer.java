@@ -26,30 +26,8 @@ package net.runelite.client.ui.overlay;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.primitives.Ints;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
-import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.KeyCode;
-import net.runelite.api.Varbits;
+import net.runelite.api.*;
 import net.runelite.api.events.BeforeRender;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.FocusChanged;
@@ -71,6 +49,17 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.HotkeyListener;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.swing.*;
+import java.awt.Point;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Singleton
 @Slf4j

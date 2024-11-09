@@ -25,13 +25,6 @@
 package net.runelite.client.ui.overlay;
 
 import com.google.common.base.Preconditions;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-import javax.annotation.Nullable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +35,12 @@ import net.runelite.api.annotations.Interface;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
+
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 @Getter
 @Setter

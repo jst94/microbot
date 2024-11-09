@@ -1,16 +1,16 @@
 package net.runelite.client.plugins.questhelper.helpers.quests.theslugmenace;
 
-import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
-import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
-import net.runelite.client.plugins.questhelper.steps.QuestStep;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
+import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.steps.QuestStep;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PuzzleStep extends QuestStep
 {

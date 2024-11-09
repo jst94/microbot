@@ -24,7 +24,7 @@
  */
 package net.runelite.client.ui;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * This class serves to hold colors used in Oldschool RuneScape that are also used in client code.

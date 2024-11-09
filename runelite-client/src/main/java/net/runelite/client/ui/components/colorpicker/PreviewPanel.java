@@ -26,10 +26,10 @@
 
 package net.runelite.client.ui.components.colorpicker;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JPanel;
 import lombok.Getter;
+
+import javax.swing.*;
+import java.awt.*;
 
 class PreviewPanel extends JPanel
 {
