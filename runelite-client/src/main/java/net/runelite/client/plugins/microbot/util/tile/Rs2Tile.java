@@ -17,6 +17,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import net.runelite.api.GraphicsObject; // Ensure this import is present
+import net.runelite.api.ObjectID;        // Ensure this import is present
 
 public abstract class Rs2Tile implements Tile{
 
@@ -95,9 +97,9 @@ public abstract class Rs2Tile implements Tile{
         List<WorldPoint> safeTiles = new ArrayList<>();
 
         for (WorldPoint walkableTile : getWalkableTilesAroundPlayer(radius)) {
-            boolean isDangerousTile = dangerousGraphicsObjectTiles.stream().anyMatch(x -> x.getKey().equals(walkableTile));
-            if (isDangerousTile) continue;
-            safeTiles.add(walkableTile);
+            if (!isDangerous(walkableTile)) {
+                safeTiles.add(walkableTile);
+            }
         }
         return safeTiles;
     }
@@ -716,4 +718,37 @@ public abstract class Rs2Tile implements Tile{
         }
         return checkpointTiles;
     }
+
+    // Add the isDangerous method below
+
+    /**
+     * Determines if the given WorldPoint is dangerous.
+     *
+     * @param point The WorldPoint to check.
+     * @return true if the tile is dangerous, false otherwise.
+     */
+    public static boolean isDangerous(WorldPoint point) {
+        // Retrieve all graphics objects currently present in the game
+        List<GraphicsObject> graphicsObjects = Microbot.getClient().getGraphicsObjects();
+
+        for (GraphicsObject obj : graphicsObjects) {
+            if (obj.getWorldLocation().equals(point)) {
+                // Define the list of dangerous object IDs
+                List<Integer> dangerousObjectIds = List.of(
+                    ObjectID.ROCK_1,         // Replace with actual dangerous rock IDs
+                    ObjectID.ROCK_2,
+                    ObjectID.TRAPDOOR,
+                    ObjectID.SPIKE_TRAP      // Example dangerous objects
+                    // Add other relevant object IDs here
+                );
+
+                if (dangerousObjectIds.contains(obj.getId())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

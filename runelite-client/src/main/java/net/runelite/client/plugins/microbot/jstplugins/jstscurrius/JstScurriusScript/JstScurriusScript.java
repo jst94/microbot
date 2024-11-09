@@ -7,7 +7,7 @@ import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
-import net.runelite.client.plugins.microbot.scurrius.ScurriusConfig;
+import net.runelite.client.plugins.microbot.jstplugins.jstscurrius.JstScurriusConfig; // Add correct import
 import net.runelite.client.plugins.microbot.util.bank.Rs2Bank;
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.grounditem.LootingParameters;
@@ -18,7 +18,7 @@ import net.runelite.client.plugins.microbot.util.npc.Rs2Npc;
 import net.runelite.client.plugins.microbot.util.player.Rs2Player;
 import net.runelite.client.plugins.microbot.util.prayer.Rs2Prayer;
 import net.runelite.client.plugins.microbot.util.prayer.Rs2PrayerEnum;
-import net.runelite.client.plugins.microbot.util.tile.Rs2Tile;
+import net.runelite.client.plugins.microbot.util.tile.Rs2Tile; // Ensure this import exists
 import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 public class JstScurriusScript extends Script {
 
     @Inject
-    private JstScurriusConfig config;
+    private JstScurriusConfig config; // Ensure all references use JstScurriusConfig
 
     public static final double VERSION = 1.0;
 
@@ -66,6 +66,10 @@ public class JstScurriusScript extends Script {
 
     private static ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
     private static ScheduledFuture<?> mainScheduledFuture;
+
+    // Add fields for lazy prayer flick
+    private static final int PRAYER_FLICK_INTERVAL_MS = 5000; // 5 seconds
+    private long lastPrayerFlickTime = 0;
 
     public boolean run(JstScurriusConfig config2) {
         this.config = config2;
@@ -213,8 +217,13 @@ public class JstScurriusScript extends Script {
     }
 
     private void handleFighting() {
+        // Enable Protect Melee prayer when entering fighting state
+        if (currentDefensivePrayer != Rs2PrayerEnum.PROTECT_MELEE) {
+            switchDefensivePrayer(Rs2PrayerEnum.PROTECT_MELEE);
+        }
+
         handlePrayerLogic();
-        dodgeDangerousAreas();
+        improveRockDodging();
 
         if (shouldEat()) {
             Rs2Player.eatAt(getRandomEatThreshold());
@@ -229,6 +238,9 @@ public class JstScurriusScript extends Script {
         if (!Microbot.getClient().getLocalPlayer().isInteracting()) {
             Rs2Npc.attack(scurrius);
         }
+
+        // Add lazy prayer flick
+        lazyPrayerFlick();
     }
 
     /**
@@ -246,6 +258,76 @@ public class JstScurriusScript extends Script {
                 Microbot.log("Sleep interrupted: " + e.getMessage());
             }
         }
+
+    // Improved rock dodging with better detection and movement
+    private void improveRockDodging() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastTileCleanupTime > TILE_CLEANUP_INTERVAL) {
+            Rs2Tile.clearDangerousTiles();
+            lastTileCleanupTime = currentTime;
+        }
+
+        List<WorldPoint> dangerousWorldPoints = Rs2Tile.getDangerousGraphicsObjectTiles()
+                .stream()
+                .map(Pair::getKey)
+                .collect(Collectors.toList());
+
+        if (dangerousWorldPoints.isEmpty()) return;
+
+        WorldPoint playerLocation = Rs2Player.getWorldLocation();
+        if (dangerousWorldPoints.contains(playerLocation)) {
+            WorldPoint safeTile = findSafeTile(playerLocation, dangerousWorldPoints);
+            if (safeTile != null) {
+                Rs2Walker.walkFastCanvas(safeTile);
+                sleep(300, 600);  // Small delay to ensure movement
+            }
+        }
+
+        // Additional logic to anticipate incoming rocks
+        for (WorldPoint rock : dangerousWorldPoints) {
+            if (playerLocation.distanceTo(rock) <= 2) {
+                WorldPoint dodgeTile = findDodgeTile(playerLocation, rock);
+                if (dodgeTile != null) {
+                    Rs2Walker.walkFastCanvas(dodgeTile);
+                    sleep(300, 600);
+                    break;
+                }
+            }
+        }
+    }
+
+    // Helper method to find a dodge tile
+    private WorldPoint findDodgeTile(WorldPoint playerLocation, WorldPoint rockLocation) {
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (x == 0 && y == 0) continue;
+                WorldPoint potentialTile = new WorldPoint(
+                        playerLocation.getX() + x,
+                        playerLocation.getY() + y,
+                        playerLocation.getPlane()
+                );
+                if (!Rs2Tile.isDangerous(potentialTile)) {
+                    return potentialTile;
+                }
+            }
+        }
+        return null;
+    }
+
+    // Implement lazy prayer flick to toggle prayers intelligently
+    private void lazyPrayerFlick() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastPrayerFlickTime > PRAYER_FLICK_INTERVAL_MS) {
+            if (currentDefensivePrayer != null) {
+                Rs2Prayer.toggle(currentDefensivePrayer, false);
+                lastPrayerFlickTime = currentTime;
+                // Re-enable the prayer after a short delay
+                scheduledExecutorService.schedule(() -> {
+                    Rs2Prayer.toggle(currentDefensivePrayer, true);
+                }, 500, TimeUnit.MILLISECONDS);
+            }
+        }
+    }
 
     private void dodgeDangerousAreas() {
         // Clear the dangerous tiles periodically

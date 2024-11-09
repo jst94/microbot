@@ -22,9 +22,10 @@ import java.awt.*;
 @Slf4j
 public class JstScurriusPlugin extends Plugin {
     @Inject
-    private JstScurriusConfig config;
+    private JstScurriusConfig config; // Ensure correct config class is used
+
     @Provides
-    JstScurriusConfig provideConfig(ConfigManager configManager) {
+    JstScurriusConfig provideConfig(ConfigManager configManager) { // Update return type
         return configManager.getConfig(JstScurriusConfig.class);
     }
 
@@ -36,14 +37,13 @@ public class JstScurriusPlugin extends Plugin {
     @Inject
     JstScurriusScript scurriusScript;
 
-
     @Override
     protected void startUp() throws AWTException {
         if (overlayManager != null) {
             overlayManager.add(exampleOverlay);
         }
         JstScurriusScript.state = State.BANKING;
-        scurriusScript.run((JstScurriusConfig) config);
+        scurriusScript.run(config); // No need to cast as config is already JstScurriusConfig
     }
 
     @Override
