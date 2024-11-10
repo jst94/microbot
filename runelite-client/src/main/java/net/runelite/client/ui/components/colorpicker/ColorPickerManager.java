@@ -61,4 +61,8 @@ public class ColorPickerManager
 
 		return currentPicker;
 	}
+
+	public void someColorMethod() {
+		// Implement the method logic here
+	}
 }

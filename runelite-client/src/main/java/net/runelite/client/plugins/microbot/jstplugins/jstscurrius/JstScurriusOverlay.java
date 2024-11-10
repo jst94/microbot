@@ -10,10 +10,10 @@ import javax.inject.Inject;
 import java.awt.*;
 
 public class JstScurriusOverlay extends OverlayPanel {
-    private final JstScurriusScript script;
+    private final JstScurriusScriptMain script;
 
     @Inject
-    JstScurriusOverlay(JstScurriusPlugin plugin, JstScurriusScript script) {
+    JstScurriusOverlay(JstScurriusPlugin plugin, JstScurriusScriptMain script) {
         super(plugin);
         this.script = script;
         setPosition(OverlayPosition.TOP_LEFT);
@@ -25,7 +25,7 @@ public class JstScurriusOverlay extends OverlayPanel {
         try {
             panelComponent.setPreferredSize(new Dimension(200, 300));
             panelComponent.getChildren().add(TitleComponent.builder()
-                    .text("JstScurrius V" + JstScurriusScript.VERSION)
+                    .text("JstScurrius V" + JstScurriusScriptMain.VERSION)
                     .color(Color.GREEN)
                     .build());
 

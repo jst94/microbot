@@ -1,12 +1,11 @@
 package net.runelite.client.plugins.microbot.jstplugins.jstscurrius;
 
-import com.google.inject.Inject;
+import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.api.ObjectID;
 import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.Microbot;
-import net.runelite.client.plugins.microbot.Script;
 import net.runelite.client.plugins.microbot.util.antiban.Rs2AntibanSettings;
 import net.runelite.client.plugins.microbot.util.bank.Rs2Bank;
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
@@ -17,6 +16,8 @@ import net.runelite.client.plugins.microbot.util.prayer.Rs2Prayer;
 import net.runelite.client.plugins.microbot.util.prayer.Rs2PrayerEnum;
 import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
 
+import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -25,13 +26,22 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-public class JstScurriusScript extends Script {
+// Rename class to avoid clash
+public class JstScurriusScriptMain {
     public enum State {
         BANKING,
         TELEPORT_AWAY,
         WALK_TO_BOSS,
         FIGHTING,
-        WAITING_FOR_BOSS
+        WAITING_FOR_BOSS;
+        private void sleep(int minMillis, int maxMillis) {
+            try {
+                int sleepTime = ThreadLocalRandom.current().nextInt(minMillis, maxMillis + 1);
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     @Inject
@@ -93,7 +103,7 @@ public class JstScurriusScript extends Script {
 
     private void executeScript() {
         try {
-            if (!Microbot.isLoggedIn() || !super.run()) {
+            if (!Microbot.isLoggedIn()) {
                 return;
             }
 
@@ -246,7 +256,7 @@ public class JstScurriusScript extends Script {
         if (currentTime - lastPrayerFlickTime > PRAYER_FLICK_INTERVAL_MS) {
             if (currentDefensivePrayer != null) {
                 Rs2Prayer.toggle(currentDefensivePrayer, false);
-                sleep(50, 100);
+                state.sleep(50, 100);
                 Rs2Prayer.toggle(currentDefensivePrayer, true);
             }
             lastPrayerFlickTime = currentTime;
@@ -367,9 +377,7 @@ public class JstScurriusScript extends Script {
         );
     }
 
-    @Override
     public void shutdown() {
-        super.shutdown();
         if (mainScheduledFuture != null) {
             mainScheduledFuture.cancel(true);
         }

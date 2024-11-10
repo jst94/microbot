@@ -1,6 +1,7 @@
 package net.runelite.client.plugins.microbot.thieving.stalls;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
 import net.runelite.client.plugins.microbot.thieving.stalls.constants.InventoryStrategyFetcher;
@@ -12,7 +13,8 @@ import javax.inject.Inject;
 import java.util.concurrent.TimeUnit;
 
 
-@AllArgsConstructor(onConstructor_ = @Inject)
+@AllArgsConstructor
+@Getter
 public class StallThievingScript extends Script {
     public static double version = 1.0;
 

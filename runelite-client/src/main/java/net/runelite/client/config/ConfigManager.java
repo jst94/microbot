@@ -70,8 +70,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-@Singleton
 @Slf4j
+@Singleton
 public class ConfigManager
 {
 	public static final String RSPROFILE_GROUP = "rsprofile";

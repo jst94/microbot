@@ -34,14 +34,14 @@ public class JstScurriusPlugin extends Plugin {
     private JstScurriusOverlay overlay;
 
     @Inject
-    private JstScurriusScript script;
+    private JstScurriusScriptMain script;
 
     @Override
     protected void startUp() throws AWTException {
         if (overlayManager != null) {
             overlayManager.add(overlay);
         }
-        script.state = JstScurriusScript.State.BANKING;
+        script.state = JstScurriusScriptMain.State.BANKING;
         script.run(config);
     }
 

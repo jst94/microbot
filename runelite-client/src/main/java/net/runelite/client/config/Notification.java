@@ -31,6 +31,7 @@ import java.awt.TrayIcon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.With;
 import net.runelite.client.Notifier;
 
@@ -38,27 +39,28 @@ import net.runelite.client.Notifier;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Getter
+@Setter
 @With
 public class Notification
 {
 	public static final Notification OFF = new Notification();
 	public static final Notification ON = new Notification().withEnabled(true);
 
-	boolean enabled;
-	// Whether this has been initialized with the RuneLite config notification settings.
-	// It is used to determine if the settings should be applied to it when first enabled.
-	boolean initialized;
-	boolean override;
-	boolean tray;
-	transient TrayIcon.MessageType trayIconType = TrayIcon.MessageType.NONE;
-	RequestFocusType requestFocus;
-	Notifier.NativeCustomOff sound;
-	int volume;
-	int timeout;
-	boolean gameMessage;
-	FlashNotification flash;
-	Color flashColor;
-	boolean sendWhenFocused;
+	private boolean enabled;
+	private boolean sendWhenFocused;
+	private boolean requestFocus;
+	private boolean tray;
+	private TrayIconType trayIconType;
+	private String sound;
+	private int volume;
+	private boolean flash;
+	private Color flashColor;
+
+	public Notification() {
+		// Default constructor
+	}
+
+	// Add any additional constructors or methods as needed
 }
 
 class NotificationSerializer implements Serializer<Notification>

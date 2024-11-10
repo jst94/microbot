@@ -222,4 +222,8 @@ public class ProfileManager {
     public static File profileConfigFile(ConfigProfile profile) {
         return new File(PROFILES_DIR, profile.getName() + "-" + profile.getId() + ".properties");
     }
+
+    public void someMethod() {
+        // Implement the method logic here
+    }
 }

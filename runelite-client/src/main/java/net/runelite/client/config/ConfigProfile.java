@@ -31,38 +31,26 @@ import java.util.List;
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @ToString
+@Getter
+@Setter
 public class ConfigProfile
 {
-	@Getter
-	private final long id;
-	@Getter
-	@Setter(AccessLevel.PACKAGE)
+	private long id;
 	private String name;
-	@Getter
-	@Setter(AccessLevel.PACKAGE)
-	private String password;
-	@Getter
-	@Setter(AccessLevel.PACKAGE)
-	private String bankPin;
-	@Getter
-	@Setter(AccessLevel.PACKAGE)
-	private boolean isMember;
-	@Getter
-	@Setter(AccessLevel.PACKAGE)
-	private String discordWebhookUrl;
-	@Getter
-	@Setter
 	private boolean sync;
-	@Getter
-	@Setter
+	private String password;
+	private String bankPin;
+	private boolean isMember;
+	private String discordWebhookUrl;
 	private boolean active;
-	@Getter(AccessLevel.PACKAGE)
-	@Setter(AccessLevel.PACKAGE)
 	private long rev;
-	@Getter
-	@Setter
 	@Nullable
 	private List<String> defaultForRsProfiles;
+
+	// Default constructor
+	public ConfigProfile() {}
+
+	// Additional constructors if needed
 
 	public boolean isInternal()
 	{

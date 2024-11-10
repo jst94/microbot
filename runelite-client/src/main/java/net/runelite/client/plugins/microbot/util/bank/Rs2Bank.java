@@ -2,10 +2,9 @@ package net.runelite.client.plugins.microbot.util.bank;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.annotations.Component;
-import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.plugins.loottracker.LootTrackerItem;
 import net.runelite.client.plugins.loottracker.LootTrackerRecord;
@@ -36,6 +35,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static net.runelite.api.Varbits.*;
+import static net.runelite.api.widgets.ComponentID.BANK_INVENTORY_ITEM_CONTAINER;
+import static net.runelite.api.widgets.ComponentID.BANK_ITEM_CONTAINER;
 import static net.runelite.client.plugins.microbot.Microbot.updateItemContainer;
 import static net.runelite.client.plugins.microbot.util.Global.*;
 import static net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject.hoverOverObject;
@@ -48,7 +49,6 @@ public class Rs2Bank {
     public static final int BANK_ITEM_HEIGHT = 32;
     public static final int BANK_ITEM_Y_PADDING = 4;
     public static final int BANK_ITEMS_PER_ROW = 8;
-    public static final int BANK_INVENTORY_ITEM_CONTAINER = 93;
     private static final int X_AMOUNT_VARBIT = 3960;
     private static final int SELECTED_OPTION_VARBIT = 6590;
     private static final int HANDLE_X_SET = 5;
@@ -80,7 +80,7 @@ public class Rs2Bank {
             identifier = identifier + 1;
             itemBoundingBox = Rs2Inventory.itemBounds(rs2Item);
         }
-        if (container == BANK_ITEM_Y_PADDING) {
+        if (container == BANK_ITEM_CONTAINER) {
             int itemTab = getItemTabForBankItem(rs2Item.slot);
             if (!isTabOpen(itemTab))
                 openTab(itemTab);
@@ -139,14 +139,10 @@ public class Rs2Bank {
      * @return true if the bank interface was open and successfully closed, false otherwise.
      */
     public static boolean closeBank() {
-        log.info("Attempting to close the bank.");
-        if (!isOpen()) {
-            log.warn("Bank is already closed.");
-            return false;
-        }
+        if (!isOpen()) return false;
         Rs2Widget.clickChildWidget(786434, 11);
         sleepUntilOnClientThread(() -> !isOpen());
-        log.info("Bank successfully closed.");
+
         return true;
     }
 
@@ -251,9 +247,7 @@ public class Rs2Bank {
      */
     public static int count(String name, boolean exact) {
         Rs2Item bankItem = findBankItem(name, exact);
-        if (bankItem == null) {
-            return 0;
-        }
+        if (bankItem == null) return 0;
         return bankItem.quantity;
     }
 
@@ -504,7 +498,6 @@ public class Rs2Bank {
      * deposit all items
      */
     public static void depositAll() {
-        log.info("Depositing all items into the bank.");
         Microbot.status = "Deposit all";
         if (Rs2Inventory.isEmpty()) return;
         if (!Rs2Bank.isOpen()) return;
@@ -514,7 +507,6 @@ public class Rs2Bank {
 
         Microbot.getMouse().click(widget.getBounds());
         sleepUntil(Rs2Inventory::isEmpty);
-        log.info("All items deposited successfully.");
     }
 
     /**
@@ -563,11 +555,10 @@ public class Rs2Bank {
      * @return true if any items were deposited, false otherwise.
      */
     public static boolean depositAllExcept(boolean exact, String... names) {
-        if (!exact) {
-            return depositAllExcept(Arrays.stream(names).anyMatch(name -> Arrays.stream(names).noneMatch(name2 -> name2.equalsIgnoreCase(name))));
-        } else {
-            return depositAllExcept(Arrays.stream(names).anyMatch(name -> Arrays.stream(names).noneMatch(name2 -> name2.equals(name))));
-        }
+        if (!exact)
+            return depositAll(x -> Arrays.stream(names).noneMatch(name -> x.name.contains(name.toLowerCase())));
+        else
+            return depositAll(x -> Arrays.stream(names).noneMatch(name -> name.equalsIgnoreCase(x.name)));
     }
 
     /**
@@ -579,7 +570,7 @@ public class Rs2Bank {
         if (!isOpen()) return;
         if (rs2Item == null) return;
         if (Rs2Inventory.isFull()) return;
-        container = BANK_ITEM_Y_PADDING;
+        container = BANK_ITEM_CONTAINER;
 
         if (Microbot.getVarbitValue(SELECTED_OPTION_VARBIT) == 0) {
             invokeMenu(1, rs2Item);
@@ -650,26 +641,9 @@ public class Rs2Bank {
         if (!isOpen()) return false;
         if (rs2Item == null) return false;
         if (Rs2Inventory.isFull() && !Rs2Inventory.hasItem(rs2Item.id) && !rs2Item.isStackable()) return false;
-        container = BANK_ITEM_Y_PADDING;
+        container = BANK_ITEM_CONTAINER;
 
         return handleAmount(rs2Item, amount);
-    }
-
-    /**
-     * Withdraws a specific amount of an item by its ID.
-     *
-     * @param amount The amount to withdraw.
-     * @param itemId The ID of the item to withdraw.
-     */
-    public static void withdrawXItem(int amount, int itemId) {
-        log.debug("Withdrawing {} of item ID {}", amount, itemId);
-        Rs2Item rs2Item = Rs2Inventory.get(itemId);
-        if (rs2Item == null) {
-            log.warn("Item with ID {} not found in inventory.", itemId);
-            return;
-        }
-        withdrawX(rs2Item, amount);
-        log.debug("Withdrawal of {} for item ID {} completed.", amount, itemId);
     }
 
     /**
@@ -751,7 +725,7 @@ public class Rs2Bank {
         if (!isOpen()) return false;
         if (rs2Item == null) return false;
         if (Rs2Inventory.isFull()) return false;
-        container = BANK_ITEM_Y_PADDING;
+        container = BANK_ITEM_CONTAINER;
 
         invokeMenu(HANDLE_ALL, rs2Item);
         return true;
@@ -923,15 +897,11 @@ public class Rs2Bank {
      * @return True if bank was successfully opened, otherwise false.
      */
     public static boolean openBank() {
-        log.info("Attempting to open the bank.");
         Microbot.status = "Opening bank";
         try {
             if (Microbot.getClient().isWidgetSelected())
                 Microbot.getMouse().click();
-            if (isOpen()) {
-                log.info("Bank successfully opened.");
-                return true;
-            }
+            if (isOpen()) return true;
             boolean action;
             WallObject grandExchangeBooth = Rs2GameObject.getWallObjects()
                     .stream()
@@ -960,11 +930,6 @@ public class Rs2Bank {
             if (action) {
                 sleepUntil(() -> isOpen() || Rs2Widget.hasWidget("Please enter your PIN"), 2500);
                 sleep(600, 1000);
-            }
-            if (action) {
-                log.info("Bank successfully opened.");
-            } else {
-                log.error("Failed to open the bank.");
             }
             return action;
         } catch (Exception ex) {
@@ -1057,9 +1022,8 @@ public class Rs2Bank {
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
     private static Rs2Item findBankItem(int id) {
-        if (bankItems == null || bankItems.isEmpty()) {
-            return null;
-        }
+        if (bankItems == null) return null;
+        if (bankItems.stream().findAny().isEmpty()) return null;
 
         Rs2Item bankItem = bankItems.stream().filter(x -> x.id == id).findFirst().orElse(null);
 
@@ -1246,7 +1210,7 @@ public class Rs2Bank {
             Microbot.log("Unable to enter bankpin with value " + pin);
             return false;
         }
-        Widget bankPinWidget = Rs2Widget.getWidget(Component.BANK_PIN_CONTAINER);
+        Widget bankPinWidget = Rs2Widget.getWidget(ComponentID.BANK_PIN_CONTAINER);
 
         boolean isBankPinVisible = Microbot.getClientThread().runOnClientThread(() -> bankPinWidget != null && !bankPinWidget.isHidden());
 
@@ -1475,7 +1439,7 @@ public class Rs2Bank {
      */
     public static List<Widget> getItems() {
         return Microbot.getClientThread().runOnClientThread(() -> {
-            Widget bankContainerWidget = Microbot.getClient().getWidget(BANK_ITEM_Y_PADDING);
+            Widget bankContainerWidget = Microbot.getClient().getWidget(BANK_ITEM_CONTAINER);
             if (bankContainerWidget != null) {
                 // Get children and filter out the tabs that don't have the Action Collapse tab
                 return Arrays.asList(bankContainerWidget.getDynamicChildren());
@@ -1719,7 +1683,7 @@ public class Rs2Bank {
         scrollY = row * (BANK_ITEM_HEIGHT + BANK_ITEM_Y_PADDING);
 
         // Get the widget that displays the bank items
-        Widget w = Microbot.getClient().getWidget(BANK_ITEM_Y_PADDING);
+        Widget w = Microbot.getClient().getWidget(BANK_ITEM_CONTAINER);
 
         // Check the height of the bank window to adjust scrolling if necessary
         assert w != null;
@@ -1754,11 +1718,11 @@ public class Rs2Bank {
      */
     public static void scrollBankToSlot(int slotId) {
         int scrollY = calculateScrollYFromSlotId(slotId);
-        Widget w = Microbot.getClient().getWidget(BANK_ITEM_Y_PADDING);
+        Widget w = Microbot.getClient().getWidget(BANK_ITEM_CONTAINER);
         if (w != null) {
             Microbot.getClientThread().invokeLater(() -> {
                 Microbot.getClient().setVarcIntValue(VarClientInt.BANK_SCROLL, scrollY);
-                Microbot.getClient().runScript(ScriptID.UPDATE_SCROLLBAR, ComponentID.BANK_SCROLLBAR, BANK_ITEM_Y_PADDING, scrollY);
+                Microbot.getClient().runScript(ScriptID.UPDATE_SCROLLBAR, ComponentID.BANK_SCROLLBAR, BANK_ITEM_CONTAINER, scrollY);
             });
             w.setScrollY(scrollY);
         }
@@ -1804,91 +1768,5 @@ public class Rs2Bank {
         }
 
         return false;
-    }
-
-    @Slf4j
-    public class Rs2Bank {
-        // ...existing code...
-    
-        /**
-         * Withdraws a specific amount of prayer potions by their item ID.
-         *
-         * @param amount The amount of prayer potions to withdraw.
-         * @param itemId The ID of the prayer potion item.
-         */
-        public static void withdrawPrayerPotions(int amount, int itemId) {
-            log.info("Attempting to withdraw {} prayer potions with item ID {}", amount, itemId);
-            Rs2Item prayerPotion = findBankItem(itemId);
-            if (prayerPotion == null) {
-                log.warn("Prayer potion with ID {} not found in bank.", itemId);
-                return;
-            }
-            withdrawXItem(amount, itemId);
-            log.info("Successfully withdrew {} prayer potions with item ID {}", amount, itemId);
-        }
-    
-        /**
-         * Withdraws a specific amount of an item by its ID.
-         *
-         * @param amount The amount to withdraw.
-         * @param itemId The ID of the item to withdraw.
-         */
-        public static void withdrawXItem(int amount, int itemId) {
-            log.debug("Withdrawing {} of item ID {}", amount, itemId);
-            Rs2Item rs2Item = Rs2Inventory.get(itemId);
-            if (rs2Item == null) {
-                log.warn("Item with ID {} not found in inventory.", itemId);
-                return;
-            }
-            withdrawX(rs2Item, amount);
-            log.debug("Withdrawal of {} for item ID {} completed.", amount, itemId);
-        }
-    
-        /**
-         * Opens the bank interface.
-         *
-         * @return true if the bank was successfully opened, false otherwise.
-         */
-        public static boolean openBank() {
-            log.info("Attempting to open the bank.");
-            boolean opened = false;
-            // Existing logic to open the bank
-            // ...
-            if (opened) {
-                log.info("Bank successfully opened.");
-            } else {
-                log.error("Failed to open the bank.");
-            }
-            return opened;
-        }
-    
-        /**
-         * Closes the bank interface if it is open.
-         *
-         * @return true if the bank was open and is now closed, false otherwise.
-         */
-        public static boolean closeBank() {
-            log.info("Attempting to close the bank.");
-            if (!isOpen()) {
-                log.warn("Bank is already closed.");
-                return false;
-            }
-            Rs2Widget.clickChildWidget(786434, 11);
-            sleepUntilOnClientThread(() -> !isOpen());
-            log.info("Bank successfully closed.");
-            return true;
-        }
-    
-        /**
-         * Deposits all items into the bank.
-         */
-        public static void depositAll() {
-            log.info("Depositing all items into the bank.");
-            // Existing deposit all logic
-            // ...
-            log.info("All items deposited successfully.");
-        }
-    
-        // ...existing code...
     }
 }
