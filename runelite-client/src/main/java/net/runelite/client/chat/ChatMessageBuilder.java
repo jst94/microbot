@@ -51,11 +51,8 @@ public class ChatMessageBuilder
 		return this;
 	}
 
-	public ChatMessageBuilder img(int imageId)
-	{
-		builder.append("<img=").append(imageId).append('>');
-		return this;
-	}
+
+	
 
 	public String build()
 	{
