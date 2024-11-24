@@ -34,7 +34,7 @@ public class Rs2GameObject {
         return interact(worldPoint, "");
     }
 
-    public static boolean interact(WorldPoint worldPoint, String action) {
+    public static boolean interact(Rs2GameObject worldPoint, String action) {
         TileObject gameObject = findObjectByLocation(worldPoint);
         return clickObject(gameObject, action);
     }

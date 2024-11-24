@@ -59,6 +59,8 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetModalMode;
 import net.runelite.api.worldmap.MapElementConfig;
 import net.runelite.api.worldmap.WorldMap;
+import net.runelite.client.plugins.microbot.util.widget.Rs2Widget;
+
 import org.intellij.lang.annotations.MagicConstant;
 
 /**
@@ -534,7 +536,7 @@ public interface Client extends OAuthApi, GameEngine
 	 * @param componentId the component id
 	 */
 	@Nullable
-	Widget getWidget(@Component int componentId);
+	Rs2Widget getWidget(@Component int componentId);
 
 	/**
 	 * Gets an array containing the x-axis canvas positions

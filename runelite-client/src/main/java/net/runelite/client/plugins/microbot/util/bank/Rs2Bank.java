@@ -1866,4 +1866,8 @@ public class Rs2Bank {
 
         return false;
     }
+
+    public static Optional<Rs2Item> findBankItemById(int id) {
+        return Optional.ofNullable(findBankItem(id));
+    }
 }

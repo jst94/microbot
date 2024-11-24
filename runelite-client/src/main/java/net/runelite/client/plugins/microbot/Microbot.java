@@ -13,6 +13,7 @@ import net.runelite.client.RuneLiteDebug;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.config.ProfileManager;
 import net.runelite.client.game.ItemManager;
@@ -57,7 +58,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static net.runelite.client.plugins.microbot.util.Global.*;
+import static net.runelite.client.plugins.microbot.util.Global
 
 public class Microbot {
     //Version path used to load the client faster when developing by checking version number
@@ -272,9 +273,7 @@ public class Microbot {
     public static void startPlugin(Plugin plugin) {
         if (plugin == null) return;
         Microbot.getPluginManager().setPluginEnabled(plugin, true);
-        Microbot.getPluginManager().startPlugins();
-
-
+        Microbot.getPluginManager().startPlugins
     }
 
     public static void doInvoke(NewMenuEntry entry, Rectangle rectangle) {
@@ -351,6 +350,15 @@ public class Microbot {
         );
     }
 
+    public static void sendClientMessage(String message) {
+        if (client == null || chatMessageManager == null) return;
+
+        chatMessageManager.queue(QueuedMessage.builder()
+            .type(ChatMessageType.CONSOLE)
+            .runeLiteFormattedMessage(message)
+            .build());
+    }
+
     private static boolean isPluginEnabled(String name) {
         Plugin dashboard = Microbot.getPluginManager().getPlugins().stream()
                 .filter(x -> x.getClass().getName().equals(name))
@@ -420,4 +428,3 @@ public class Microbot {
         return RuneLite.getInjector();
      }
 }
-

@@ -1,0 +1,25 @@
+package net.runelite.client.plugins.microbot.JstScurrius.Enums;
+
+public enum ScurriusStates {
+    STARTING,
+    LOOTING_ITEMS,
+    CLIMBING_DOWN_LADDER,
+    BANKING,
+    DODGING_ROCKFALL,
+    FIGHTING_SCURRIUS,
+    ATTACKING_RATS,
+    PLUGIN_DISABLED,
+    TELEPORTING_OUT,
+    WALKING_TO_BANK,
+    WALKING_TO_SCURRIUS,
+    HEALING_AT_BANK,
+    RESTORING_PRAYER,
+    HANDLE_COMBAT,
+    ENTERING_LAIR,
+    OPENING_BANK,
+    CLOSING_BANK,
+    DEPOSITING_ITEMS,
+    WITHDRAWING_SUPPLIES,
+    IDLE;
+
+}
