@@ -162,7 +162,7 @@ public class JstTitheScript extends Script {
 
         WorldPoint nextLocation = getNextPlantingLocation();
         if (nextLocation != null) {
-            TileObject patch = Rs2GameObject.findObjectByLocation(nextLocation);
+            TileObject patch = Rs2GameObject.findGameObjectByLocation(nextLocation);
             if (patch != null) {
                 Rs2GameObject.interact(patch, "Plant", false);
                 plantedLocations[plantedCount] = nextLocation;
@@ -183,7 +183,7 @@ public class JstTitheScript extends Script {
         for (int i = 0; i < plantedCount; i++) {
             if (needsWatering(i)) {
                 WorldPoint location = plantedLocations[i];
-                TileObject plant = Rs2GameObject.findObjectByLocation(location);
+                TileObject plant = Rs2GameObject.findGameObjectByLocation(location);
                 if (plant != null) {
                     Rs2GameObject.interact(plant, "Water", false);
                     plantTimers[i] = System.currentTimeMillis();
@@ -199,7 +199,7 @@ public class JstTitheScript extends Script {
         for (int i = 0; i < plantedCount; i++) {
             WorldPoint location = plantedLocations[i];
             if (location != null) {
-                TileObject plant = Rs2GameObject.findObjectByLocation(location);
+                TileObject plant = Rs2GameObject.findGameObjectByLocation(location);
                 if (plant != null && plant.getId() == STAGE_GROWN) {
                     Rs2GameObject.interact(plant, "Harvest", false);
                     plantedLocations[i] = null;
@@ -257,7 +257,7 @@ public class JstTitheScript extends Script {
     private boolean allPlantsHarvested() {
         for (WorldPoint location : plantedLocations) {
             if (location != null) {
-                TileObject plant = Rs2GameObject.findObjectByLocation(location);
+                TileObject plant = Rs2GameObject.findGameObjectByLocation(location);
                 if (plant != null && plant.getId() == STAGE_GROWN) {
                     return false;
                 }

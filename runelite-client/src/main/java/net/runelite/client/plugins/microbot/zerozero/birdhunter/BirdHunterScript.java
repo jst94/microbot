@@ -183,7 +183,7 @@ public class BirdHunterScript extends Script {
     }
 
     private boolean isGameObjectAt(WorldPoint point) {
-        return Rs2GameObject.findObjectByLocation(point) != null;
+        return Rs2GameObject.findObjectByLocation(point, "") != null;
     }
 
 
@@ -214,8 +214,6 @@ public class BirdHunterScript extends Script {
             Microbot.log("No safe walkable tile found inside the hunting area.");
         }
     }
-
-
 
     private boolean interactWithTrap(GameObject birdSnare) {
         Microbot.log("Attempting to interact with bird snare at: " + birdSnare.getWorldLocation());

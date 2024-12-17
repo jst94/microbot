@@ -467,8 +467,8 @@ public class MageTrainingArenaScript extends Script {
         if (btp == null)
             btp = Rs2Magic.canCast(MagicAction.BONES_TO_PEACHES);
 
-        var bonepile = Rs2GameObject.findObjectByLocation(new WorldPoint(3352, 9637, 1));
-        var foodChute = Rs2GameObject.findObjectByLocation(new WorldPoint(3354, 9639, 1));
+        var bonepile = Rs2GameObject.findObjectByLocation(new WorldPoint(3352, 9637, 1), "");
+        var foodChute = Rs2GameObject.findObjectByLocation(new WorldPoint(3354, 9639, 1), "");
 
         var boneGoal = 28 - Rs2Inventory.items().stream().filter(x -> x.name.equalsIgnoreCase("Animals' bones")).count();
         if (mtaPlugin.getGraveyardRoom().getCounter() != null && mtaPlugin.getGraveyardRoom().getCounter().getCount() >= boneGoal){

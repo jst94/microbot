@@ -177,7 +177,6 @@ public class Rs2Walker {
             List<WorldPoint> path = ShortestPathPlugin.getPathfinder().getPath();
             int pathSize = path.size();
 
-
             if (path.get(pathSize - 1).distanceTo(target) > config.reachedDistance()) {
                 Microbot.log("Location impossible to reach");
                 setTarget(null);
@@ -607,12 +606,12 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
     }
 
     private static boolean handleDoors(List<WorldPoint> path, int index) {
-
         if (ShortestPathPlugin.getPathfinder() == null) return false;
-
         if (index == path.size() - 1) return false;
 
         var doorActions = Arrays.asList("pay-toll", "pick-lock", "walk-through", "go-through", "open");
+        // Add specific handling for Tithe Farm door
+        final int TITHE_FARM_DOOR = 27445;
 
         // Check this and the next tile for door objects
         for (int doorIndex = index; doorIndex < index + 2; doorIndex++) {
@@ -633,6 +632,13 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
 
             var objectComp = Rs2GameObject.getObjectComposition(object.getId());
             if (objectComp == null) continue;
+
+            // Special handling for Tithe Farm door
+            if (object.getId() == TITHE_FARM_DOOR) {
+                Rs2GameObject.interact(object, "Open");
+                Rs2Player.waitForWalking();
+                return true;
+            }
 
             // Match action
             var action = Arrays.stream(objectComp.getActions())
@@ -986,9 +992,9 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
                         }
                     }
 
-                    GameObject gameObject = Rs2GameObject.getGameObjects(transport.getObjectId(), transport.getOrigin()).stream().findFirst().orElse(null);
+                    TileObject gameObject = Rs2GameObject.findObjectByLocation(transport.getOrigin(), "");
                     //check game objects
-                    if (gameObject != null && gameObject.getId() == transport.getObjectId()) {
+                    if (gameObject != null && gameObject instanceof GameObject && gameObject.getId() == transport.getObjectId()) {
                         if (!Rs2Tile.isTileReachable(transport.getOrigin())) {
                             break;
                         }
@@ -1086,7 +1092,7 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
                 break;
             for (Integer itemId : itemIds) {
                 if (Rs2Walker.currentTarget == null) break;
-                if (Rs2Player.getWorldLocation().distanceTo2D(transport.getDestination()) < config.reachedDistance())
+                if (Rs2Player.getWorldLocation().distanceTo(transport.getDestination()) < config.reachedDistance())
                     break;
                 if (succesfullAction) break;
 
@@ -1305,7 +1311,6 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
 
         // Check if the widget is already visible
         if (!Rs2Widget.isHidden(ComponentID.ADVENTURE_LOG_CONTAINER)) {
-            System.out.println("Widget is already visible. Skipping interaction.");
             char key = displayInfo.charAt(0);
             Rs2Keyboard.keyPress(key);
             Microbot.log("Pressing: " + key);
@@ -1313,7 +1318,7 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
         }
 
         // Find the spirit tree object
-        TileObject spiritTree = Rs2GameObject.findObjectById(objectId);
+        TileObject spiritTree = Rs2GameObject.findObjectByLocation(transport.getOrigin(), "");
         if (spiritTree == null) {
             return false;
         }
@@ -1476,7 +1481,7 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
         if (Microbot.getVarbitValue(Varbits.DIARY_LUMBRIDGE_ELITE) == 1) {
             // Direct interaction without staff if elite Lumbridge Diary is complete
             Microbot.log("Interacting with the fairy ring directly.");
-            var fairyRing = Rs2GameObject.findObjectByLocation(origin);
+            var fairyRing = Rs2GameObject.findObjectByLocation(origin, "");
             Rs2GameObject.interact(fairyRing, "Configure");
             Rs2Player.waitForWalking();
         } 
@@ -1500,7 +1505,7 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
 
             // Interact with fairy ring after equipping the staff
             Microbot.log("Interacting with the fairy ring using a staff. " + origin.getX() + " " + origin.getY());
-            var fairyRing = Rs2GameObject.findObjectByLocation(origin);
+            var fairyRing = Rs2GameObject.findObjectByLocation(origin, "");
             if (Rs2GameObject.interact(fairyRing, "Configure")) {
                 Rs2Player.waitForWalking();
             } else {

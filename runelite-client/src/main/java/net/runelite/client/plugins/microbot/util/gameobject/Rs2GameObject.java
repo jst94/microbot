@@ -31,12 +31,13 @@ import static net.runelite.client.plugins.microbot.util.Global.sleepUntil;
  */
 public class Rs2GameObject {
     public static boolean interact(WorldPoint worldPoint) {
-        return interact(worldPoint, "");
+        TileObject object = findObjectByLocation(worldPoint, "");
+        return object != null && interact(object);
     }
 
     public static boolean interact(WorldPoint worldPoint, String action) {
-        TileObject gameObject = findObjectByLocation(worldPoint);
-        return clickObject(gameObject, action);
+        TileObject object = findObjectByLocation(worldPoint, "");
+        return object != null && interact(object, action);
     }
 
     public static boolean interact(GameObject gameObject) {
@@ -144,6 +145,7 @@ public class Rs2GameObject {
             for (int x = 0; x < Constants.SCENE_SIZE; x++) {
                 for (int y = 0; y < Constants.SCENE_SIZE; y++) {
                     Tile tile = tiles[z][x][y];
+
                     if (tile == null) {
                         continue;
                     }
@@ -214,14 +216,12 @@ public class Rs2GameObject {
 
         List<WallObject> wallObjects = getWallObjects();
 
-
         for (WallObject wallObject : wallObjects) {
             if (wallObject.getId() == id)
                 return wallObject;
         }
 
         List<DecorativeObject> decorationObjects = getDecorationObjects();
-
 
         for (DecorativeObject decorativeObject : decorationObjects) {
             if (decorativeObject.getId() == id)
@@ -231,13 +231,13 @@ public class Rs2GameObject {
         return null;
     }
 
-    public static TileObject findObjectByLocation(WorldPoint worldPoint) {
+    public static TileObject findObjectByLocation(WorldPoint worldPoint, String string) {
 
         List<GameObject> gameObjects = getGameObjects();
 
         if (gameObjects == null) return null;
 
-        for (net.runelite.api.GameObject gameObject : gameObjects) {
+        for (GameObject gameObject : gameObjects) {
             if (gameObject.getWorldLocation().equals(worldPoint))
                 return gameObject;
         }
@@ -251,14 +251,12 @@ public class Rs2GameObject {
 
         List<WallObject> wallObjects = getWallObjects();
 
-
         for (WallObject wallObject : wallObjects) {
             if (wallObject.getWorldLocation().equals(worldPoint))
                 return wallObject;
         }
 
         List<DecorativeObject> decorationObjects = getDecorationObjects();
-
 
         for (DecorativeObject decorativeObject : decorationObjects) {
             if (decorativeObject.getWorldLocation().equals(worldPoint))
@@ -269,16 +267,28 @@ public class Rs2GameObject {
     }
 
     public static TileObject findGameObjectByLocation(WorldPoint worldPoint) {
+        Scene scene = Microbot.getClient().getScene();
+        Tile[][][] tiles = scene.getTiles();
 
-        List<GameObject> gameObjects = getGameObjects();
+        if (tiles == null) return null;
 
-        if (gameObjects == null) return null;
-
-        for (net.runelite.api.GameObject gameObject : gameObjects) {
-            if (gameObject.getWorldLocation().equals(worldPoint))
-                return gameObject;
+        LocalPoint localPoint = LocalPoint.fromWorld(Microbot.getClient(), worldPoint);
+        if (localPoint == null) return null;
+        
+        int plane = worldPoint.getPlane();
+        int sceneX = localPoint.getSceneX();
+        int sceneY = localPoint.getSceneY();
+        
+        if (sceneX < 0 || sceneY < 0 || sceneX >= Constants.SCENE_SIZE || sceneY >= Constants.SCENE_SIZE) return null;
+        
+        Tile tile = tiles[plane][sceneX][sceneY];
+        if (tile != null) {
+            for (GameObject object : tile.getGameObjects()) {
+                if (object != null && object.getWorldLocation().equals(worldPoint)) {
+                    return object;
+                }
+            }
         }
-
         return null;
     }
 
@@ -1278,6 +1288,11 @@ public static GameObject findReachableObject(String objectName, boolean exact, i
         }
 
         return true;
+    }
+
+    private static boolean clickObject(WorldPoint worldPoint, String action) {
+        TileObject object = findObjectByLocation(worldPoint, "");
+        return object != null && clickObject(object, action);
     }
 
     public static boolean hasLineOfSight(TileObject tileObject) {
