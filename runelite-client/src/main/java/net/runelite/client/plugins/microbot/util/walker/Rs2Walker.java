@@ -78,9 +78,24 @@ public class Rs2Walker {
         return walkWithState(new WorldPoint(x, y, plane), distance) == WalkerState.ARRIVED;
     }
 
-
     public static boolean walkTo(WorldPoint target) {
-        return walkWithState(target, config.reachedDistance()) == WalkerState.ARRIVED;
+        try {
+            WorldPoint playerLocation = Microbot.getClient().getLocalPlayer().getWorldLocation();
+            
+            // Check if we're already at the destination
+            if (playerLocation.equals(target)) {
+                return true;
+            }
+
+            // Special handling for instanced areas like Tithe Farm
+            if (isInTitheFarm(target)) {
+                return clickInstancedTile(target);
+            }
+
+            return walkWithState(target, config.reachedDistance()) == WalkerState.ARRIVED;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static boolean walkTo(WorldPoint target, int distance) {
@@ -142,6 +157,24 @@ public class Rs2Walker {
             if (!Microbot.isLoggedIn()) {
                 setTarget(null);
             }
+
+            // Special handling for Tithe Farm instance
+            if (Rs2Player.getWorldLocation().getRegionID() == 6967 || target.getRegionID() == 6967) {
+                // Use direct walking for Tithe Farm since it's a small instanced area
+                WorldPoint currentPos = Rs2Player.getWorldLocation();
+                if (currentPos.distanceTo(target) <= 1) {
+                    return WalkerState.ARRIVED;
+                }
+                walkMiniMap(target);
+                sleep(600, 800);
+                return WalkerState.MOVING;
+            }
+
+            if (isInTitheFarm(Rs2Player.getWorldLocation()) || isInTitheFarm(target)) {
+                clickInstancedTile(target);
+                return WalkerState.ARRIVED;
+            }
+
             if (ShortestPathPlugin.getPathfinder() == null) {
                 if (ShortestPathPlugin.getMarker() == null) {
                     setTarget(null);
@@ -1554,6 +1587,49 @@ public static List<WorldPoint> getWalkPath(WorldPoint target) {
                 return 1536;
             default:
                 return -1;
+        }
+    }
+
+    public static boolean walkTo(WorldPoint destination) {
+        try {
+            WorldPoint playerLocation = Microbot.getClient().getLocalPlayer().getWorldLocation();
+            
+            // Check if we're already at the destination
+            if (playerLocation.equals(destination)) {
+                return true;
+            }
+
+            // Special handling for instanced areas like Tithe Farm
+            if (isInTitheFarm(playerLocation)) {
+                // In Tithe Farm, we can walk directly since it's a safe, instanced area
+                clickInstancedTile(destination);
+                return true;
+            }
+
+            // Regular pathfinding logic for non-instanced areas
+            return walkToExact(destination);
+        } catch (Exception e) {
+            log.error("Error in walkTo: ", e);
+            return false;
+        }
+    }
+
+    private static boolean isInTitheFarm(WorldPoint location) {
+        // Tithe Farm boundaries
+        return location.getX() >= 1800 && location.getX() <= 1850 
+            && location.getY() >= 3480 && location.getY() <= 3520
+            && location.getPlane() == 0;
+    }
+
+    private static void clickInstancedTile(WorldPoint destination) {
+        net.runelite.api.Point canvasPoint = Microbot.getClient().getCanvas().getMousePosition();
+        net.runelite.api.coords.LocalPoint localPoint = LocalPoint.fromWorld(Microbot.getClient(), destination);
+        
+        if (localPoint != null) {
+            Point targetPoint = Perspective.localToCanvas(Microbot.getClient(), localPoint, destination.getPlane());
+            if (targetPoint != null) {
+                VirtualMouse.click(targetPoint.getX(), targetPoint.getY());
+            }
         }
     }
 }

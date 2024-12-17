@@ -9,6 +9,11 @@ import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
 import net.runelite.client.plugins.microbot.util.widget.Rs2Widget;
 import net.runelite.client.plugins.microbot.util.math.Rs2Random;
+import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
+import net.runelite.client.plugins.microbot.util.player.Rs2Player;
+import net.runelite.client.plugins.microbot.Microbot;
+
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class JstTitheScript extends Script {
@@ -21,9 +26,10 @@ public class JstTitheScript extends Script {
     private static final int GOLOVANOVA_SEED = 13423;
     private static final int GOLOVANOVA_FRUIT = 13425;
     
-    private static final int BASE_X = 3813;
-    private static final int BASE_Y = 6472;
-    private static final int PATCH_SPACING = 4;
+    private static final int BASE_X = 1830;
+    private static final int BASE_Y = 3503;
+    private static final int PATCH_SPACING = 2;
+    private static final int TITHE_FARM_PLANE = 0;  // Tithe Farm is on ground level
     
     private static final int STAGE_SEED = 27384;
     private static final int STAGE_SEEDLING = 27385;
@@ -53,7 +59,7 @@ public class JstTitheScript extends Script {
     private int plantedCount = 0;
     private final WorldPoint[] plantedLocations;
     private final long[] plantTimers;
-    private static final long WATER_INTERVAL = 30000;
+    private static final long WATER_INTERVAL = TimeUnit.MINUTES.toMillis(5);
     
     public JstTitheScript(JstTitheConfig config) {
         this.config = config;
@@ -134,25 +140,39 @@ public class JstTitheScript extends Script {
     }
 
     private boolean getSeeds() {
-        TileObject seedTable = Rs2GameObject.findObjectById(SEED_TABLE);
-        if (seedTable != null) {
-            Rs2GameObject.interact(seedTable, "Take-seed", false);
-            sleep(Rs2Random.between(600, 800));
-            Rs2Widget.clickWidget("Take-100", true);
-            sleep(Rs2Random.between(600, 800));
-            return true;
+        WorldPoint seedTableLocation = new WorldPoint(BASE_X - 4, BASE_Y, TITHE_FARM_PLANE);
+        if (!Rs2Walker.walkTo(seedTableLocation)) {
+            log.debug("Failed to walk to seed table");
+            return false;
         }
-        return false;
+
+        TileObject seedTable = Rs2GameObject.findObjectById(SEED_TABLE);
+        if (seedTable == null) {
+            log.debug("Could not find seed table");
+            return false;
+        }
+        Rs2GameObject.interact(seedTable, "Take-seed", false);
+        sleep(Rs2Random.between(1000, 1500));
+        Rs2Widget.clickWidget("Take-100", true);
+        sleep(Rs2Random.between(1000, 1500));
+        return true;
     }
 
     private boolean fillWateringCans() {
-        TileObject waterBarrel = Rs2GameObject.findObjectById(WATER_BARREL);
-        if (waterBarrel != null) {
-            Rs2GameObject.interact(waterBarrel, "Fill", false);
-            sleep(Rs2Random.between(2000, 2500));
-            return true;
+        WorldPoint barrelLocation = new WorldPoint(BASE_X - 4, BASE_Y + 2, TITHE_FARM_PLANE);
+        if (!Rs2Walker.walkTo(barrelLocation)) {
+            log.debug("Failed to walk to water barrel");
+            return false;
         }
-        return false;
+
+        TileObject waterBarrel = Rs2GameObject.findObjectById(WATER_BARREL);
+        if (waterBarrel == null) {
+            log.debug("Could not find water barrel");
+            return false;
+        }
+        Rs2GameObject.interact(waterBarrel, "Fill", false);
+        sleep(Rs2Random.between(1000, 1500));
+        return true;
     }
 
     private boolean plantSeeds() {
@@ -162,15 +182,25 @@ public class JstTitheScript extends Script {
 
         WorldPoint nextLocation = getNextPlantingLocation();
         if (nextLocation != null) {
+            // First walk to the location
+            WorldPoint playerLocation = Microbot.getClient().getLocalPlayer().getWorldLocation();
+            if (playerLocation.distanceTo(nextLocation) > 1) {
+                Rs2Walker.walkTo(nextLocation);
+                sleep(Rs2Random.between(600, 800));
+                return false;
+            }
+
             TileObject patch = Rs2GameObject.findGameObjectByLocation(nextLocation);
             if (patch != null) {
-                Rs2GameObject.interact(patch, "Plant", false);
-                plantedLocations[plantedCount] = nextLocation;
-                plantTimers[plantedCount] = System.currentTimeMillis();
-                plantedCount++;
-                sleep(Rs2Random.between(600, 800));
-                return true;
+                if (Rs2GameObject.interact(patch, "Plant", false)) {
+                    sleep(Rs2Random.between(2000, 2500));
+                    plantedLocations[plantedCount] = nextLocation;
+                    plantTimers[plantedCount] = System.currentTimeMillis();
+                    plantedCount++;
+                    return true;
+                }
             }
+            sleep(Rs2Random.between(600, 800));
         }
         return false;
     }
@@ -183,13 +213,24 @@ public class JstTitheScript extends Script {
         for (int i = 0; i < plantedCount; i++) {
             if (needsWatering(i)) {
                 WorldPoint location = plantedLocations[i];
+                // First walk to the location
+                WorldPoint playerLocation = Microbot.getClient().getLocalPlayer().getWorldLocation();
+                if (playerLocation.distanceTo(location) > 1) {
+                    Rs2Walker.walkTo(location);
+                    sleep(Rs2Random.between(600, 800));
+                    return false;
+                }
+
                 TileObject plant = Rs2GameObject.findGameObjectByLocation(location);
                 if (plant != null) {
-                    Rs2GameObject.interact(plant, "Water", false);
-                    plantTimers[i] = System.currentTimeMillis();
-                    sleep(Rs2Random.between(600, 800));
-                    return true;
+                    if (Rs2GameObject.interact(plant, "Water", false)) {
+                        sleep(Rs2Random.between(2000, 2500));
+                        plantTimers[i] = System.currentTimeMillis();
+                        return true;
+                    }
                 }
+                sleep(Rs2Random.between(600, 800));
+                return false;
             }
         }
         return false;
@@ -213,13 +254,20 @@ public class JstTitheScript extends Script {
 
     private boolean depositFruits() {
         if (!Rs2Inventory.hasItem(GOLOVANOVA_FRUIT)) {
+            currentState = State.GET_SEEDS;
             return true;
+        }
+
+        WorldPoint sackLocation = new WorldPoint(BASE_X - 4, BASE_Y + 4, TITHE_FARM_PLANE);
+        if (!Rs2Walker.walkTo(sackLocation)) {
+            log.debug("Failed to walk to deposit sack");
+            return false;
         }
 
         TileObject depositSack = Rs2GameObject.findObjectById(DEPOSIT_SACK);
         if (depositSack != null) {
             Rs2GameObject.interact(depositSack, "Deposit", false);
-            sleep(Rs2Random.between(1000, 1200));
+            sleep(Rs2Random.between(1000, 1500));
             return true;
         }
         return false;
@@ -232,9 +280,8 @@ public class JstTitheScript extends Script {
         
         int[] pattern = PLANTING_PATTERN[plantedCount];
         int x = BASE_X + (pattern[0] * PATCH_SPACING);
-        int y = BASE_Y - (pattern[1] * PATCH_SPACING);
-        
-        return new WorldPoint(x, y, 0);
+        int y = BASE_Y + (pattern[1] * PATCH_SPACING);
+        return new WorldPoint(x, y, TITHE_FARM_PLANE);
     }
 
     private boolean needsWatering(int index) {
