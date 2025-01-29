@@ -49,6 +49,7 @@ public class TutorialIslandScript extends Script {
     private final int NameCreation = 558;
     private boolean toggledSettings = false;
     private boolean toggledMusic = false;
+    private TutorialIslandConfig currentConfig;
 
     @Inject
     public TutorialIslandScript(TutorialislandPlugin plugin) {
@@ -58,6 +59,7 @@ public class TutorialIslandScript extends Script {
     public boolean run(TutorialIslandConfig config) {
         Microbot.enableAutoRunOn = false;
         Rs2Antiban.resetAntibanSettings();
+        this.currentConfig = config;
         Rs2AntibanSettings.naturalMouse = true;
         Rs2AntibanSettings.moveMouseRandomly = true;
         Rs2AntibanSettings.simulateMistakes = true;
@@ -97,7 +99,10 @@ public class TutorialIslandScript extends Script {
                             return;
                         }
                         
-                        String name = new NameGenerator(random(7, 10)).getName();
+                        String name = currentConfig.customName();
+                        if (name == null || name.trim().isEmpty()) {
+                            name = new NameGenerator(random(7, 10)).getName();
+                        }
                         Rs2Widget.clickWidget(NameCreation, 7); // enterName Field
                         Rs2Random.waitEx(1200, 300);
                         Rs2Keyboard.typeString(name);
