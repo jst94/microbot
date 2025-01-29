@@ -14,6 +14,7 @@ public interface TutorialIslandConfig extends Config {
     String toggleLevelUp = "toggleLevelUp";
     String toggleShiftDrop = "toggleShiftDrop";
     String toggleDevOverlay = "toggleDevOverlay";
+    String customName = "customName";
 
     @ConfigSection(
             name = "QOL Settings",
@@ -83,5 +84,15 @@ public interface TutorialIslandConfig extends Config {
     )
     default boolean toggleDevOverlay() {
         return false;
+    }
+
+    @ConfigItem(
+            keyName = customName,
+            name = "Custom Character Name",
+            description = "Set a custom name for your character (leave empty for random name)",
+            position = 4
+    )
+    default String customName() {
+        return "";
     }
 }
