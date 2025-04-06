@@ -1,4 +1,5 @@
 package net.runelite.client.plugins.microbot.multibox;
+
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -10,25 +11,27 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.api.Client;
-import net.runelite.api.Point; // Import Point for coordinates
+import net.runelite.api.Point; // Keep Point import
 import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
+import net.runelite.api.MenuEntry; // Keep MenuEntry import
 import net.runelite.api.events.FocusChanged;
 import net.runelite.api.events.GameTick;
-import net.runelite.client.input.KeyListener; // Import KeyListener
-import net.runelite.client.input.MouseListener;
+import net.runelite.client.input.KeyListener; // Keep KeyListener import
+import net.runelite.client.input.MouseListener; // Keep MouseListener import
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.grounditem.Rs2GroundItem;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
-import net.runelite.client.plugins.microbot.util.keyboard.Rs2Keyboard; // Import Keyboard utils
+import net.runelite.client.plugins.microbot.util.keyboard.Rs2Keyboard; // Keep Keyboard utils
 import net.runelite.client.plugins.microbot.util.npc.Rs2Npc;
-import net.runelite.client.plugins.microbot.util.widget.Rs2Widget; // Import Widget utils
+import net.runelite.client.plugins.microbot.util.widget.Rs2Widget; // Keep Widget utils
 import net.runelite.client.util.Text;
-import java.awt.event.KeyEvent; // Import KeyEvent
-import java.awt.event.MouseEvent;
+import java.awt.Rectangle; // Import Rectangle
+import java.awt.event.KeyEvent; // Keep KeyEvent import
+import java.awt.event.MouseEvent; // Keep MouseEvent import
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import net.runelite.client.plugins.microbot.util.menu.NewMenuEntry; // Correct import path
 
 @PluginDescriptor(
     name = "Microbot Multibox",
@@ -77,7 +80,8 @@ public class MultiboxPlugin extends Plugin {
             keyManager.registerKeyListener(masterKeyListener); // Register key listener
         } else {
             log.info("Starting as SLAVE, connecting to {}:{}", config.masterAddress(), config.serverPort());
-            multiboxClient = new MultiboxClient(config.masterAddress(), config.serverPort(), this::handleIncomingMessage);
+            // Pass only host and port, message handler is removed
+            multiboxClient = new MultiboxClient(config.masterAddress(), config.serverPort());
             executorService.submit(multiboxClient);
         }
     }
@@ -105,6 +109,17 @@ public class MultiboxPlugin extends Plugin {
         log.info("Multibox Plugin stopped!");
     }
 
+    @Subscribe
+    public void onGameTick(GameTick event) {
+        // Process one message per tick on slave clients
+        if (config.clientRole() == MultiboxConfig.ClientRole.SLAVE && multiboxClient != null && multiboxClient.isRunning()) {
+            String message = multiboxClient.pollMessage();
+            if (message != null) {
+                handleIncomingMessage(message); // Process the dequeued message
+            }
+        }
+    }
+
     // Method to handle messages received by slave clients
     private void handleIncomingMessage(String message) {
         if (config.clientRole() != MultiboxConfig.ClientRole.SLAVE) return; // Only slaves process messages
@@ -112,71 +127,59 @@ public class MultiboxPlugin extends Plugin {
         log.debug("Received message from master: {}", message);
 
         // Ensure actions interacting with Client or Microbot API run on the client thread
+        // Use Callable<Void> for runOnClientThread
         Microbot.getClientThread().runOnClientThread(() -> {
             try {
-                String[] parts = message.split(",", 6); // Max 6 parts needed for INTERACT (including param1)
+                String[] parts = message.split(",", 7); // Max 7 parts needed now (INTERACT + 6 params)
                 String messageType = parts[0];
 
                 if (messageType.equals("INTERACT")) {
-                    if (parts.length < 6) { // Check for 6 parts now
+                    if (parts.length < 7) { // Check for 7 parts now
                         log.warn("Received malformed INTERACT message: {}", message);
-                        return null;
+                        return null; // Return null for Callable<Void>
                     }
 
-                    String menuActionName = parts[1];
+                    String menuActionName = parts[1]; // Keep for logging/potential future use
                     String targetName = parts[2];
                     int identifier = Integer.parseInt(parts[3]);
                     String option = parts[4];
-                    int param1 = Integer.parseInt(parts[5]); // Parse param1 (packed widget ID)
+                    int param0 = Integer.parseInt(parts[5]); // Parse param0
+                    int param1 = Integer.parseInt(parts[6]); // Parse param1
 
-                log.debug("Processing INTERACT: Action={}, Target={}, ID={}, Option={}, Param1={}", menuActionName, targetName, identifier, option, param1);
+                    log.debug("Processing INTERACT: ActionName={}, Target={}, ID={}, Option={}, Param0={}, Param1={}",
+                            menuActionName, targetName, identifier, option, param0, param1);
 
-                boolean interacted = false;
-
-                // Determine interaction type based on MenuAction name prefix
-                if (menuActionName.startsWith("GAME_OBJECT")) {
-                    interacted = Rs2GameObject.interact(identifier, option);
-                    if (!interacted) { // Fallback to name if ID interaction fails
-                        interacted = Rs2GameObject.interact(targetName, option);
+                    // Directly invoke the menu action using the received parameters
+                    // We need the MenuAction enum type, not just its name.
+                    MenuAction menuActionType;
+                    try {
+                        menuActionType = MenuAction.valueOf(menuActionName);
+                    } catch (IllegalArgumentException e) {
+                        log.error("Invalid MenuAction name received: {}", menuActionName);
+                        return null; // Return null for Callable<Void>
                     }
-                    log.info("Attempted GameObject interaction: ID={}, Name={}, Option={}, Success={}", identifier, targetName, option, interacted);
-                } else if (menuActionName.startsWith("NPC")) {
-                    interacted = Rs2Npc.interact(identifier, option);
-                    if (!interacted) { // Fallback to name
-                       interacted = Rs2Npc.interact(targetName, option);
-                    }
-                     log.info("Attempted NPC interaction: ID={}, Name={}, Option={}, Success={}", identifier, targetName, option, interacted);
-                } else if (menuActionName.startsWith("ITEM_") || menuActionName.startsWith("CC_OP")) { // Inventory items
-                     // CC_OP is often used for item actions in inventory
-                    interacted = Rs2Inventory.interact(identifier, option);
-                     if (!interacted) { // Fallback to name
-                        interacted = Rs2Inventory.interact(targetName, option);
-                     }
-                     log.info("Attempted Inventory Item interaction: ID={}, Name={}, Option={}, Success={}", identifier, targetName, option, interacted);
-                } else if (menuActionName.startsWith("GROUND_ITEM")) {
-                    // Ground items often use location hash in identifier, ID might be less reliable
-                    // Let's prioritize name/option for ground items if possible, or use interact(id, option)
-                    interacted = Rs2GroundItem.interact(targetName, option); // Prioritize name for ground items
-                    if (!interacted) {
-                         interacted = Rs2GroundItem.interact(identifier, option, 15); // Fallback to ID with default range
-                    }
-                    log.info("Attempted Ground Item interaction: ID={}, Name={}, Option={}, Success={}", identifier, targetName, option, interacted);
-                } else if (menuActionName.startsWith("WIDGET") || menuActionName.equals("CC_OP")) {
-                    // Use clickWidgetFast with param1 (packed ID) and identifier (menu index/action ID)
-                    Rs2Widget.clickWidgetFast(param1, identifier);
-                    interacted = true; // Assume success for now, Rs2Widget doesn't return boolean here
-                    log.info("Attempted Widget interaction: PackedID={}, Identifier={}, Option={}", param1, identifier, option);
-                } else {
-                    log.warn("Unhandled MenuAction type prefix: {}", menuActionName);
-                }
 
-                if (!interacted) {
-                    log.warn("Failed to execute interaction: {}", message);
-                }
+                    // Construct a NewMenuEntry object
+                    NewMenuEntry targetEntry = new NewMenuEntry(
+                            option,
+                            targetName,
+                            identifier,
+                            menuActionType, // Pass the MenuAction enum directly
+                            param0,
+                            param1,
+                            true // isForceLeftClick = true (matches typical left-click behavior)
+                    );
+
+                    // Use Microbot.doInvoke with the NewMenuEntry and a dummy Rectangle
+                    Microbot.doInvoke(targetEntry, new Rectangle(0, 0, 0, 0));
+
+                    // Logging success
+                    log.info("Invoked action via doInvoke: {}", message);
+
             } else if (messageType.equals("KEY_PRESS") || messageType.equals("KEY_RELEASE")) {
                  if (parts.length < 3) {
                     log.warn("Received malformed KEY message: {}", message);
-                    return null;
+                    return null; // Return null for Callable<Void>
                  }
                  int keyCode = Integer.parseInt(parts[1]);
                  // char keyChar = parts[2].isEmpty() ? KeyEvent.CHAR_UNDEFINED : parts[2].charAt(0); // KeyChar might not be reliable across systems/locales
@@ -198,7 +201,7 @@ public class MultiboxPlugin extends Plugin {
             } catch (Exception e) {
                 log.error("Error executing interaction for message '{}': {}", message, e.getMessage(), e);
             }
-            return null;
+            return null; // Return null at the end of the Callable<Void> lambda
         });
     }
 
@@ -224,15 +227,17 @@ public class MultiboxPlugin extends Plugin {
                     int identifier = topEntry.getIdentifier(); // Usually the ID
                     String option = topEntry.getOption();
                     MenuAction type = topEntry.getType();
+                    int param0 = topEntry.getParam0(); // Get param0
                     int param1 = topEntry.getParam1(); // Get param1 (often packed widget ID)
 
-                    // Create a structured message including param1
-                    // Example: INTERACT,CC_OP,High Alchemy,1,Cast,12845056
-                    String message = String.format("INTERACT,%s,%s,%d,%s,%d",
+                    // Create a structured message including param0 and param1
+                    // Example: INTERACT,CC_OP,High Alchemy,1,Cast,0,12845056
+                    String message = String.format("INTERACT,%s,%s,%d,%s,%d,%d",
                             type.name(),    // e.g., CC_OP
                             targetName,     // e.g., High Alchemy
                             identifier,     // e.g., 1 (menu index/action ID)
                             option,         // e.g., Cast
+                            param0,         // e.g., 0
                             param1);        // e.g., 12845056 (packed widget ID)
                     broadcastAction(message);
                     // Optional: Consume event if needed, but might interfere with normal client operation
