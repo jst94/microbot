@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.function.Consumer;
-
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+// Consumer no longer needed directly here
 @Slf4j
 public class MultiboxClient implements Runnable {
 
@@ -16,12 +17,12 @@ public class MultiboxClient implements Runnable {
     private Socket socket;
     private BufferedReader reader;
     private volatile boolean running = false;
-    private final Consumer<String> messageHandler; // Callback to handle received messages
+    private final BlockingQueue<String> messageQueue = new LinkedBlockingQueue<>(); // Queue for incoming messages
 
-    public MultiboxClient(String host, int port, Consumer<String> messageHandler) {
+    // Constructor no longer needs messageHandler
+    public MultiboxClient(String host, int port) {
         this.host = host;
         this.port = port;
-        this.messageHandler = messageHandler;
     }
 
     @Override
@@ -38,13 +39,14 @@ public class MultiboxClient implements Runnable {
                     log.info("Master server initiated shutdown.");
                     break; // Exit loop on server shutdown command
                 }
-                // Handle the received message using the provided handler
-                if (messageHandler != null) {
-                    try {
-                        messageHandler.accept(serverMessage);
-                    } catch (Exception e) {
-                        log.error("Error processing message from master: {}", e.getMessage(), e);
-                    }
+                // Add the received message to the queue
+                try {
+                    messageQueue.put(serverMessage); // Use put for blocking queue
+                    log.trace("Added message to queue: {}", serverMessage); // Use trace for frequent logs
+                } catch (InterruptedException e) {
+                    log.warn("Interrupted while adding message to queue", e);
+                    Thread.currentThread().interrupt(); // Restore interrupt status
+                    break; // Exit loop if interrupted
                 }
             }
         } catch (SocketException e) {
@@ -81,4 +83,9 @@ public class MultiboxClient implements Runnable {
     public boolean isRunning() {
         return running && socket != null && socket.isConnected() && !socket.isClosed();
     }
-}
+
+    // Method for the plugin to retrieve messages from the queue
+    public String pollMessage() {
+        return messageQueue.poll(); // Non-blocking retrieval
+    }
+} // End of MultiboxClient class
