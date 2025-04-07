@@ -4,11 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter; // Ensure PrintWriter is imported
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-// Consumer no longer needed directly here
+
 @Slf4j
 public class MultiboxClient implements Runnable {
 
@@ -16,6 +17,7 @@ public class MultiboxClient implements Runnable {
     private final int port;
     private Socket socket;
     private BufferedReader reader;
+    private PrintWriter writer; // Added for sending messages
     private volatile boolean running = false;
     private final BlockingQueue<String> messageQueue = new LinkedBlockingQueue<>(); // Queue for incoming messages
 
@@ -31,6 +33,7 @@ public class MultiboxClient implements Runnable {
         try {
             socket = new Socket(host, port);
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true); // Initialize writer, true for auto-flush
             log.info("Connected to Multibox Master Server at {}:{}", host, port);
 
             String serverMessage;
@@ -71,6 +74,10 @@ public class MultiboxClient implements Runnable {
             if (reader != null) {
                 reader.close();
             }
+            // Close writer only once
+            if (writer != null) {
+                writer.close();
+            }
             if (socket != null && !socket.isClosed()) {
                 socket.close();
                 log.info("Disconnected from Multibox Master Server.");
@@ -87,5 +94,16 @@ public class MultiboxClient implements Runnable {
     // Method for the plugin to retrieve messages from the queue
     public String pollMessage() {
         return messageQueue.poll(); // Non-blocking retrieval
+    }
+
+    // Method to send a message to the server (defined only once)
+    public synchronized void sendMessage(String message) {
+        if (isRunning() && writer != null) {
+            writer.println(message);
+            // Auto-flush is enabled, but explicit flush can be added if needed: writer.flush();
+            log.trace("Sent message to server: {}", message); // Use trace for frequent logs
+        } else {
+            log.warn("Cannot send message, client not running or writer not initialized.");
+        }
     }
 } // End of MultiboxClient class

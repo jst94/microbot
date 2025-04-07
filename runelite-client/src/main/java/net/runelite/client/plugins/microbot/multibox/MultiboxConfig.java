@@ -40,4 +40,33 @@ public interface MultiboxConfig extends Config {
     default String masterAddress() {
         return "127.0.0.1"; // Default to localhost
     }
+    @ConfigItem(
+            keyName = "maxActionsPerTick",
+            name = "Max Actions Per Tick",
+            description = "Maximum number of actions processed per game tick on slave clients",
+            position = 4
+    )
+    default int maxActionsPerTick() {
+        return 3;
+    }
+
+    @ConfigItem(
+            keyName = "maxRandomDelayMs",
+            name = "Max Random Delay (ms)",
+            description = "Maximum random delay in milliseconds before executing an action",
+            position = 5
+    )
+    default int maxRandomDelayMs() {
+        return 100;
+    }
+
+    @ConfigItem(
+            keyName = "maxMouseJitter",
+            name = "Max Mouse Jitter (pixels)",
+            description = "Maximum random jitter in pixels added to mouse coordinates",
+            position = 6
+    )
+    default int maxMouseJitter() {
+        return 3;
+    }
 }
