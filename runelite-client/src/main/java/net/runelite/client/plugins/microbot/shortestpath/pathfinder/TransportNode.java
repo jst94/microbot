@@ -19,6 +19,11 @@ public class TransportNode extends Node implements Comparable<TransportNode> {
 
     @Override
     public int compareTo(TransportNode other) {
-        return Integer.compare(cost, other.cost);
+        int costComparison = Integer.compare(cost, other.cost);
+        if (costComparison != 0) {
+            return costComparison;
+        }
+        // Tie-breaker: Compare packed positions for deterministic ordering
+        return Integer.compare(packedPosition, other.packedPosition);
     }
 }
