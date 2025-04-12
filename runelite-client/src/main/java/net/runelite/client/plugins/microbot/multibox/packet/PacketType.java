@@ -1,21 +1,30 @@
 package net.runelite.client.plugins.microbot.multibox.packet;
 
 public enum PacketType {
-    // Movement-related packets
-    MOVE_GAMECLICK,    // Game-window walk click
-    MOVE_MINIMAPCLICK, // Minimap walk click
-    MOVE_CROSSHAIR,    // Click destination indicator
-    
-    // Action packets
-    OBJECT_CLICK,      // Game object interaction
-    NPC_CLICK,         // NPC interaction
-    ITEM_CLICK,        // Item interaction
-    
-    // Interface packets
-    BUTTON_CLICK,      // Interface button click
-    DIALOG_CONTINUE,   // Dialog continue
-    
-    // Combat packets
-    SPELL_CAST,        // Magic spell cast
-    PRAYER_TOGGLE;     // Prayer activation/deactivation
+    MOVEMENT(0x01),
+    INTERACTION(0x02),
+    MINIMAP_CLICK(0x03),
+    KEY_PRESS(0x04),
+    KEY_RELEASE(0x05),
+    STATE_UPDATE(0x06),
+    ERROR(0xFF);
+
+    private final byte opcode;
+
+    PacketType(int opcode) {
+        this.opcode = (byte) opcode;
+    }
+
+    public byte getOpcode() {
+        return opcode;
+    }
+
+    public static PacketType fromOpcode(byte opcode) {
+        for (PacketType type : values()) {
+            if (type.opcode == opcode) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Unknown packet opcode: " + opcode);
+    }
 }

@@ -1,14 +1,12 @@
 package net.runelite.client.plugins.microbot.multibox.message;
 
 public enum MessageType {
-    INTERACT,
-    WALK_WP,
-    KEY_PRESS,
-    KEY_RELEASE,
-    STATE_UPDATE,
-    ACTION_ERROR,
-    SERVER_SHUTDOWN,
-    MINIMAP_CLICK, // New type for replicating minimap clicks
-    WALK_PACKET // Direct packet-based walking
-    // Add other types as needed
+    WALK_PACKET,    // Raw movement packet with scene coordinates and canvas point
+    WALK_WP,        // World point based movement
+    MINIMAP_CLICK,  // Direct minimap clicks
+    INTERACT,       // Menu interaction events
+    KEY_PRESS,      // Key press events
+    KEY_RELEASE,    // Key release events
+    STATE_UPDATE,   // Client state synchronization
+    ACTION_ERROR    // Error reporting
 }

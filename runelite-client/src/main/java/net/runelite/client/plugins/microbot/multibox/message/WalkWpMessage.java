@@ -1,7 +1,7 @@
 package net.runelite.client.plugins.microbot.multibox.message;
 
 import lombok.Getter;
-import net.runelite.api.coords.WorldPoint; // Import WorldPoint
+import net.runelite.api.coords.WorldPoint;
 
 @Getter
 public class WalkWpMessage extends BaseMessage {
@@ -16,8 +16,12 @@ public class WalkWpMessage extends BaseMessage {
         this.plane = plane;
     }
 
-    // Convenience method to get WorldPoint
     public WorldPoint getWorldPoint() {
-        return new WorldPoint(this.worldX, this.worldY, this.plane);
+        return new WorldPoint(worldX, worldY, plane);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("WalkWpMessage(worldX=%d, worldY=%d, plane=%d)", worldX, worldY, plane);
     }
 }

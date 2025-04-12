@@ -1,47 +1,71 @@
 package net.runelite.client.plugins.microbot.multibox.message;
 
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonDeserializationContext;
+import com.google.gson.*;
 import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.Point;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class BaseMessageDeserializer implements JsonDeserializer<BaseMessage> {
-
-    private static final Map<MessageType, Class<? extends BaseMessage>> MESSAGE_TYPE_MAP;
-    static {
-        Map<MessageType, Class<? extends BaseMessage>> map = new HashMap<>();
-        map.put(MessageType.WALK_WP, WalkWpMessage.class);
-        map.put(MessageType.INTERACT, InteractMessage.class);
-        map.put(MessageType.KEY_PRESS, KeyPressMessage.class);
-        map.put(MessageType.KEY_RELEASE, KeyReleaseMessage.class);
-        map.put(MessageType.STATE_UPDATE, StateUpdateMessage.class);
-        map.put(MessageType.ACTION_ERROR, ActionErrorMessage.class);
-        map.put(MessageType.MINIMAP_CLICK, MinimapClickMessage.class); // Add mapping for MinimapClickMessage
-        MESSAGE_TYPE_MAP = Collections.unmodifiableMap(map);
-    }
-
     @Override
     public BaseMessage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonObject jsonObject = json.getAsJsonObject();
-        if (!jsonObject.has("messageType") || !jsonObject.get("messageType").isJsonPrimitive()) {
-            throw new JsonParseException("Missing or invalid messageType field");
-        }
-        String messageTypeStr = jsonObject.get("messageType").getAsString();
-        MessageType type;
         try {
-            type = MessageType.valueOf(messageTypeStr);
-        } catch (IllegalArgumentException e) {
-            throw new JsonParseException("Unknown messageType: " + messageTypeStr, e);
+            JsonObject jsonObject = json.getAsJsonObject();
+            String messageTypeStr = jsonObject.get("messageType").getAsString();
+            MessageType messageType = MessageType.valueOf(messageTypeStr);
+
+            // Handle each message type separately
+            switch (messageType) {
+                case WALK_PACKET:
+                    int sceneX = jsonObject.get("sceneX").getAsInt();
+                    int sceneY = jsonObject.get("sceneY").getAsInt();
+                    boolean ctrlDown = jsonObject.get("ctrlDown").getAsBoolean();
+                    WalkPacket walkPacket = new WalkPacket(sceneX, sceneY, ctrlDown);
+                    
+                    if (jsonObject.has("canvasX") && jsonObject.has("canvasY")) {
+                        walkPacket.setCanvasPoint(new Point(
+                            jsonObject.get("canvasX").getAsInt(),
+                            jsonObject.get("canvasY").getAsInt()
+                        ));
+                    }
+                    
+                    if (jsonObject.has("useVirtualMouse")) {
+                        walkPacket.setUseVirtualMouse(jsonObject.get("useVirtualMouse").getAsBoolean());
+                    }
+                    
+                    if (jsonObject.has("timestamp")) {
+                        walkPacket.setTimestamp(jsonObject.get("timestamp").getAsLong());
+                    }
+                    return walkPacket;
+
+                case WALK_WP:
+                    return context.deserialize(json, WalkWpMessage.class);
+                    
+                case MINIMAP_CLICK:
+                    return context.deserialize(json, MinimapClickMessage.class);
+                    
+                case INTERACT:
+                    return context.deserialize(json, InteractMessage.class);
+                    
+                case KEY_PRESS:
+                    return context.deserialize(json, KeyPressMessage.class);
+                    
+                case KEY_RELEASE:
+                    return context.deserialize(json, KeyReleaseMessage.class);
+                    
+                case STATE_UPDATE:
+                    return context.deserialize(json, StateUpdateMessage.class);
+                    
+                case ACTION_ERROR:
+                    return context.deserialize(json, ActionErrorMessage.class);
+                    
+                default:
+                    log.error("Unknown message type: {}", messageTypeStr);
+                    throw new JsonParseException("Unknown message type: " + messageTypeStr);
+            }
+        } catch (Exception e) {
+            log.error("Error deserializing message", e);
+            throw new JsonParseException("Error deserializing message: " + e.getMessage());
         }
-        Class<? extends BaseMessage> clazz = MESSAGE_TYPE_MAP.get(type);
-        if (clazz == null) {
-            throw new JsonParseException("Unsupported message type: " + type);
-        }
-        return context.deserialize(json, clazz);
     }
 }

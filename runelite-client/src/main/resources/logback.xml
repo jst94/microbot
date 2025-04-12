@@ -52,4 +52,7 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
+
+    <!-- Enable DEBUG logging specifically for the multibox package -->
+    <logger name="net.runelite.client.plugins.microbot.multibox" level="DEBUG"/>
 </configuration>

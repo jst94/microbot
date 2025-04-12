@@ -1,18 +1,19 @@
 package net.runelite.client.plugins.microbot.multibox.message;
 
 import lombok.Getter;
-import net.runelite.api.MenuAction; // Import MenuAction
+import net.runelite.api.MenuAction;
 
 @Getter
 public class InteractMessage extends BaseMessage {
-    private final String menuActionName; // Store as String for serialization
+    private final String menuActionName;
     private final String targetName;
     private final int identifier;
     private final String option;
     private final int param0;
     private final int param1;
 
-    public InteractMessage(String menuActionName, String targetName, int identifier, String option, int param0, int param1) {
+    public InteractMessage(String menuActionName, String targetName, int identifier, 
+                         String option, int param0, int param1) {
         super(MessageType.INTERACT);
         this.menuActionName = menuActionName;
         this.targetName = targetName;
@@ -22,14 +23,24 @@ public class InteractMessage extends BaseMessage {
         this.param1 = param1;
     }
 
-    // Convenience method to get MenuAction enum, handles potential errors
     public MenuAction getMenuActionType() {
         try {
-            return MenuAction.valueOf(this.menuActionName);
+            return MenuAction.valueOf(menuActionName);
         } catch (IllegalArgumentException e) {
-            // Log or handle the error appropriately if needed
-            System.err.println("Invalid MenuAction name stored in message: " + this.menuActionName);
-            return null; // Or throw a custom exception
+            return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Interact(action=%s, target='%s', option='%s', id=%d, p0=%d, p1=%d)",
+            menuActionName, targetName, option, identifier, param0, param1);
+    }
+
+    public boolean isValid() {
+        return getMenuActionType() != null && 
+               option != null && 
+               !option.isEmpty() && 
+               targetName != null;
     }
 }

@@ -1,72 +1,97 @@
 package net.runelite.client.plugins.microbot.multibox;
 
 import net.runelite.client.config.Config;
-import net.runelite.client.config.*;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Range;
 
-@ConfigGroup("microbotMultibox")
+@ConfigGroup("microbotmultibox")
 public interface MultiboxConfig extends Config {
-
     enum ClientRole {
         MASTER,
         SLAVE
     }
 
+    enum MovementMode {
+        VIRTUAL_MOUSE,
+        MENU_ENTRY
+    }
+
     @ConfigItem(
-            keyName = "clientRole",
-            name = "Client Role",
-            description = "Set whether this client is the Master or a Slave",
-            position = 1
+        keyName = "clientRole",
+        name = "Client Role",
+        description = "Whether this client is the master or a slave",
+        position = 1
     )
     default ClientRole clientRole() {
-        return ClientRole.SLAVE; // Default to Slave
+        return ClientRole.SLAVE;
     }
 
     @ConfigItem(
-            keyName = "serverPort",
-            name = "Server Port",
-            description = "Port number for the master server to listen on / slaves to connect to",
-            position = 2
-    )
-    default int serverPort() {
-        return 61616; // Default port
-    }
-
-    @ConfigItem(
-            keyName = "masterAddress",
-            name = "Master Address",
-            description = "IP address of the master client (only needed for slaves)",
-            position = 3
+        keyName = "masterAddress",
+        name = "Master Address",
+        description = "IP address of the master client (for slaves)",
+        position = 2
     )
     default String masterAddress() {
-        return "127.0.0.1"; // Default to localhost
+        return "127.0.0.1";
     }
-    @ConfigItem(
-            keyName = "maxActionsPerTick",
-            name = "Max Actions Per Tick",
-            description = "Maximum number of actions processed per game tick on slave clients",
-            position = 4
+
+    @Range(
+        min = 1024,
+        max = 65535
     )
-    default int maxActionsPerTick() {
-        return 3;
+    @ConfigItem(
+        keyName = "serverPort",
+        name = "Server Port",
+        description = "Port to use for multibox communication",
+        position = 3
+    )
+    default int serverPort() {
+        return 43594;
     }
 
     @ConfigItem(
-            keyName = "maxRandomDelayMs",
-            name = "Max Random Delay (ms)",
-            description = "Maximum random delay in milliseconds before executing an action",
-            position = 5
+        keyName = "movementMode",
+        name = "Movement Mode",
+        description = "How to handle movement commands",
+        position = 4
     )
-    default int maxRandomDelayMs() {
-        return 100;
+    default MovementMode movementMode() {
+        return MovementMode.VIRTUAL_MOUSE;
     }
 
     @ConfigItem(
-            keyName = "maxMouseJitter",
-            name = "Max Mouse Jitter (pixels)",
-            description = "Maximum random jitter in pixels added to mouse coordinates",
-            position = 6
+        keyName = "autoReconnect",
+        name = "Auto Reconnect",
+        description = "Automatically try to reconnect if connection is lost",
+        position = 5
     )
-    default int maxMouseJitter() {
-        return 3;
+    default boolean autoReconnect() {
+        return true;
+    }
+
+    @Range(
+        min = 1000,
+        max = 30000
+    )
+    @ConfigItem(
+        keyName = "reconnectDelay",
+        name = "Reconnect Delay (ms)",
+        description = "Delay between reconnection attempts in milliseconds",
+        position = 6
+    )
+    default int reconnectDelay() {
+        return 5000;
+    }
+
+    @ConfigItem(
+        keyName = "debugMode",
+        name = "Debug Mode",
+        description = "Enable detailed debug logging",
+        position = 7
+    )
+    default boolean debugMode() {
+        return false;
     }
 }

@@ -1,16 +1,18 @@
 package net.runelite.client.plugins.microbot.multibox.message;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
+@Setter 
 public abstract class BaseMessage {
-    private final MessageType messageType;
-    // Timestamp can be added by the sender just before serialization
-    private long timestamp;
+    protected MessageType messageType;
+    protected long timestamp;
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public BaseMessage(MessageType messageType) {
+        this.messageType = messageType;
+        this.timestamp = System.currentTimeMillis();
     }
+
+    public abstract String toString();
 }
