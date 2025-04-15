@@ -75,8 +75,8 @@ public class GamePacket {
         return new GamePacket(PacketType.MOVEMENT, movementData);
     }
 
-    public static GamePacket createInteractionPacket(int param0, int param1, int id, net.runelite.api.MenuAction menuAction, String option, String target) {
-        InteractionPacket packet = new InteractionPacket(param0, param1, id, menuAction, option, target);
+    public static GamePacket createInteractionPacket(int param0, int param1, int id, net.runelite.api.MenuAction menuAction, String option, String target, String objectType) {
+        InteractionPacket packet = new InteractionPacket(param0, param1, id, menuAction, option, target, objectType);
         byte[] interactionData = packet.serialize();
         return new GamePacket(PacketType.INTERACTION, interactionData);
     }

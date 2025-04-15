@@ -22,24 +22,27 @@ public class InteractionPacket {
     private final int menuActionId; // Store MenuAction ID
     private final String option;
     private final String target;
+    private final String objectType;
 
-    public InteractionPacket(int param0, int param1, int id, MenuAction menuAction, String option, String target) {
+    public InteractionPacket(int param0, int param1, int id, MenuAction menuAction, String option, String target, String objectType) {
         this.param0 = param0;
         this.param1 = param1;
         this.id = id;
         this.menuActionId = menuAction.getId(); // Store the ID
         this.option = option != null ? option : ""; // Ensure non-null
         this.target = target != null ? target : ""; // Ensure non-null
+        this.objectType = objectType != null ? objectType : ""; // Ensure non-null
     }
 
     // Private constructor for deserialization
-    private InteractionPacket(int param0, int param1, int id, int menuActionId, String option, String target) {
+    private InteractionPacket(int param0, int param1, int id, int menuActionId, String option, String target, String objectType) {
         this.param0 = param0;
         this.param1 = param1;
         this.id = id;
         this.menuActionId = menuActionId;
         this.option = option;
         this.target = target;
+        this.objectType = objectType;
     }
 
     public MenuAction getMenuAction() {
@@ -57,6 +60,10 @@ public class InteractionPacket {
             dos.writeInt(id);
             dos.writeInt(menuActionId);
 
+            byte[] objectTypeBytes = objectType.getBytes(StandardCharsets.UTF_8);
+            dos.writeShort(objectTypeBytes.length); // Write length of objectType string
+            dos.write(objectTypeBytes);
+
             byte[] optionBytes = option.getBytes(StandardCharsets.UTF_8);
             dos.writeShort(optionBytes.length); // Write length of option string
             dos.write(optionBytes);
@@ -73,7 +80,7 @@ public class InteractionPacket {
     }
 
     public static InteractionPacket deserialize(byte[] data) throws IOException {
-        if (data == null || data.length < 1 + 4 * 4 + 2 + 2) { // Opcode + 4 ints + 2 shorts (min lengths)
+        if (data == null || data.length < 1 + 4 * 4 + 2 + 2 + 2) { // Opcode + 4 ints + 3 shorts (min lengths)
              throw new IllegalArgumentException("Invalid interaction packet data: too short");
         }
         if (data[0] != OPCODE) {
@@ -102,13 +109,19 @@ public class InteractionPacket {
             dis.readFully(targetBytes);
             String target = new String(targetBytes, StandardCharsets.UTF_8);
 
-            return new InteractionPacket(param0, param1, id, menuActionId, option, target);
+            int objectTypeLen = dis.readShort();
+            if (objectTypeLen < 0 || objectTypeLen > dis.available()) throw new IOException("Invalid objectType length");
+            byte[] objectTypeBytes = new byte[objectTypeLen];
+            dis.readFully(objectTypeBytes);
+            String objectType = new String(objectTypeBytes, StandardCharsets.UTF_8);
+
+            return new InteractionPacket(param0, param1, id, menuActionId, option, target, objectType);
         }
     }
 
     @Override
     public String toString() {
-        return String.format("InteractionPacket(action=%s, id=%d, option='%s', target='%s', params=(%d,%d))",
-                getMenuAction(), id, option, target, param0, param1);
+        return String.format("InteractionPacket(action=%s, id=%d, option='%s', target='%s', objectType='%s', params=(%d,%d))",
+                getMenuAction(), id, option, target, objectType, param0, param1);
     }
 }

@@ -167,11 +167,26 @@ public class MultiboxPlugin extends Plugin {
         // Add logging for other interactions (Object, NPC, Item, Widget, Player etc.)
         else if (menuAction.name().startsWith("GAME_OBJECT_") || menuAction.name().startsWith("NPC_") || menuAction.name().startsWith("ITEM_") || menuAction.name().startsWith("WIDGET_") || menuAction.name().startsWith("PLAYER_")) { // Added PLAYER_ check
              // Create and broadcast the interaction packet
-             GamePacket packet = GamePacket.createInteractionPacket(
-                 param0, param1, identifier, menuAction, option, target
-             );
-             server.broadcastPacket(packet);
+             String objectType = target; // Default to target if object is not found
 
+             // Attempt to get the object name from the client
+             if (menuAction.name().startsWith("GAME_OBJECT_")) {
+                 ObjectComposition objectComposition = client.getObjectDefinition(identifier);
+                 if (objectComposition != null) {
+                     objectType = objectComposition.getName();
+                 }
+             } else if (menuAction.name().startsWith("NPC_")) {
+                 NPC npc = client.getNpcs().stream().filter(n -> n.getIndex() == identifier).findFirst().orElse(null);
+                 if (npc != null) {
+                     objectType = npc.getName();
+                 }
+             }
+
+             
+                          GamePacket packet = GamePacket.createInteractionPacket(
+                                  param0, param1, identifier, menuAction, option, target, objectType
+                          );
+                          server.broadcastPacket(packet);
              if (config.debugMode()) {
                  log.debug("Broadcasted INTERACTION: action={}, id={}, option='{}', target='{}', params=({}, {})",
                      menuAction, identifier, option, target, param0, param1);

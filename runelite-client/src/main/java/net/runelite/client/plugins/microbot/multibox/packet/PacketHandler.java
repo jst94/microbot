@@ -9,7 +9,9 @@ import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.util.mouse.VirtualMouse;
 import net.runelite.client.plugins.microbot.multibox.MultiboxConfig;
-
+import net.runelite.api.Tile;
+import net.runelite.api.GameObject;
+import net.runelite.api.ObjectComposition;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -173,21 +175,88 @@ public class PacketHandler {
             return;
         }
 
+        final InteractionPacket finalPacket;
+        String objectType = packet.getObjectType();
+        if (objectType != null && !objectType.isEmpty() && objectType.equalsIgnoreCase("tree")) {
+            // Find a nearby tree
+            WorldPoint playerLocation = client.getLocalPlayer().getWorldLocation();
+            if (playerLocation == null) {
+                log.error("Could not get player location");
+                return;
+            }
+
+            int searchRadius = 5; // Adjust as needed
+            Tile[][][] tiles = client.getScene().getTiles();
+            java.util.List<GameObject> nearbyTrees = new java.util.ArrayList<>();
+            for (int z = 0; z < tiles.length; z++) {
+                for (int x = 0; x < tiles[z].length; x++) {
+                    for (int y = 0; y < tiles[z][x].length; y++) {
+                        Tile tile = tiles[z][x][y];
+                        if (tile != null) {
+                            GameObject[] gameObjects = tile.getGameObjects();
+                            if (gameObjects != null) {
+                                for (GameObject gameObject : gameObjects) {
+                                    if (gameObject != null) {
+                                        ObjectComposition objectComposition = client.getObjectDefinition(gameObject.getId());
+                                        if (objectComposition != null) {
+                                            String name = objectComposition.getName();
+                                            if (name != null && name.equalsIgnoreCase("tree")) {
+                                                LocalPoint localPoint = gameObject.getLocalLocation();
+                                                if (localPoint != null) {
+                                                    int sceneX = localPoint.getSceneX();
+                                                    int sceneY = localPoint.getSceneY();
+                                                    WorldPoint objectLocation = WorldPoint.fromScene(client, sceneX, sceneY, client.getPlane());
+                                                    if (objectLocation != null && playerLocation.distanceTo(objectLocation) <= searchRadius) {
+                                                        log.debug("Found nearby tree: {} at {}", name, objectLocation);
+                                                        nearbyTrees.add(gameObject);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!nearbyTrees.isEmpty()) {
+                // Choose a random tree
+                int randomIndex = (int) (Math.random() * nearbyTrees.size());
+                GameObject selectedTree = nearbyTrees.get(randomIndex);
+                int newTreeId = selectedTree.getId();
+
+                log.debug("Selected random tree with ID: {}", newTreeId);
+
+                // Update the packet with the new tree ID
+                finalPacket = new InteractionPacket(packet.getParam0(), packet.getParam1(), newTreeId, packet.getMenuAction(), packet.getOption(), packet.getTarget(), packet.getObjectType());
+
+            } else {
+                finalPacket = packet;
+            }
+            log.debug("Found a tree interaction, but dynamic tree selection is not yet fully implemented.");
+        } else {
+            finalPacket = packet;
+        }
+
+        log.debug("Handling InteractionPacket: {}", finalPacket);
         try {
-            log.debug("Handling InteractionPacket: {}", packet);
             Microbot.getClientThread().invoke(() -> {
                 try {
+                    log.debug("Invoking menuAction with params: param0={}, param1={}, menuAction={}, id={}, option={}, target={}",
+                        finalPacket.getParam0(), finalPacket.getParam1(), finalPacket.getMenuAction(), finalPacket.getId(), finalPacket.getOption(), finalPacket.getTarget());
                     client.menuAction(
-                        packet.getParam0(),
-                        packet.getParam1(),
-                        packet.getMenuAction(), // Use the reconstructed MenuAction enum
-                        packet.getId(),
+                        finalPacket.getParam0(),
+                        finalPacket.getParam1(),
+                        finalPacket.getMenuAction(), // Use the reconstructed MenuAction enum
+                        finalPacket.getId(),
                         -1, // itemId is often -1 for non-item interactions, adjust if needed later
-                        packet.getOption(),
-                        packet.getTarget()
+                        finalPacket.getOption(),
+                        finalPacket.getTarget()
                     );
                     if (config.debugMode()) {
-                        log.debug("Executed menu action: {}", packet);
+                        log.debug("Executed menu action: {}", finalPacket);
                     }
                 } catch (Exception e) {
                     log.error("Error executing menu action from packet", e);

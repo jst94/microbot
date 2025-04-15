@@ -27,11 +27,10 @@ public class BaseMessageTypeAdapterFactory implements TypeAdapterFactory {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-        if (!BaseMessage.class.isAssignableFrom(type.getRawType())) {
-            return null;
-        }
+    	if (!BaseMessage.class.isAssignableFrom(type.getRawType())) {
+    		return null;
+    	}
 
         return new TypeAdapter<T>() {
             @Override
@@ -43,6 +42,7 @@ public class BaseMessageTypeAdapterFactory implements TypeAdapterFactory {
 
                 BaseMessage message = (BaseMessage) value;
                 Class<? extends BaseMessage> messageClass = message.getClass();
+                @SuppressWarnings("unchecked")
                 TypeAdapter<BaseMessage> delegate = (TypeAdapter<BaseMessage>) gson.getDelegateAdapter(
                     BaseMessageTypeAdapterFactory.this, 
                     TypeToken.get(messageClass)
@@ -51,12 +51,11 @@ public class BaseMessageTypeAdapterFactory implements TypeAdapterFactory {
             }
 
             @Override
-            @SuppressWarnings("unchecked")
             public T read(JsonReader in) throws IOException {
-                if (in.peek() == com.google.gson.stream.JsonToken.NULL) {
-                    in.nextNull();
-                    return null;
-                }
+            	if (in.peek() == com.google.gson.stream.JsonToken.NULL) {
+            		in.nextNull();
+            		return null;
+            	}
 
                 JsonObject jsonObject = gson.fromJson(in, JsonObject.class);
                 
@@ -76,7 +75,9 @@ public class BaseMessageTypeAdapterFactory implements TypeAdapterFactory {
                     throw new JsonParseException("Unknown message type: " + messageType);
                 }
 
-                return (T) gson.fromJson(jsonObject, messageClass);
+                @SuppressWarnings("unchecked")
+                T result = (T) gson.fromJson(jsonObject, messageClass);
+                return result;
             }
         };
     }

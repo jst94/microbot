@@ -51,18 +51,21 @@ public class MultiboxClient implements Runnable {
                     int length = readInt(headerBuffer, 9);
 
                     // Validate packet length
-                    if (length < 0 || length > MAX_PACKET_SIZE) {
-                        log.error("Invalid packet length: {}", length);
-                        break;
+                    if (length < 0 || length > MAX_PACKET_SIZE)
+                    {
+                    	log.error("Invalid packet length: {}", length);
+                    	break;
                     }
 
                     // Ensure buffer capacity
-                    if (length > packetBuffer.length) {
-                        packetBuffer = new byte[length];
+                    if (length > packetBuffer.length)
+                    {
+                    	packetBuffer = new byte[length];
                     }
 
                     // Read packet data
-                    if (readFully(packetBuffer, 0, length) != length) break;
+                    if (readFully(packetBuffer, 0, length) != length)
+                    	break;
 
                     // Log received payload details before creating GamePacket
                     if (log.isDebugEnabled()) {
@@ -77,19 +80,24 @@ public class MultiboxClient implements Runnable {
                     GamePacket packet = new GamePacket(type, payloadCopy);
                     packetQueue.offer(packet);
 
-                } catch (IOException e) {
-                    if (running) {
-                        log.error("Error reading from server {}:{}", host, port, e);
-                    }
-                    break;
+                } catch (IOException e)
+                {
+                	if (running)
+                	{
+                		log.error("Error reading from server {}:{}", host, port, e);
+                	}
+                	break;
                 }
             }
-        } catch (IOException e) {
-            if (running) {
-                log.error("Error in client connection to {}:{}", host, port, e);
-            }
-        } finally {
-            disconnect();
+        } catch (IOException e)
+        {
+        	if (running)
+        	{
+        		log.error("Error in client connection to {}:{}", host, port, e);
+        	}
+        } finally
+        {
+        	disconnect();
         }
     }
 
@@ -155,43 +163,55 @@ public class MultiboxClient implements Runnable {
 
     public void disconnect() {
         running = false;
-        try {
-            if (in != null) {
-                in.close();
-                in = null;
-            }
-        } catch (IOException e) {
-            log.error("Error closing input stream for client {}:{}", host, port, e);
+        try
+        {
+        	if (in != null)
+        	{
+        		in.close();
+        		in = null;
+        	}
+        } catch (IOException e)
+        {
+        	log.error("Error closing input stream for client {}:{}", host, port, e);
         }
-        try {
-            if (out != null) {
-                out.close();
-                out = null;
-            }
-        } catch (IOException e) {
-            log.error("Error closing output stream for client {}:{}", host, port, e);
+        try
+        {
+        	if (out != null)
+        	{
+        		out.close();
+        		out = null;
+        	}
+        } catch (IOException e)
+        {
+        	log.error("Error closing output stream for client {}:{}", host, port, e);
         }
-        try {
-            if (socket != null && !socket.isClosed()) {
-                socket.close();
-                socket = null;
-            }
-        } catch (IOException e) {
-            log.error("Error closing socket for client {}:{}", host, port, e);
+        try
+        {
+        	if (socket != null && !socket.isClosed())
+        	{
+        		socket.close();
+        		socket = null;
+        	}
+        } catch (IOException e)
+        {
+        	log.error("Error closing socket for client {}:{}", host, port, e);
         }
         packetQueue.clear();
         log.info("MultiboxClient disconnected from server {}:{}", host, port);
     }
 
-    public void stop() {
-        if (running) {
-            running = false;
-            disconnect();
-        }
+    public void stop()
+    {
+    	if (running)
+    	{
+    		running = false;
+    		disconnect();
+    	}
     }
 
-    public boolean isRunning() {
-        return running && socket != null && !socket.isClosed();
+    public boolean isRunning()
+    {
+    	return running && socket != null && !socket.isClosed();
     }
     // TODO: Add reconnect logic or exponential backoff for future extensibility
-}
+   }
