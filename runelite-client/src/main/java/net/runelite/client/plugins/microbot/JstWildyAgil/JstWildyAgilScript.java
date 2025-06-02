@@ -24,13 +24,12 @@ public class JstWildyAgilScript extends Script {
     public static WildyAgilState SCRIPT_STATE = WildyAgilState.STARTING;
 
     // Constants voor Object IDs (gebaseerd op OSRS Wiki)
-    private static final int OBSTACLE_PIPE_ID = 23131; // Obstacle pipe
+    private static final int OBSTACLE_PIPE_ID = 23137; // Obstacle pipe (updated)
     private static final int ROPE_SWING_ID = 23132; // Rope swing  
     private static final int STEPPING_STONE_ID = 23556; // Stepping stone
     private static final int LOG_BALANCE_ID = 23542; // Log balance
-    private static final int ROCKS_ID = 23547; // Climbing rocks
-    private static final int GATE_ID = 23555; // Wilderness Agility Course gate
-    private static final int TICKET_DISPENSER_ID = 29084; // Agility Arena Ticket Dispenser
+    private static final int ROCKS_ID = 23640; // Climbing rocks (updated)
+    private static final int TICKET_DISPENSER_ID = 53224; // Agility Arena Ticket Dispenser (updated)
 
     private static final String AGILITY_ARENA_TICKET_NAME = "Agility arena ticket";
     private static final String COINS_NAME = "Coins";
@@ -49,7 +48,16 @@ public class JstWildyAgilScript extends Script {
     private static final WorldPoint TICKET_DISPENSER_AREA = new WorldPoint(3050, 3930, 0); // Geschat
     private static final WorldPoint EXIT_GATE_INTERACTION_POINT = new WorldPoint(2998, 3933, 0); // Punt binnen de gate
     private static final WorldPoint EDGEVILLE_BANK_LOCATION = new WorldPoint(3094, 3495, 0); // Edgeville bank
+    private static final WorldPoint OUTSIDE_GATE_POINT = new WorldPoint(2998, 3932, 0); // Just outside the gate
 
+    // Wilderness Agility Course area bounds (approximate)
+    private static final int COURSE_MIN_X = 2985;
+    private static final int COURSE_MAX_X = 3007;
+    private static final int COURSE_MIN_Y = 3930;
+    private static final int COURSE_MAX_Y = 3965;
+
+    // Accept all possible gate IDs for entrance/exit
+    private static final int[] ENTRANCE_GATE_IDS = {23552, 23554, 23555};
 
     JstWildyAgilConfig config;
     private boolean initialMovementToObstacle = true;
@@ -104,11 +112,34 @@ public class JstWildyAgilScript extends Script {
         Microbot.log("Lap streak reset to 0 (death or left course)");
     }
 
-    // Call this if player logs out inside course
-    private void onLogoutInsideCourse() {
-        int before = lapStreak;
-        lapStreak = Math.max(0, lapStreak - 10);
-        Microbot.log("Lap streak reduced from " + before + " to " + lapStreak + " (logout inside course)");
+    private boolean isInCourseArea() {
+        WorldPoint loc = Rs2Player.getWorldLocation();
+        return loc.getX() >= COURSE_MIN_X && loc.getX() <= COURSE_MAX_X &&
+               loc.getY() >= COURSE_MIN_Y && loc.getY() <= COURSE_MAX_Y;
+    }
+    
+    private WildyAgilState determineCurrentCourseState() {
+        if (!isInCourseArea()) {
+            return WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+        }
+        
+        WorldPoint playerLoc = Rs2Player.getWorldLocation();
+        
+        // Check proximity to each obstacle completion point to determine state
+        if (playerLoc.distanceTo(AFTER_ROCKS_LOCATION) < 6) {
+            return WildyAgilState.COLLECTING_TOKENS;
+        } else if (playerLoc.distanceTo(AFTER_LOG_BALANCE_LOCATION) < 6) {
+            return WildyAgilState.CLIMBING_ROCKS;
+        } else if (playerLoc.distanceTo(AFTER_STEPPING_STONES_LOCATION) < 6) {
+            return WildyAgilState.CROSSING_LOG_BALANCE;
+        } else if (playerLoc.distanceTo(AFTER_ROPESWING_LOCATION) < 10) {
+            return WildyAgilState.CROSSING_STEPPING_STONES;
+        } else if (playerLoc.distanceTo(AFTER_PIPE_LOCATION) < 6) {
+            return WildyAgilState.CROSSING_ROPE_SWING;
+        } else {
+            // Near start of course
+            return WildyAgilState.ENTERING_COURSE;
+        }
     }
 
     public boolean run(JstWildyAgilConfig config) {
@@ -127,6 +158,15 @@ public class JstWildyAgilScript extends Script {
                 switch (SCRIPT_STATE) {
                     case STARTING:
                         Microbot.status = "Starting Wilderness Agility...";
+
+                        // If already in course area, determine where we are and continue from there
+                        if (isInCourseArea()) {
+                            WildyAgilState currentState = determineCurrentCourseState();
+                            Microbot.log("Already in course, continuing from: " + currentState);
+                            SCRIPT_STATE = currentState;
+                            initialMovementToObstacle = true;
+                            break;
+                        }
 
                         // Check 1: Need to bank for food?
                         // This check is done if food usage is enabled, a valid food name is configured,
@@ -163,46 +203,95 @@ public class JstWildyAgilScript extends Script {
 
                     case WALKING_TO_COURSE_ENTRANCE:
                         Microbot.status = "Walking to course entrance...";
+                        // If already inside the course area, skip gate interaction
+                        if (isInCourseArea()) {
+                            SCRIPT_STATE = WildyAgilState.ENTERING_COURSE;
+                            break;
+                        }
                         // Check voor coins als de gate gebruikt moet worden (onder level 52 wilderness)
                         if (Rs2Pvp.getWildernessLevelFrom(Rs2Player.getWorldLocation()) < 52 && Rs2Inventory.itemQuantity(COINS_NAME) < 500) {
                             Microbot.log("Niet genoeg coins voor de gate, banken...");
                             SCRIPT_STATE = WildyAgilState.BANKING;
                             break;
                         }
-                        if (Rs2Player.getWorldLocation().distanceTo(INSIDE_GATE_START_POINT) < 15) {
-                             SCRIPT_STATE = WildyAgilState.ENTERING_COURSE;
-                        } else {
-                            Microbot.log("Te ver van het parcourse, loop er handmatig heen of gebruik teleport.");
-                            if (!Rs2Walker.walkTo(new WorldPoint(2998, 3916, 0))) { // Punt net buiten de gate
-                                Microbot.log("Kon niet naar de gate lopen.");
-                                SCRIPT_STATE = WildyAgilState.ERROR;
+                        // If already near the gate, try to open it
+                        if (Rs2Player.getWorldLocation().distanceTo(INSIDE_GATE_START_POINT) < 5) {
+                            if (interactWithAnyGate("Open")) {
+                                Global.sleepUntil(() -> isInCourseArea(), 5000);
+                                if (isInCourseArea()) {
+                                    Microbot.log("Successfully entered course through gate");
+                                    SCRIPT_STATE = WildyAgilState.ENTERING_COURSE;
+                                } else {
+                                    Microbot.log("Kon de gate niet openen of erdoorheen gaan.");
+                                    SCRIPT_STATE = WildyAgilState.ERROR;
+                                }
+                                break;
                             }
-                             sleep(1000, 2000);
                         }
+                        // If not near, walk to just outside the gate
+                        if (!Rs2Walker.walkTo(OUTSIDE_GATE_POINT, 1)) {
+                            Microbot.log("Kon niet naar de gate lopen.");
+                            SCRIPT_STATE = WildyAgilState.ERROR;
+                        }
+                        sleep(1000, 2000);
                         break;
 
                     case ENTERING_COURSE:
-                         Microbot.status = "Squeezing through pipe...";
-                         if (handleObstacle(OBSTACLE_PIPE_ID, "Squeeze-through", AFTER_PIPE_LOCATION)) {
-                             SCRIPT_STATE = WildyAgilState.CROSSING_PIPE;
-                         }
-                        break;
-
-                    case CROSSING_PIPE:
-                        Microbot.status = "Crossing pipe...";
-                        // After completing the pipe, move to rope swing
-                        SCRIPT_STATE = WildyAgilState.CROSSING_ROPE_SWING;
+                        Microbot.status = "Starting course...";
+                        if (!isInCourseArea()) {
+                            Microbot.log("Not in course area, returning to entrance...");
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+                            break;
+                        }
+                        
+                        // Check if we're already past the pipe
+                        if (Rs2Player.getWorldLocation().distanceTo(AFTER_PIPE_LOCATION) < 4) {
+                            SCRIPT_STATE = WildyAgilState.CROSSING_ROPE_SWING;
+                            initialMovementToObstacle = true;
+                            break;
+                        }
+                        
+                        // Try to squeeze through pipe
+                        if (handleObstacle(OBSTACLE_PIPE_ID, "Squeeze-through", AFTER_PIPE_LOCATION)) {
+                            SCRIPT_STATE = WildyAgilState.CROSSING_ROPE_SWING;
+                        }
                         break;
 
                     case CROSSING_ROPE_SWING:
                         Microbot.status = "Swinging on rope...";
+                        if (!isInCourseArea()) {
+                            Microbot.log("Not in course area, returning to entrance...");
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+                            break;
+                        }
+                        
+                        // Check if we're already past the rope swing
+                        if (Rs2Player.getWorldLocation().distanceTo(AFTER_ROPESWING_LOCATION) < 8) {
+                            SCRIPT_STATE = WildyAgilState.CROSSING_STEPPING_STONES;
+                            initialMovementToObstacle = true;
+                            break;
+                        }
+                        
                         if (walkAndHandleObstacle(BEFORE_ROPESWING_LOCATION, ROPE_SWING_ID, "Swing-on", AFTER_ROPESWING_LOCATION)) {
-                             SCRIPT_STATE = WildyAgilState.CROSSING_STEPPING_STONES;
+                            SCRIPT_STATE = WildyAgilState.CROSSING_STEPPING_STONES;
                         }
                         break;
 
                     case CROSSING_STEPPING_STONES:
                         Microbot.status = "Crossing stepping stones...";
+                        if (!isInCourseArea()) {
+                            Microbot.log("Not in course area, returning to entrance...");
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+                            break;
+                        }
+                        
+                        // Check if we're already past the stepping stones
+                        if (Rs2Player.getWorldLocation().distanceTo(AFTER_STEPPING_STONES_LOCATION) < 4) {
+                            SCRIPT_STATE = WildyAgilState.CROSSING_LOG_BALANCE;
+                            initialMovementToObstacle = true;
+                            break;
+                        }
+                        
                         if (walkAndHandleObstacle(BEFORE_STEPPING_STONES_LOCATION, STEPPING_STONE_ID, "Cross", AFTER_STEPPING_STONES_LOCATION)) {
                             SCRIPT_STATE = WildyAgilState.CROSSING_LOG_BALANCE;
                         }
@@ -210,16 +299,40 @@ public class JstWildyAgilScript extends Script {
 
                     case CROSSING_LOG_BALANCE:
                         Microbot.status = "Crossing log balance...";
+                        if (!isInCourseArea()) {
+                            Microbot.log("Not in course area, returning to entrance...");
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+                            break;
+                        }
+                        
+                        // Check if we're already past the log balance
+                        if (Rs2Player.getWorldLocation().distanceTo(AFTER_LOG_BALANCE_LOCATION) < 4) {
+                            SCRIPT_STATE = WildyAgilState.CLIMBING_ROCKS;
+                            initialMovementToObstacle = true;
+                            break;
+                        }
+                        
                         if (walkAndHandleObstacle(BEFORE_LOG_BALANCE_LOCATION, LOG_BALANCE_ID, "Walk-across", AFTER_LOG_BALANCE_LOCATION)) {
                             SCRIPT_STATE = WildyAgilState.CLIMBING_ROCKS;
-                            // Lap is completed after log balance and rocks
                         }
                         break;
 
                     case CLIMBING_ROCKS:
                         Microbot.status = "Climbing rocks...";
+                        if (!isInCourseArea()) {
+                            Microbot.log("Not in course area, returning to entrance...");
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_COURSE_ENTRANCE;
+                            break;
+                        }
+                        
+                        // Check if we're already past the rocks
+                        if (Rs2Player.getWorldLocation().distanceTo(AFTER_ROCKS_LOCATION) < 4) {
+                            onLapCompleted();
+                            SCRIPT_STATE = WildyAgilState.COLLECTING_TOKENS;
+                            break;
+                        }
+                        
                         if (walkAndHandleObstacle(BEFORE_ROCKS_LOCATION, ROCKS_ID, "Climb", AFTER_ROCKS_LOCATION)) {
-                            // Lap completed here
                             onLapCompleted();
                             SCRIPT_STATE = WildyAgilState.COLLECTING_TOKENS;
                         }
@@ -227,54 +340,76 @@ public class JstWildyAgilScript extends Script {
 
                     case COLLECTING_TOKENS:
                         Microbot.status = "Collecting tokens...";
+                        
+                        // Try to loot any nearby tickets
                         boolean looted = Rs2GroundItem.loot(AGILITY_ARENA_TICKET_NAME, 15);
                         if (looted) {
                             Global.sleepUntil(() -> !Rs2Player.isAnimating(), 3000);
                         }
 
-                        // Logica om te banken als voedsel op is
-                        if (config.useFood() && !Rs2Inventory.hasItem(config.foodName()) && Rs2Inventory.getEmptySlots() < config.foodAmount()) {
+                        // Check food status first
+                        if (config.useFood() && !Rs2Inventory.hasItem(config.foodName()) && 
+                            Rs2Inventory.getEmptySlots() < config.foodAmount()) {
                             Microbot.log("Geen voedsel meer en te weinig ruimte om op te nemen, banken...");
                             SCRIPT_STATE = WildyAgilState.BANKING;
                             break;
                         }
 
-
+                        // Handle full inventory or ticket threshold
                         if (config.handleTokens() && Rs2Inventory.hasItem(AGILITY_ARENA_TICKET_NAME) &&
                             (Rs2Inventory.isFull() || Rs2Inventory.count(AGILITY_ARENA_TICKET_NAME) >= 260)) {
-                             SCRIPT_STATE = WildyAgilState.LEAVING_COURSE;
-                        } else if (Rs2Inventory.isFull() && !config.handleTokens()) { // Inventory vol en we gaan geen tickets inleveren
+                            SCRIPT_STATE = WildyAgilState.LEAVING_COURSE;
+                        } else if (Rs2Inventory.isFull() && !config.handleTokens()) {
                             Microbot.log("Inventory vol, banken...");
                             SCRIPT_STATE = WildyAgilState.BANKING;
-                        }
-                        else {
-                             SCRIPT_STATE = WildyAgilState.ENTERING_COURSE;
+                        } else {
+                            // Continue with another lap
+                            SCRIPT_STATE = WildyAgilState.ENTERING_COURSE;
                             initialMovementToObstacle = true;
                         }
                         break;
 
                     case LEAVING_COURSE:
-                         Microbot.status = "Leaving course...";
-                         // If player leaves course, reset lap streak
+                        Microbot.status = "Leaving course...";
                         onCourseExitOrDeath();
-                        if (Rs2Walker.walkTo(EXIT_GATE_INTERACTION_POINT, 1)) {
-                            if (Rs2GameObject.interact(GATE_ID, "Open")) {
-                                Global.sleepUntil(() -> Rs2Player.getWorldLocation().getY() < EXIT_GATE_INTERACTION_POINT.getY() -1, 5000);
-                                if (Rs2Player.getWorldLocation().getY() < EXIT_GATE_INTERACTION_POINT.getY() -1) {
+                        
+                        // If already outside the course area, go directly to ticket dispenser
+                        if (!isInCourseArea()) {
+                            SCRIPT_STATE = WildyAgilState.WALKING_TO_TICKET_DISPENSER;
+                            break;
+                        }
+                        
+                        // If already near the gate, try to open it
+                        if (Rs2Player.getWorldLocation().distanceTo(EXIT_GATE_INTERACTION_POINT) < 5) {
+                            if (interactWithAnyGate("Open")) {
+                                Global.sleepUntil(() -> !isInCourseArea(), 5000);
+                                if (!isInCourseArea()) {
                                     SCRIPT_STATE = WildyAgilState.WALKING_TO_TICKET_DISPENSER;
                                 } else {
                                     Microbot.log("Kon de gate niet openen of erdoorheen gaan.");
                                     SCRIPT_STATE = WildyAgilState.ERROR;
                                 }
+                                break;
                             }
                         }
+                        // If not near, walk to just inside the gate
+                        if (!Rs2Walker.walkTo(EXIT_GATE_INTERACTION_POINT, 1)) {
+                            Microbot.log("Kon niet naar de gate lopen.");
+                            SCRIPT_STATE = WildyAgilState.ERROR;
+                        }
+                        sleep(1000, 2000);
                         break;
 
                     case WALKING_TO_TICKET_DISPENSER:
                         Microbot.status = "Walking to ticket dispenser...";
-                        if (Rs2Walker.walkTo(TICKET_DISPENSER_AREA, 2)) {
+                        if (Rs2Player.getWorldLocation().distanceTo(TICKET_DISPENSER_AREA) <= 3) {
                             SCRIPT_STATE = WildyAgilState.HANDING_IN_TICKETS;
                             agilityTicketsInitialCount = Rs2Inventory.count(AGILITY_ARENA_TICKET_NAME);
+                        } else {
+                            if (!Rs2Walker.walkTo(TICKET_DISPENSER_AREA, 2)) {
+                                Microbot.log("Failed to walk to ticket dispenser area");
+                                sleep(1000, 2000);
+                            }
                         }
                         break;
 
@@ -406,55 +541,107 @@ public class JstWildyAgilScript extends Script {
     }
 
     private boolean walkAndHandleObstacle(WorldPoint beforeObstaclePoint, int objectId, String action, WorldPoint expectedEndPoint) {
+        // If already at or past the expected end point, skip obstacle
+        if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+            Microbot.log("Already past obstacle at " + expectedEndPoint);
+            initialMovementToObstacle = true;
+            return true;
+        }
+        
+        // Reset movement flag if we need to walk
         if (initialMovementToObstacle) {
             if (!Rs2Walker.walkTo(beforeObstaclePoint, 1)) {
-                 Microbot.log("Failed to walk to " + beforeObstaclePoint);
+                Microbot.log("Failed to walk to " + beforeObstaclePoint);
                 return false;
             }
-            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(beforeObstaclePoint) <= 1 || Rs2GameObject.getTileObject(objectId) == null, 3000);
-            // Check if obstacle is still there, otherwise assume it was done or disappeared.
-            if (Rs2GameObject.getTileObject(objectId) == null && Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(beforeObstaclePoint) <= 2 || 
+                                   Rs2GameObject.getTileObject(objectId) == null ||
+                                   Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4, 5000);
+            
+            // Check if we somehow completed the obstacle during walking
+            if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+                Microbot.log("Completed obstacle during walk to " + expectedEndPoint);
                 initialMovementToObstacle = true;
                 return true;
             }
+            
             initialMovementToObstacle = false;
         }
 
+        // Try to interact with the obstacle
         if (Rs2GameObject.interact(objectId, action)) {
-            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4 || Rs2Player.isAnimating() || Rs2Player.isMoving(), 10000);
+            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4 || 
+                                   Rs2Player.isAnimating() || Rs2Player.isMoving(), 12000);
             sleep(600, 1200);
-             if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+            
+            if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+                Microbot.log("Successfully completed obstacle to " + expectedEndPoint);
                 initialMovementToObstacle = true;
                 return true;
             } else {
                 Microbot.log("Failed to reach " + expectedEndPoint + " after interacting with " + objectId);
                 // Reset if stuck
-                 if (Rs2Player.getWorldLocation().distanceTo(beforeObstaclePoint) <=2 && !Rs2Player.isMoving() && !Rs2Player.isAnimating()) {
-                    initialMovementToObstacle = true; // Force re-walk
-                 }
+                if (Rs2Player.getWorldLocation().distanceTo(beforeObstaclePoint) <= 3 && 
+                    !Rs2Player.isMoving() && !Rs2Player.isAnimating()) {
+                    Microbot.log("Player seems stuck, forcing re-walk");
+                    initialMovementToObstacle = true;
+                }
             }
         } else {
             Microbot.log("Failed to interact with object: " + objectId + " with action: " + action);
-            // If object not found after trying to walk to it, maybe it's done, or we are stuck
+            // If object not found, maybe we're already past it
             if (Rs2GameObject.getTileObject(objectId) == null) {
-                 initialMovementToObstacle = true; // Try to re-evaluate path
+                Microbot.log("Object " + objectId + " not found, checking if we're past it");
+                if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 8) {
+                    initialMovementToObstacle = true;
+                    return true;
+                } else {
+                    initialMovementToObstacle = true; // Try to re-evaluate path
+                }
             }
         }
         return false;
     }
     
     private boolean handleObstacle(int objectId, String action, WorldPoint expectedEndPoint) {
+        // If already at or past the expected end point, skip obstacle
+        if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+            Microbot.log("Already past obstacle at " + expectedEndPoint);
+            initialMovementToObstacle = true;
+            return true;
+        }
+        
         if (Rs2GameObject.interact(objectId, action)) {
-            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4 || Rs2Player.isAnimating() || Rs2Player.isMoving(), 10000);
+            Global.sleepUntil(() -> Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4 || 
+                                   Rs2Player.isAnimating() || Rs2Player.isMoving(), 12000);
             sleep(600, 1200); 
+            
             if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 4) {
+                Microbot.log("Successfully completed obstacle to " + expectedEndPoint);
                 initialMovementToObstacle = true;
                 return true;
             } else {
-                Microbot.log("Failed to reach " + expectedEndPoint + " after Squeeze-through pipe");
+                Microbot.log("Failed to reach " + expectedEndPoint + " after " + action);
             }
         } else {
-             Microbot.log("Failed to interact with pipe: " + objectId + " with action: " + action);
+            Microbot.log("Failed to interact with object: " + objectId + " with action: " + action);
+            // If object not found, maybe we're already past it or need to walk closer
+            if (Rs2GameObject.getTileObject(objectId) == null) {
+                Microbot.log("Object " + objectId + " not found, checking if we're past it");
+                if (Rs2Player.getWorldLocation().distanceTo(expectedEndPoint) < 8) {
+                    initialMovementToObstacle = true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean interactWithAnyGate(String action) {
+        for (int gateId : ENTRANCE_GATE_IDS) {
+            if (Rs2GameObject.getTileObject(gateId) != null) {
+                return Rs2GameObject.interact(gateId, action);
+            }
         }
         return false;
     }
