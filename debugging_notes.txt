@@ -1,0 +1,21 @@
+// Add this debugging code to the JstWildyAgilScript.java in the main run loop
+// to track coordinate transformations
+
+// In the pipe interaction section, add this debugging:
+WorldPoint playerLoc = Rs2Player.getWorldLocation();
+Microbot.log("DEBUG: Player current location: " + playerLoc);
+Microbot.log("DEBUG: Is in instance? " + Microbot.getClient().getTopLevelWorldView().isInstance());
+
+// Check if the walker is getting the wrong start point
+if (Microbot.getClient().getTopLevelWorldView().isInstance()) {
+    LocalPoint localLoc = Microbot.getClient().getLocalPlayer().getLocalLocation();
+    WorldPoint fromInstanceCalc = WorldPoint.fromLocalInstance(Microbot.getClient(), localLoc);
+    Microbot.log("DEBUG: fromLocalInstance calculated: " + fromInstanceCalc);
+    Microbot.log("DEBUG: Regular getWorldLocation: " + Microbot.getClient().getLocalPlayer().getWorldLocation());
+}
+
+// Also add debugging to the walkAndHandleObstacle method to check what the walker is receiving:
+Microbot.log("DEBUG: About to call Rs2Walker.walkTo with destination: " + destination);
+Microbot.log("DEBUG: destination coordinates: x=" + destination.getX() + ", y=" + destination.getY() + ", z=" + destination.getPlane());
+boolean walkResult = Rs2Walker.walkTo(destination, 1);
+Microbot.log("DEBUG: Rs2Walker.walkTo returned: " + walkResult);

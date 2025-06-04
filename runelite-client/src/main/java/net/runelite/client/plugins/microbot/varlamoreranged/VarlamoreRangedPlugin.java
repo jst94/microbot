@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.microbot.MicrobotApi;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -40,7 +39,7 @@ public class VarlamoreRangedPlugin extends Plugin {
         if (overlayManager != null) {
             overlayManager.add(varlamoreRangedOverlay);
         }
-        varlamoreRangedScript.run();
+        varlamoreRangedScript.run(config);
     }
 
     protected void shutDown() {
