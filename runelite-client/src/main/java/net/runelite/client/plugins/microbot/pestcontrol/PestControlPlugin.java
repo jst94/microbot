@@ -98,7 +98,6 @@ public class PestControlPlugin extends Plugin implements SchedulablePlugin {
         if (overlayManager != null) {
             overlayManager.add(pestControlOverlay);
         }
-        pestControlScript.initialise = true;
         pestControlScript.run(config);
     }
 

@@ -25,7 +25,7 @@ public class PestControlOverlay  extends OverlayPanel {
         try {
             panelComponent.setPreferredSize(new Dimension(200, 300));
             panelComponent.getChildren().add(TitleComponent.builder()
-                    .text("Micro PestControl V" + PestControlScript.version)
+                    .text("Micro PestControl V1.0")
                     .color(Color.GREEN)
                     .build());
 
@@ -34,15 +34,6 @@ public class PestControlOverlay  extends OverlayPanel {
             panelComponent.getChildren().add(LineComponent.builder()
                     .left(Microbot.status)
                     .build());
-
-            if (PestControlScript.DEBUG) {
-                for(Portal portal: portals) {
-                    if (portal.getHitPoints() == null) continue;
-                    panelComponent.getChildren().add(LineComponent.builder()
-                            .left(portal.toString() + " - H" + portal.getHitPoints().getText() + " - A " + portal.isAttackAble())
-                            .build());
-                }
-            }
         } catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
