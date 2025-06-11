@@ -8,7 +8,7 @@ import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
-import net.runelite.api.widgets.ComponentID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.worldmap.WorldMap;
 import net.runelite.client.config.ConfigManager;
@@ -333,7 +333,7 @@ public class AIOFighterPlugin extends Plugin {
     }
 
     private WorldPoint getSelectedWorldPoint() {
-        if (Microbot.getClient().getWidget(ComponentID.WORLD_MAP_MAPVIEW) == null) {
+        if (Microbot.getClient().getWidget(InterfaceID.Worldmap.MAP_CONTAINER) == null) {
             if (Microbot.getClient().getSelectedSceneTile() != null) {
                 return Microbot.getClient().isInInstancedRegion() ?
                         WorldPoint.fromLocalInstance(Microbot.getClient(), Microbot.getClient().getSelectedSceneTile().getLocalLocation()) :
@@ -364,7 +364,7 @@ public class AIOFighterPlugin extends Plugin {
 
         float pixelsPerTile = worldMap.getWorldMapZoom();
 
-        Widget map = Microbot.getClient().getWidget(ComponentID.WORLD_MAP_MAPVIEW);
+        Widget map = Microbot.getClient().getWidget(595, 9);
         if (map != null) {
             Rectangle worldMapRect = map.getBounds();
 
