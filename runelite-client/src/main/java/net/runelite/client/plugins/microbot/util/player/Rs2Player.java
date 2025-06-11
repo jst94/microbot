@@ -624,7 +624,8 @@ public class Rs2Player {
 
 		Optional<Rs2ItemModel> fastFood = foods.stream().findFirst();
 
-		return fastFood.filter(rs2ItemModel -> Rs2Inventory.interact(rs2ItemModel, "eat")).isPresent();
+		fastFood.ifPresent(rs2ItemModel -> Rs2Inventory.interact(rs2ItemModel, "eat"));
+		return true;
 	}
 
     /**
@@ -1422,8 +1423,7 @@ public class Rs2Player {
      */
     public static boolean isStandingOnGameObject() {
         WorldPoint playerPoint = getWorldLocation();
-        return Rs2GameObject.getGameObject(playerPoint) != null
-                && isStandingOnGroundItem();
+        return Rs2GameObject.getGameObject(o -> Objects.equals(playerPoint, o.getWorldLocation())) != null || isStandingOnGroundItem();
     }
 
     /**
