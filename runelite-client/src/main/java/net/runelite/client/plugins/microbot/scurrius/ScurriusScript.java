@@ -7,9 +7,7 @@ import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
 import net.runelite.client.plugins.microbot.scurrius.enums.State;
-import net.runelite.client.plugins.microbot.util.bank.Rs2Bank;
 import net.runelite.client.plugins.microbot.util.coords.Rs2LocalPoint;
-import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
 import net.runelite.client.plugins.microbot.util.npc.Rs2Npc;
 import net.runelite.client.plugins.microbot.util.npc.Rs2NpcModel;
@@ -18,16 +16,14 @@ import net.runelite.client.plugins.microbot.util.prayer.Rs2Prayer;
 import net.runelite.client.plugins.microbot.util.prayer.Rs2PrayerEnum;
 import net.runelite.client.plugins.microbot.util.grounditem.Rs2GroundItem;
 import net.runelite.client.plugins.microbot.util.grounditem.LootingParameters;
+import net.runelite.client.plugins.microbot.util.grandexchange.Rs2GrandExchange;
 import net.runelite.client.plugins.microbot.util.tile.Rs2Tile;
 import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class ScurriusScript extends Script {
 
@@ -65,6 +61,36 @@ public class ScurriusScript extends Script {
                 if (!super.run()) return;
                 final long startTime = System.currentTimeMillis();
                 final long currentTime = System.currentTimeMillis();
+
+                // --- Grand Exchange Autobuyer Logic ---
+                String autobuyItem = config.geAutobuyItem();
+                int autobuyThreshold = config.geAutobuyThreshold();
+                if (autobuyItem != null && !autobuyItem.isEmpty() && autobuyThreshold > 0) {
+                    int invCount;
+                    try {
+                        int itemId = Integer.parseInt(autobuyItem);
+                        invCount = Rs2Inventory.itemQuantity(itemId);
+                    } catch (NumberFormatException e) {
+                        invCount = Rs2Inventory.itemQuantity(autobuyItem);
+                    }
+                    if (invCount < autobuyThreshold) {
+                        if (!isAtGrandExchange()) {
+                            Microbot.log("Autobuyer: Walking to Grand Exchange to buy " + autobuyItem);
+                            walkToGrandExchange();
+                            return;
+                        }
+                        if (!isGrandExchangeOpen()) {
+                            Microbot.log("Autobuyer: Opening Grand Exchange.");
+                            openGrandExchange();
+                            return;
+                        }
+                        Microbot.log("Autobuyer: Buying " + autobuyItem + " from Grand Exchange.");
+                        buyItemAtGrandExchange(autobuyItem, autobuyThreshold - invCount);
+                        sleep(1200);
+                        return;
+                    }
+                }
+                // --- End Autobuyer Logic ---
 
                 if (state != previousState) {
                     Microbot.log("State changed to: " + getStateDescription(state));
@@ -352,6 +378,9 @@ private void handleState(ScurriusConfig config, List<Integer> importantItems, lo
                 .collect(Collectors.toList());
     }
 
+    // --- Grand Exchange Autobuyer Helpers ---
+    // GE location (Varrock): (3164, 3487, 0)
+
     private void handlePrayerLogic() {
         if (scurrius == null) return;
 
@@ -387,11 +416,82 @@ private void handleState(ScurriusConfig config, List<Integer> importantItems, lo
         Rs2Prayer.disableAllPrayers();
         Microbot.log("All prayers disabled to preserve prayer points.");
         currentDefensivePrayer = null;
-    }
-
-    @Override
+    }    @Override
     public void shutdown() {
         super.shutdown();
         disableAllPrayers();
+    }
+
+    // --- Grand Exchange Autobuyer Helpers ---
+    // GE location (Varrock): (3164, 3487, 0)
+
+    private boolean isAtGrandExchange() {
+        WorldPoint geLocation = new WorldPoint(3164, 3487, 0);
+        return Rs2Player.getWorldLocation().distanceTo(geLocation) < 8;
+    }
+
+    private void walkToGrandExchange() {
+        Rs2GrandExchange.walkToGrandExchange();
+    }
+
+    private boolean isGrandExchangeOpen() {
+        return Rs2GrandExchange.isOpen();
+    }
+
+    private void openGrandExchange() {
+        Rs2GrandExchange.openExchange();
+    }
+
+    private void buyItemAtGrandExchange(String item, int quantity) {
+        try {
+            // Check if Grand Exchange is open
+            if (!isGrandExchangeOpen()) {
+                Microbot.log("Grand Exchange not open, attempting to open it.");
+                openGrandExchange();
+                return;
+            }
+
+            // Try to get item ID from string if it's numeric, otherwise use the item name
+            int itemId = -1;
+            String itemName = item;
+            try {
+                itemId = Integer.parseInt(item);
+                // If we have an item ID, we might want to get the actual item name
+                // For now, we'll use the ID as string for searching
+                itemName = item;
+            } catch (NumberFormatException e) {
+                // Item is a name, not an ID
+                itemName = item;
+            }
+
+            // Get current market price for the item
+            int marketPrice = -1;
+            if (itemId != -1) {
+                marketPrice = net.runelite.client.plugins.microbot.util.grandexchange.Rs2GrandExchange.getOfferPrice(itemId);
+            }
+
+            // If we couldn't get market price, use a reasonable default price increase
+            int buyPrice;
+            if (marketPrice > 0) {
+                // Buy at 10% above market price to ensure quick purchase
+                buyPrice = (int) (marketPrice * 1.1);
+                Microbot.log("Market price for " + itemName + ": " + marketPrice + ", buying at: " + buyPrice);
+            } else {
+                // Fallback: buy at a high price to ensure purchase (will be limited by GE anyway)
+                buyPrice = 1000000; // 1M gp max
+                Microbot.log("Could not determine market price for " + itemName + ", using high buy price: " + buyPrice);
+            }
+
+            // Use the Rs2GrandExchange utility to buy the item
+            boolean success = net.runelite.client.plugins.microbot.util.grandexchange.Rs2GrandExchange.buyItem(itemName, buyPrice, quantity);
+            
+            if (success) {
+                Microbot.log("Successfully placed buy offer for " + itemName + " x" + quantity + " at " + buyPrice + " gp each.");
+            } else {
+                Microbot.log("Failed to place buy offer for " + itemName + ". Will retry on next cycle.");
+            }        } catch (Exception ex) {
+            Microbot.log("Error buying item at Grand Exchange: " + ex.getMessage());
+            Microbot.logStackTrace("ScurriusScript.buyItemAtGrandExchange", ex);
+        }
     }
 }

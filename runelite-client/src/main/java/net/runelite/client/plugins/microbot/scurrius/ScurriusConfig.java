@@ -84,6 +84,32 @@ public interface ScurriusConfig extends Config {
     }
     
     @ConfigItem(
+            keyName = "geAutobuyItem",
+            name = "GE Autobuy Item",
+            description = "Item name or ID to autobuy from the Grand Exchange",
+            position = 3,
+            section = GENERAL_SETTINGS
+    )
+    default String geAutobuyItem() {
+        return "";
+    }
+
+    @ConfigItem(
+            keyName = "geAutobuyThreshold",
+            name = "GE Autobuy Threshold",
+            description = "Minimum quantity of the item before autobuyer triggers",
+            position = 4,
+            section = GENERAL_SETTINGS
+    )
+    @Range(
+            min = 1,
+            max = 10000
+    )
+    default int geAutobuyThreshold() {
+        return 1;
+    }
+
+    @ConfigItem(
             keyName = "foodSelection",
             name = "Select Food",
             description = "Select the type of food you want to use",
