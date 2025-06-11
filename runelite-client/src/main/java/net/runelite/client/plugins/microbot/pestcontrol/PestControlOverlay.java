@@ -10,8 +10,6 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 import javax.inject.Inject;
 import java.awt.*;
 
-import static net.runelite.client.plugins.microbot.pestcontrol.PestControlScript.portals;
-
 public class PestControlOverlay  extends OverlayPanel {
     @Inject
     PestControlOverlay(PestControlPlugin plugin)
