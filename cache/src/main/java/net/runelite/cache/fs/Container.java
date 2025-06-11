@@ -50,6 +50,7 @@ public class Container
 
 	public void compress(byte[] data, int[] keys) throws IOException
 	{
+		// OutputStream is an in-memory stream and does not require explicit closing.
 		OutputStream stream = new OutputStream();
 
 		byte[] compressedData;
@@ -180,7 +181,7 @@ public class Container
 		return container;
 	}
 
-	private static byte[] decrypt(byte[] data, int length, int[] keys)
+	private static byte[] decrypt(byte[] data, int length, int[] keys) throws java.io.IOException
 	{
 		if (keys == null)
 		{
@@ -191,7 +192,7 @@ public class Container
 		return xtea.decrypt(data, length);
 	}
 
-	private static byte[] encrypt(byte[] data, int length, int[] keys)
+	private static byte[] encrypt(byte[] data, int length, int[] keys) throws java.io.IOException
 	{
 		if (keys == null)
 		{

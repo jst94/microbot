@@ -31,7 +31,7 @@ import org.junit.Test;
 public class XteaTest
 {
 	@Test
-	public void test()
+	public void test() throws java.io.IOException
 	{
 		byte[] data = "testtesttest1".getBytes(StandardCharsets.UTF_8);
 

@@ -30,16 +30,15 @@ import net.runelite.cache.io.InputStream;
 
 public class FrameLoader
 {
-	public FrameDefinition load(FramemapDefinition framemap, int id, byte[] b)
+	public FrameDefinition load(FramemapDefinition framemap, int id, byte[] b) throws java.io.IOException
 	{
 		FrameDefinition def = new FrameDefinition();
-		InputStream in = new InputStream(b);
-		InputStream data = new InputStream(b);
+		try (InputStream in = new InputStream(b); InputStream data = new InputStream(b)) {
 
 		def.id = id;
 		def.framemap = framemap;
 
-		int framemapArchiveIndex = in.readUnsignedShort();
+		// int framemapArchiveIndex = in.readUnsignedShort(); // Removed unused variable
 		int length = in.readUnsignedByte();
 
 		data.skip(3 + length); // framemapArchiveIndex + length + data
@@ -138,5 +137,6 @@ public class FrameLoader
 		}
 
 		return def;
+		}
 	}
 }

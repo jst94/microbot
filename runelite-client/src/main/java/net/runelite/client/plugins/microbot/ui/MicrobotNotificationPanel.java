@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import net.runelite.client.plugins.microbot.ui.UnitFormatterFactory;
 
 @Slf4j
 class MicrobotNotificationPanel extends PluginPanel

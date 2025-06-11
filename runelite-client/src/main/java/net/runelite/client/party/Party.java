@@ -165,7 +165,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.Join prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -410,7 +410,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.Part prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -560,8 +560,6 @@ package net.runelite.client.party;
      */
     private void setType(
         java.lang.String value) {
-      java.lang.Class<?> valueClass = value.getClass();
-  
       type_ = value;
     }
     /**
@@ -597,8 +595,6 @@ package net.runelite.client.party;
      * @param value The data to set.
      */
     private void setData(com.google.protobuf.ByteString value) {
-      java.lang.Class<?> valueClass = value.getClass();
-  
       data_ = value;
     }
     /**
@@ -684,7 +680,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.Data prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -1176,7 +1172,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.C2S prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -1588,7 +1584,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.UserJoin prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -1897,7 +1893,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.UserPart prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -2172,8 +2168,6 @@ package net.runelite.client.party;
      */
     private void setType(
         java.lang.String value) {
-      java.lang.Class<?> valueClass = value.getClass();
-  
       type_ = value;
     }
     /**
@@ -2209,8 +2203,6 @@ package net.runelite.client.party;
      * @param value The data to set.
      */
     private void setData(com.google.protobuf.ByteString value) {
-      java.lang.Class<?> valueClass = value.getClass();
-  
       data_ = value;
     }
     /**
@@ -2296,7 +2288,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.PartyData prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
@@ -2846,7 +2838,7 @@ package net.runelite.client.party;
     }
 
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(net.runelite.client.party.Party.S2C prototype) {
       return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);

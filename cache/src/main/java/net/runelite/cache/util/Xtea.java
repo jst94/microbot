@@ -40,49 +40,55 @@ public class Xtea
 		this.key = key;
 	}
 
-	public byte[] encrypt(byte[] data, int len)
+	public byte[] encrypt(byte[] data, int len) throws java.io.IOException
 	{
-		InputStream in = new InputStream(data);
-		OutputStream out = new OutputStream(len);
-		int numBlocks = len / 8;
-		for (int block = 0; block < numBlocks; ++block)
-		{
-			int v0 = in.readInt();
-			int v1 = in.readInt();
-			int sum = 0;
-			for (int i = 0; i < ROUNDS; ++i)
+		try (
+			InputStream in = new InputStream(data);
+			OutputStream out = new OutputStream(len)
+		) {
+			int numBlocks = len / 8;
+			for (int block = 0; block < numBlocks; ++block)
 			{
-				v0 += (((v1 << 4) ^ (v1 >>> 5)) + v1) ^ (sum + key[sum & 3]);
-				sum += GOLDEN_RATIO;
-				v1 += (((v0 << 4) ^ (v0 >>> 5)) + v0) ^ (sum + key[(sum >>> 11) & 3]);
+				int v0 = in.readInt();
+				int v1 = in.readInt();
+				int sum = 0;
+				for (int i = 0; i < ROUNDS; ++i)
+				{
+					v0 += (((v1 << 4) ^ (v1 >>> 5)) + v1) ^ (sum + key[sum & 3]);
+					sum += GOLDEN_RATIO;
+					v1 += (((v0 << 4) ^ (v0 >>> 5)) + v0) ^ (sum + key[(sum >>> 11) & 3]);
+				}
+				out.writeInt(v0);
+				out.writeInt(v1);
 			}
-			out.writeInt(v0);
-			out.writeInt(v1);
+			out.writeBytes(in.getRemaining());
+			return out.flip();
 		}
-		out.writeBytes(in.getRemaining());
-		return out.flip();
 	}
 
-	public byte[] decrypt(byte[] data, int len)
+	public byte[] decrypt(byte[] data, int len) throws java.io.IOException
 	{
-		InputStream in = new InputStream(data);
-		OutputStream out = new OutputStream(len);
-		int numBlocks = len / 8;
-		for (int block = 0; block < numBlocks; ++block)
-		{
-			int v0 = in.readInt();
-			int v1 = in.readInt();
-			int sum = GOLDEN_RATIO * ROUNDS;
-			for (int i = 0; i < ROUNDS; ++i)
+		try (
+			InputStream in = new InputStream(data);
+			OutputStream out = new OutputStream(len)
+		) {
+			int numBlocks = len / 8;
+			for (int block = 0; block < numBlocks; ++block)
 			{
-				v1 -= (((v0 << 4) ^ (v0 >>> 5)) + v0) ^ (sum + key[(sum >>> 11) & 3]);
-				sum -= GOLDEN_RATIO;
-				v0 -= (((v1 << 4) ^ (v1 >>> 5)) + v1) ^ (sum + key[sum & 3]);
+				int v0 = in.readInt();
+				int v1 = in.readInt();
+				int sum = GOLDEN_RATIO * ROUNDS;
+				for (int i = 0; i < ROUNDS; ++i)
+				{
+					v1 -= (((v0 << 4) ^ (v0 >>> 5)) + v0) ^ (sum + key[(sum >>> 11) & 3]);
+					sum -= GOLDEN_RATIO;
+					v0 -= (((v1 << 4) ^ (v1 >>> 5)) + v1) ^ (sum + key[sum & 3]);
+				}
+				out.writeInt(v0);
+				out.writeInt(v1);
 			}
-			out.writeInt(v0);
-			out.writeInt(v1);
+			out.writeBytes(in.getRemaining());
+			return out.flip();
 		}
-		out.writeBytes(in.getRemaining());
-		return out.flip();
 	}
 }

@@ -5,7 +5,7 @@ import net.runelite.cache.io.InputStream;
 
 public class ModelLoader
 {
-	public ModelDefinition load(int modelId, byte[] b)
+	public ModelDefinition load(int modelId, byte[] b) throws java.io.IOException
 	{
 		ModelDefinition def = new ModelDefinition();
 		def.id = modelId;
@@ -34,15 +34,17 @@ public class ModelLoader
 		return def;
 	}
 
-	void decodeType3(ModelDefinition def, byte[] var1)
+	void decodeType3(ModelDefinition def, byte[] var1) throws java.io.IOException
 	{
-		InputStream var2 = new InputStream(var1);
-		InputStream var3 = new InputStream(var1);
-		InputStream var4 = new InputStream(var1);
-		InputStream var5 = new InputStream(var1);
-		InputStream var6 = new InputStream(var1);
-		InputStream var7 = new InputStream(var1);
-		InputStream var8 = new InputStream(var1);
+		try (
+			InputStream var2 = new InputStream(var1);
+			InputStream var3 = new InputStream(var1);
+			InputStream var4 = new InputStream(var1);
+			InputStream var5 = new InputStream(var1);
+			InputStream var6 = new InputStream(var1);
+			InputStream var7 = new InputStream(var1);
+			InputStream var8 = new InputStream(var1)
+		) {
 		var2.setOffset(var1.length - 26);
 		int var9 = var2.readUnsignedShort();
 		int var10 = var2.readUnsignedShort();
@@ -398,17 +400,20 @@ public class ModelLoader
 			var2.readInt();
 		}
 
+		}
 	}
 
-	void decodeType2(ModelDefinition def, byte[] var1)
+	void decodeType2(ModelDefinition def, byte[] var1) throws java.io.IOException
 	{
 		boolean var2 = false;
 		boolean var3 = false;
-		InputStream var4 = new InputStream(var1);
-		InputStream var5 = new InputStream(var1);
-		InputStream var6 = new InputStream(var1);
-		InputStream var7 = new InputStream(var1);
-		InputStream var8 = new InputStream(var1);
+		try (
+			InputStream var4 = new InputStream(var1);
+			InputStream var5 = new InputStream(var1);
+			InputStream var6 = new InputStream(var1);
+			InputStream var7 = new InputStream(var1);
+			InputStream var8 = new InputStream(var1)
+		) {
 		var4.setOffset(var1.length - 23);
 		int var9 = var4.readUnsignedShort();
 		int var10 = var4.readUnsignedShort();
@@ -421,7 +426,7 @@ public class ModelLoader
 		int var17 = var4.readUnsignedByte();
 		int var18 = var4.readUnsignedShort();
 		int var19 = var4.readUnsignedShort();
-		int var20 = var4.readUnsignedShort();
+		var4.readUnsignedShort();
 		int var21 = var4.readUnsignedShort();
 		int var22 = var4.readUnsignedShort();
 		byte var23 = 0;
@@ -464,7 +469,7 @@ public class ModelLoader
 		var24 += var18;
 		int var35 = var24;
 		var24 += var19;
-		int var10000 = var24 + var20;
+		// int var10000 = var24 + var20; // Removed unused variable
 		def.vertexCount = var9;
 		def.faceCount = var10;
 		def.numTextureFaces = var11;
@@ -740,17 +745,20 @@ public class ModelLoader
 			def.faceRenderTypes = null;
 		}
 
+		}
 	}
 
-	void decodeType1(ModelDefinition def, byte[] var1)
+	void decodeType1(ModelDefinition def, byte[] var1) throws java.io.IOException
 	{
-		InputStream var2 = new InputStream(var1);
-		InputStream var3 = new InputStream(var1);
-		InputStream var4 = new InputStream(var1);
-		InputStream var5 = new InputStream(var1);
-		InputStream var6 = new InputStream(var1);
-		InputStream var7 = new InputStream(var1);
-		InputStream var8 = new InputStream(var1);
+		try (
+			InputStream var2 = new InputStream(var1);
+			InputStream var3 = new InputStream(var1);
+			InputStream var4 = new InputStream(var1);
+			InputStream var5 = new InputStream(var1);
+			InputStream var6 = new InputStream(var1);
+			InputStream var7 = new InputStream(var1);
+			InputStream var8 = new InputStream(var1)
+		) {
 		var2.setOffset(var1.length - 23);
 		int var9 = var2.readUnsignedShort();
 		int var10 = var2.readUnsignedShort();
@@ -1086,17 +1094,20 @@ public class ModelLoader
 			var2.readInt();
 		}
 
+		}
 	}
 
-	void decodeOldFormat(ModelDefinition def, byte[] inputData)
+	void decodeOldFormat(ModelDefinition def, byte[] inputData) throws java.io.IOException
 	{
 		boolean usesFaceRenderTypes = false;
 		boolean usesFaceTextures = false;
-		InputStream stream1 = new InputStream(inputData);
-		InputStream stream2 = new InputStream(inputData);
-		InputStream stream3 = new InputStream(inputData);
-		InputStream stream4 = new InputStream(inputData);
-		InputStream stream5 = new InputStream(inputData);
+		try (
+			InputStream stream1 = new InputStream(inputData);
+			InputStream stream2 = new InputStream(inputData);
+			InputStream stream3 = new InputStream(inputData);
+			InputStream stream4 = new InputStream(inputData);
+			InputStream stream5 = new InputStream(inputData)
+		) {
 		stream1.setOffset(inputData.length - 18);
 		int vertexCount = stream1.readUnsignedShort();
 		int faceCount = stream1.readUnsignedShort();
@@ -1108,7 +1119,8 @@ public class ModelLoader
 		int hasPackedVertexGroups = stream1.readUnsignedByte();
 		int vertexXDataByteCount = stream1.readUnsignedShort();
 		int vertexYDataByteCount = stream1.readUnsignedShort();
-		int vertezZDataByteCount = stream1.readUnsignedShort();
+		// int vertezZDataByteCount = stream1.readUnsignedShort(); // Removed unused variable
+		stream1.readUnsignedShort();
 		int faceIndexDataByteCount = stream1.readUnsignedShort();
 		byte offsetOfVertexFlags = 0;
 		int dataOffset = offsetOfVertexFlags + vertexCount;
@@ -1396,6 +1408,7 @@ public class ModelLoader
 			def.faceRenderTypes = null;
 		}
 
+		}
 	}
 
 }
