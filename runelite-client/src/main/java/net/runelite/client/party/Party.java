@@ -248,7 +248,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.Join)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -433,7 +432,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.Part)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -780,7 +778,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.Data)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -1351,7 +1348,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.C2S)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -1667,7 +1663,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.UserJoin)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -1972,7 +1967,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.UserPart)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -2444,7 +2438,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.PartyData)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {
@@ -3017,7 +3010,6 @@ package net.runelite.client.party;
       // @@protoc_insertion_point(builder_scope:party.S2C)
     }
     @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
     protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         java.lang.Object arg0, java.lang.Object arg1) {

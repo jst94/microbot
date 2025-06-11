@@ -28,6 +28,7 @@ package net.runelite.client.plugins.microbot.questhelper.helpers.quests.shadowof
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.questhelper.collections.ItemCollections;
+import static net.runelite.api.ItemIds.*;
 import net.runelite.client.plugins.microbot.questhelper.questhelpers.BasicQuestHelper;
 import net.runelite.client.plugins.microbot.questhelper.questinfo.QuestHelperQuest;
 import net.runelite.client.plugins.microbot.questhelper.requirements.conditional.Conditions;
@@ -50,6 +51,22 @@ import net.runelite.client.plugins.microbot.questhelper.requirements.var.VarbitR
 import java.util.*;
 
 public class ShadowOfTheStorm extends BasicQuestHelper {
+    /**
+     * Collection of alternate item IDs that count as "dark clothing" for quest requirements.
+     * This improves maintainability and readability of the alternates list.
+     */
+    private static final List<Integer> DARK_ITEM_ALTERNATES = Collections.unmodifiableList(Arrays.asList(
+            ItemID.BLACK_DESERT_ROBES, ItemIds.BLACK_CHAINBODY, ItemIds.BLACK_PLATEBODY, ItemIds.BLACK_PLATELEGS, ItemIds.BLACK_FULL_HELM,
+            ItemIds.BLACK_MED_HELM, ItemIds.BLACK_GLOVES, ItemIds.PRIEST_GOWN, ItemIds.PRIEST_GOWN_428, ItemIds.MYSTIC_HAT_DARK,
+            ItemIds.MYSTIC_ROBE_BOTTOM_DARK, ItemIds.MYSTIC_ROBE_TOP_DARK, ItemIds.GHOSTLY_BOOTS, ItemIds.GHOSTLY_CLOAK, ItemIds.GHOSTLY_GLOVES,
+            ItemIds.GHOSTLY_HOOD, ItemIds.GHOSTLY_ROBE, ItemIds.GHOSTLY_ROBE_6108, ItemIds.SHADE_ROBE, ItemIds.SHADE_ROBE_TOP, ItemIds.ANTISANTA_BOOTS,
+            ItemIds.ANTISANTA_GLOVES, ItemIds.ANTISANTA_JACKET, ItemIds.ANTISANTA_MASK, ItemIds.ANTISANTA_PANTALOONS, ItemIds.WIZARD_HAT,
+            ItemIds.BLACK_CAPE, ItemIds.BLACK_PARTYHAT, ItemIds.BLACK_HWEEN_MASK, ItemIds.BLACK_DRAGON_MASK, ItemIds.BLACK_UNICORN_MASK,
+            ItemIds.BLACK_DEMON_MASK, ItemIds.BLACK_DHIDE_BODY, ItemIds.BLACK_DHIDE_CHAPS, ItemIds.BLACK_DHIDE_VAMBRACES, ItemIds.BLACK_ROBE,
+            ItemIds.GRACEFUL_BOOTS_24758, ItemIds.GRACEFUL_CAPE_24746, ItemIds.GRACEFUL_GLOVES_24755, ItemIds.GRACEFUL_HOOD_24743,
+            ItemIds.GRACEFUL_LEGS_24752, ItemIds.GRACEFUL_TOP_24749
+    ));
+
     //Items Required
     ItemRequirement darkItems, silverlight, strangeImplement, blackMushroomInk, pestle, vial, silverBar, silverlightHighlighted, blackMushroomHighlighted,
             silverlightDyedEquipped, sigilMould, silverlightDyed, strangeImplementHighlighted, sigil, book, bookHighlighted,
@@ -165,17 +182,27 @@ public class ShadowOfTheStorm extends BasicQuestHelper {
         circleSpot = new Zone(new WorldPoint(2718, 4902, 2), new WorldPoint(2718, 4902, 2));
         secondCircleSpot = new Zone(new WorldPoint(2720, 4903, 2), new WorldPoint(2720, 4903, 2));
     }
-
     @Override
     protected void setupRequirements() {
-        darkItems = new ItemRequirement("pieces of black clothing", ItemID.BLACK_DESERT_SHIRT, 3, true).isNotConsumed().doNotAggregate();
-        darkItems.addAlternates(ItemID.BLACK_DESERT_ROBE, ItemID.BLACK_CHAINBODY, ItemID.BLACK_PLATEBODY, ItemID.BLACK_PLATELEGS, ItemID.BLACK_FULL_HELM, ItemID.BLACK_MED_HELM, ItemID.BLACK_GLOVES, ItemID.PRIEST_GOWN, ItemID.PRIEST_GOWN_428, ItemID.MYSTIC_HAT_DARK,
-                ItemID.MYSTIC_ROBE_BOTTOM_DARK, ItemID.MYSTIC_ROBE_TOP_DARK, ItemID.GHOSTLY_BOOTS, ItemID.GHOSTLY_CLOAK, ItemID.GHOSTLY_GLOVES, ItemID.GHOSTLY_HOOD, ItemID.GHOSTLY_ROBE, ItemID.GHOSTLY_ROBE_6108, ItemID.SHADE_ROBE, ItemID.SHADE_ROBE_TOP, ItemID.ANTISANTA_BOOTS,
-                ItemID.ANTISANTA_GLOVES, ItemID.ANTISANTA_JACKET, ItemID.ANTISANTA_MASK, ItemID.ANTISANTA_PANTALOONS, ItemID.WIZARD_HAT, ItemID.BLACK_CAPE, ItemID.BLACK_PARTYHAT, ItemID.BLACK_HWEEN_MASK, ItemID.BLACK_DRAGON_MASK, ItemID.BLACK_UNICORN_MASK, ItemID.BLACK_DEMON_MASK,
-                ItemID.BLACK_DHIDE_BODY, ItemID.BLACK_DHIDE_CHAPS, ItemID.BLACK_DHIDE_VAMBRACES, ItemID.BLACK_ROBE, ItemID.GRACEFUL_BOOTS_24758, ItemID.GRACEFUL_CAPE_24746, ItemID.GRACEFUL_GLOVES_24755, ItemID.GRACEFUL_HOOD_24743, ItemID.GRACEFUL_LEGS_24752, ItemID.GRACEFUL_TOP_24749);
-        silverlight = new ItemRequirement("Silverlight", ItemID.SILVERLIGHT).isNotConsumed();
+        // Setup the darkItems requirement and add all alternate dark clothing items.
+        darkItems = new ItemRequirement("pieces of black clothing", ItemIds.BLACK_DESERT_SHIRT, 3, true)
+                .isNotConsumed()
+                .doNotAggregate();
+        darkItems.addAlternates(DARK_ITEM_ALTERNATES.toArray(new Integer[0]));
+
+        // Validate required items to avoid null pointer issues.
+        if (darkItems == null) {
+            throw new IllegalStateException("darkItems requirement could not be initialized.");
+        }
+
+        silverlight = new ItemRequirement("Silverlight", ItemIds.SILVERLIGHT).isNotConsumed();
         silverlight.setTooltip("You can get another from Father Reen in Al Kharid if you've lost it");
         silverlight.addAlternates(ItemID.SILVERLIGHT_6745); // silverlight dyed black
+
+        if (silverlight == null) {
+            throw new IllegalStateException("silverlight requirement could not be initialized.");
+        }
+
         strangeImplement = new ItemRequirement("Strange implement", ItemID.STRANGE_IMPLEMENT);
         strangeImplement.setTooltip("You can find another in the underground of Uzer");
         strangeImplementHighlighted = new ItemRequirement("Strange implement", ItemID.STRANGE_IMPLEMENT);
