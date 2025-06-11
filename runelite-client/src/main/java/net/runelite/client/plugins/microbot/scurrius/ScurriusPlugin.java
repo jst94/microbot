@@ -4,12 +4,10 @@ import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ProjectileMoved;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.microbot.magic.orbcharger.enums.OrbChargerState;
 import net.runelite.client.plugins.microbot.scurrius.enums.State;
 import net.runelite.client.plugins.microbot.util.walker.Rs2Walker;
 import net.runelite.client.ui.overlay.OverlayManager;
@@ -50,9 +48,14 @@ public class ScurriusPlugin extends Plugin {
         scurriusScript.run(config);
     }
 
+    @Override
     protected void shutDown() {
-        scurriusScript.shutdown();
-        overlayManager.remove(exampleOverlay);
+        if (scurriusScript != null) {
+            scurriusScript.shutdown();
+        }
+        if (overlayManager != null && exampleOverlay != null) {
+            overlayManager.remove(exampleOverlay);
+        }
     }
 
     @Subscribe
