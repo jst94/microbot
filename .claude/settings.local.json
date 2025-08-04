@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "mcp__Context7__resolve-library-id",
+      "mcp__Context7__get-library-docs",
+      "Bash(mvn clean:*)",
+      "Bash(mvn compile:*)",
+      "Bash(javac:*)",
+      "Bash(timeout 30s mvn compile -DskipTests -pl runelite-client -q)",
+      "Bash(timeout 20s mvn compile -pl runelite-client -q)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(timeout 30 mvn compile -pl runelite-client -Dmaven.test.skip=true)",
+      "WebFetch(domain:oldschool.runescape.wiki)",
+      "Bash(grep:*)",
+      "Bash(java:*)",
+      "Bash(mvn install:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(timeout 30s mvn compile -pl runelite-client -Dmaven.test.skip=true)",
+      "Bash(timeout 60s mvn compile:*)",
+      "Bash(timeout 30s mvn compile -pl runelite-client -Dmaven.test.skip=true -q)"
+    ],
+    "deny": []
+  }
+}

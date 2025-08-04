@@ -71,6 +71,7 @@ public @interface PluginDescriptor
   String Cardew = "<html>[<font color=#824BA3>CD</font>]";
 	String Bolado = "<html>[<font color=#FF0000><b>\uD83D\uDE21</b></font>] ";
  	String Choken = "<html>[<font color=#8A2BE2>\u03A9</font>] ";
+	String JST = "<html>[<font color=#FF6B35>JST</font>] ";
 
 	String name();
 
