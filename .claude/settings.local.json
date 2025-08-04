@@ -20,7 +20,8 @@
       "WebFetch(domain:github.com)",
       "Bash(timeout 30s mvn compile -pl runelite-client -Dmaven.test.skip=true)",
       "Bash(timeout 60s mvn compile:*)",
-      "Bash(timeout 30s mvn compile -pl runelite-client -Dmaven.test.skip=true -q)"
+      "Bash(timeout 30s mvn compile -pl runelite-client -Dmaven.test.skip=true -q)",
+      "Bash(git config:*)"
     ],
     "deny": []
   }
