@@ -43,8 +43,7 @@ import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.plugins.microbot.MicrobotClientLoader;
-import net.runelite.client.plugins.microbot.example.ExamplePlugin;
-import net.runelite.client.plugins.microbot.sideloading.MicrobotPluginManager;
+import net.runelite.client.plugins.microbot.externalplugins.MicrobotPluginManager;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.FatalErrorDialog;
 import net.runelite.client.ui.SplashScreen;
@@ -369,7 +368,6 @@ public class RuneLiteDebug {
         Updater updater = injector.getInstance(Updater.class);
         updater.update(); // will exit if an update is in progress
 
-        microbotPluginManager.loadSideLoadPlugins(new ArrayList<>());
         SplashScreen.stage(.70, null, "Finalizing configuration");
 
         // Plugins have provided their config, so set default config
@@ -406,8 +404,6 @@ public class RuneLiteDebug {
         clientUI.show();
 
         pluginManager.loadRuneliteCorePlugins();
-
-        pluginsToDebug.add(ExamplePlugin.class);
 
         microbotPluginManager.loadCorePlugins(pluginsToDebug);
 

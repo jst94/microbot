@@ -250,7 +250,7 @@ public class PluginManager {
 
 
             /**
-             * /ODO: Over itme these should be moved into a core folder within the microbot plugins folder
+             * TODO: Over time these should be moved into a core folder within the microbot plugins folder
              * This way we can easily detect any core plugins required to run microbot
              */
             if (pkg.contains(".microbot") && (
@@ -259,7 +259,8 @@ public class PluginManager {
                             || pkg.endsWith("microbot")
                             || pkg.contains(".shortestpath")
                             || pkg.contains(".rs2cachedebugger")
-                            || pkg.contains("pluginscheduler"))) {
+                            || pkg.contains("pluginscheduler")
+                            || pkg.contains("inventorysetups"))) {
                 microbotPlugins.add(clazz);
             } else if (!pkg.contains("microbot")) {
                 otherPlugins.add(clazz);
